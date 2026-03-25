@@ -343,8 +343,6 @@ footer {
 .fade { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
 .fade.in { opacity: 1; transform: translateY(0); }
 
-/* ── CUSTOM CURSOR ── */
-body, body * { cursor: none !important; }
 
 /* ── CUSTOM CURSOR ── */
 #cursor {
