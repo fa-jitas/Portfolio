@@ -336,7 +336,7 @@ const cases = [
     images: {
       hero: '',
       research: '',
-      insights: 'images_fb/interview.png',
+      insights: 'images_fb/Interview.png',
       insightsCaption: '📋 Interview Questions',
       insightsDesc: 'Informed our decision to prioritize gate-aware ordering, wait time transparency, and flight-synced pickups',
       competitive: 'images_fb/competitive.png',
