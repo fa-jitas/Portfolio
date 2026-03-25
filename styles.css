@@ -344,7 +344,7 @@ footer {
 .fade.in { opacity: 1; transform: translateY(0); }
 
 
-/* ── CUSTOM CURSOR ── */
+/* ── CUSTOM CURSOR
 #cursor {
   position: fixed;
   top: 0; left: 0;
@@ -369,7 +369,7 @@ footer {
   transform: translate(-50%, -50%);
   transition: left .12s ease, top .12s ease, opacity .3s ease;
   opacity: .35;
-}
+} ── */
 
 /* ── SCRAMBLE target keep same layout ── */
 .wi-name { display: block; }
