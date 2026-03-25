@@ -29,20 +29,7 @@ document.addEventListener('click', e => {
 });
 
 /* ══ CUSTOM CURSOR ══ */
-const cur = document.getElementById('cursor');
-const trail = document.getElementById('cursor-trail');
-document.addEventListener('mousemove', e => {
-  cur.style.left = e.clientX + 'px';
-  cur.style.top  = e.clientY + 'px';
-  trail.style.left = e.clientX + 'px';
-  trail.style.top  = e.clientY + 'px';
-});
-document.addEventListener('mousedown', () => cur.classList.add('clicking'));
-document.addEventListener('mouseup',   () => cur.classList.remove('clicking'));
-document.querySelectorAll('a, button, .work-item, .tool, nav a').forEach(el => {
-  el.addEventListener('mouseenter', () => cur.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => cur.classList.remove('hovering'));
-});
+
 
 /* nav smooth scroll */
 document.querySelectorAll('nav a[href^="#"]').forEach(a => {
