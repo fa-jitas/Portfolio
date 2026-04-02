@@ -349,7 +349,7 @@ const cases = [
     team: 'Nicole Fajardo, Jennie Le, Noor Haider, Rishab Bajaj',
     role: 'UX/UI Designer',
     tags: ['Mobile', 'Android', 'Service Design', 'Accessibility', 'Designathon'],
-    overview: 'Finding reliable resources while unhoused is overwhelming due to confusing, outdated, and unverified information. Safe Haven is a mobile tool that provides trusted, community-verified updates on shelters, food, and essential services designed for low-stress use.',
+    overview: 'Finding reliable resources while unhoused is overwhelming due to confusing, outdated, and unverified information. Hope Haven is a mobile tool that provides trusted, community-verified updates on shelters, food, and essential services designed for low-stress use.',
     hmw: 'How might we design a mobile tool that makes finding and verifying local resources intuitive, fast, and low-stress for people without stable housing?',
     problem: 'People experiencing housing insecurity often rely on <span class="cs-highlight">word of mouth</span> or <span class="cs-highlight">outdated tools</span> to find food, shelter, and services. This <span class="cs-highlight"> lack of verified, trustworthy information</span> creates fear, uncertainty, and missed opportunities for support.',
     research: 'To understand who we were designing for, we spoke with case managers, dug into government data, and used AI to synthesize existing research. We learned that 64% of unhoused individuals in SF are entirely unsheltered, most rely on low-resource phones, and nearly every existing digital tool assumes resources people simply don\'t have.',
@@ -365,7 +365,7 @@ const cases = [
       { title: 'What we kept & why', body: 'Chose a category dashboard over an intake form since forms add friction for users in crisis', img: 'images_hh/whatwekept.png' },
       { title: 'Refinement after winning', body: 'Post–Designathon: added AI chat, aligned with Android, removed the map, and improved the crisis page to simplify user flow', img:'images_hh/iteration.png' },
     ],
-    outcome: 'Built in 8 hours, Safe Haven won the Best Novel award at the Google x Designathon.',
+    outcome: 'Built in 8 hours, Hope Haven won the Best Novel award at the Google x Designathon.',
     flows: [
       { title: 'Resource Discovery', body: 'Quick-access category pills and a location-based search let users find relevant resources immediately. Users can also describe their situation in text or chat with an AI bot for personalized help', img: 'images_hh/home.png' },
       { title: 'Community Verification', body: 'Locally verified resources with community posts and updates build trust fast', img: 'images_hh/home2.png' },
