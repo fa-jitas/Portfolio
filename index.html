@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="images_hp/yeona.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicole Fajardo</title>
+<meta name="color-scheme" content="light">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="cs-lightbox" id="cs-lightbox" onclick="closeLightbox()">
+  <button class="cs-lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="cs-lightbox-img" src="" alt="">
+</div>
+<div class="wrap">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="header-top">
+      <div>
+        <h1 class="header-name">Nicole <span style="color:var(--accent)">Fajardo</span></h1>
+      </div>
+    </div>
+
+    <!-- nav inline under header -->
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="fade">
+    <p class="sec-label">About</p>
+    <div class="chat-window">
+      <div class="chat-topbar">
+        <div class="chat-avatar"><img src="images_hp/myself.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+        <div>
+          <div class="chat-contact">Nicole Fajardo</div>
+        </div>
+      </div>
+      <div class="chat-bubbles" id="chat-bubbles">
+        <div class="chat-timestamp" id="chat-timestamp"></div>
+      </div>
+    </div>
+    <div class="tools" style="margin-top:24px">
+      <span class="tool">Service Design</span>
+      <span class="tool">Accessibility</span>
+      <span class="tool">User Research</span>
+      <span class="tool">Human-Centered Design</span>
+      <span class="tool">Interaction Design</span>
+    </div>
+  </section>
+
+  <!-- ── WORK ── -->
+  <section id="work" class="fade" style="transition-delay:.08s">
+    <p class="sec-label">Work</p>
+    <div class="work-list">
+
+      <div class="work-item" onclick="openCase(0)">
+        <div class="wi-left">
+          <span class="wi-name">FlyBites</span>
+          <span class="wi-meta">UX/UI · iOS · Research</span>
+        </div>
+        <span class="wi-right">2025 ↗</span>
+        <div class="wi-tldr">
+          <div class="wi-tldr-label">TL;DR</div>
+          <div class="wi-tldr-text">A flight-aware food ordering app that helps airport travelers eat without missing their boarding call.</div>
+        </div>
+      </div>
+
+      <div class="work-item" onclick="openCase(1)">
+        <div class="wi-left">
+          <span class="wi-name">Hope Haven</span>
+          <span class="wi-meta">UX/UI · Android · Service Design · Designathon</span>
+        </div>
+        <span class="wi-right">2025 ↗</span>
+        <div class="wi-tldr">
+          <div class="wi-tldr-label">TL;DR</div>
+          <div class="wi-tldr-text">A mobile tool for unhoused individuals with trusted, community-verified resources.<br><strong>🏆 Won Best Novel at Google x Designathon.</strong></div>
+        </div>
+      </div>
+
+      <div class="work-item" onclick="openCase(2)">
+        <div class="wi-left">
+          <span class="wi-name">MnemoSense</span>
+          <span class="wi-meta">Wearable · Health Tech · FigBuild</span>
+        </div>
+        <span class="wi-right">2026 ↗</span>
+        <div class="wi-tldr">
+          <div class="wi-tldr-label">TL;DR</div>
+          <div class="wi-tldr-text">A wearable sensory node system that helps amputees regulate phantom limb sensations through vibration, pressure, and temperature feedback.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="fade" style="transition-delay:.16s">
+    <p class="sec-label">Contact</p>
+    <p class="contact-block">Let's work<br>together!</p>
+    <a class="contact-email" href="mailto:you@email.com">fajitas@berkeley.edu</a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/fajitas/" target="_blank" >LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1lN9ykkhkDnqigrQQjGfjP-XC7OonOFQ5/view?usp=sharing" target="_blank" >Resume</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="fade" style="transition-delay:.22s">
+    <span>Nicole Fajardo </span>
+    <span>© 2026</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+
+<!-- ── CASE STUDY PAGE ── -->
+<div id="case-study">
+  <div id="cs-progress"></div>
+  <div class="cs-wrap">
+    <button class="cs-back" onclick="closeCase()">← Back to work</button>
+    <p class="cs-label"></p>
+    <h1 class="cs-title"></h1>
+    <div class="cs-tags"></div>
+    <div class="cs-hero-phones-wrap" id="cs-hero-phones-wrap"></div>
+    <div class="cs-hero"><span class="cs-hero-emoji"></span></div>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">👥</span>
+        <span class="cs-meta-value cs-meta-team"></span>
+      </div>
+      <div class="cs-meta-item cs-meta-duration-wrap" style="display:none">
+        <span class="cs-meta-label">⏱</span>
+        <span class="cs-meta-value cs-meta-duration"></span>
+      </div>
+    </div>
+    <div class="cs-body-outer">
+      <nav class="cs-sidenav">
+        <a data-target="cs-intro" class="cs-nav-link cs-nav-active">Intro</a>
+        <a data-target="cs-problem" class="cs-nav-link">Problem</a>
+        <a data-target="cs-research" class="cs-nav-link">Research</a>
+        <a data-target="cs-ideation" class="cs-nav-link">Ideation</a>
+        <a data-target="cs-solution" class="cs-nav-link">Solution</a>
+        <a data-target="cs-contribution" class="cs-nav-link">My Role</a>
+        <a data-target="cs-reflection" class="cs-nav-link">Reflection</a>
+      </nav>
+      <div class="cs-content">
+        <div class="cs-body">
+
+          <!-- STATS -->
+          <div class="cs-stats-wrap cs-section">
+            <div class="cs-stats"></div>
+          </div>
+
+          <!-- INTRO -->
+          <div id="cs-intro" class="cs-section cs-overview">
+            <h3>Intro</h3>
+            <p></p>
+          </div>
+
+          <!-- PROBLEM -->
+          <div id="cs-problem" class="cs-section cs-problem">
+            <h3>Problem</h3>
+            <p></p>
+            <div class="cs-hmw" style="display:none">
+              <span class="cs-hmw-label">How Might We</span>
+              <p class="cs-hmw-text"></p>
+            </div>
+          </div>
+
+          <!-- RESEARCH -->
+          <div id="cs-research" class="cs-section cs-research">
+            <h3>Research</h3>
+            <p></p>
+            <div class="cs-insights">
+              <div class="cs-insight cs-insight-0">
+                <span class="cs-insight-num">01</span>
+                <span class="cs-insight-text"></span>
+              </div>
+              <div class="cs-insight cs-insight-1">
+                <span class="cs-insight-num">02</span>
+                <span class="cs-insight-text"></span>
+              </div>
+              <div class="cs-insight cs-insight-2">
+                <span class="cs-insight-num">03</span>
+                <span class="cs-insight-text"></span>
+              </div>
+              <div class="cs-insight cs-insight-3" style="display:none">
+                <span class="cs-insight-num">04</span>
+                <span class="cs-insight-text"></span>
+              </div>
+            </div>
+            <div class="cs-research-img-wrap">
+              <div class="cs-img-placeholder cs-img-full cs-research-placeholder">
+                <span class="ph-icon">📋</span>
+                <span class="ph-label">Research Synthesis / Affinity Map</span>
+                <span class="ph-sub">Interview notes, user personas, or competitive analysis</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- IDEATION -->
+          <div id="cs-ideation" class="cs-section">
+            <h3>Ideation</h3>
+            <p class="cs-ideation-intro"></p>
+            <div class="cs-ideation-layout">
+              <div class="cs-steps"></div>
+              <div class="cs-idea-placeholder" id="cs-idea-ph" onclick="cycleIdeaStep()">
+                <span class="cs-idea-ph-num"></span>
+                <span class="cs-idea-ph-title"></span>
+                <span class="cs-idea-ph-hint">Click to advance →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOLUTION -->
+          <div id="cs-solution" class="cs-section cs-solution">
+            <h3>Solution</h3>
+            <p></p>
+            <div class="cs-flows"></div>
+          </div>
+
+          <!-- CONTRIBUTION -->
+          <div id="cs-contribution" class="cs-section cs-contribution">
+            <h3>My Role</h3>
+            <p class="cs-contribution-summary"></p>
+            <div class="cs-contributions"></div>
+          </div>
+
+          <!-- REFLECTION -->
+          <div id="cs-reflection" class="cs-section cs-reflection">
+            <h3>Reflection</h3>
+            <p class="cs-reflection-text"></p>
+            <div class="cs-takeaways"></div>
+          </div>
+
+        </div><!-- end cs-body -->
+      </div><!-- end cs-content -->
+    </div><!-- /cs-body-outer -->
+  </div><!-- /cs-wrap -->
+</div><!-- /case-study -->
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
+<script src="main.js"></script>
+</body>
+</html>
