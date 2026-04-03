@@ -240,7 +240,7 @@ const cases = [
       { title: 'Words reduce anxiety', body: 'The right status message at the right moment had more impact than visuals alone.' },
     ],
     images: {
-      insights: 'images_fb/Interview.png', insightsCaption: '📋 Interview Questions', insightsDesc: 'Informed our decision to prioritize gate-aware ordering, wait time transparency, and flight-synced pickups',
+      insights: 'images_fb/interview.png', insightsCaption: '📋 Interview Questions', insightsDesc: 'Informed our decision to prioritize gate-aware ordering, wait time transparency, and flight-synced pickups',
       competitive: 'images_fb/competitive.png', competitiveCaption: '🔍 Competitive Analysis', competitiveDesc: 'Revealed a gap: no existing app combined flight data + food ordering.',
     },
     stats: [{ num: 'Eric K. · Jasmine D. · Nicole F. · Laiy J.', lbl: 'Team' }, { num: '2 weeks', lbl: 'Duration' }, { num: 'Map Design · Research Lead · Usability Testing', lbl: 'My Role' }],
