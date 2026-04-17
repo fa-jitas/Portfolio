@@ -41,9 +41,9 @@ document.querySelectorAll('nav a[href^="#"]').forEach(a => {
 
 /* ══ CHAT BUBBLES ══ */
 const bubbles = [
-  { text: 'Hi! I\'m a master student studying HCI at UCSC, \n❤️ing research & design' },
-  { text: 'Prior to this, I did my Master in Social Welfare at UC Berkeley 🎓 where I worked with children and older adults' },
-  { text: 'In my free time, I love walking my puppy and training her for competitions 🐕🏆' },
+  { text: 'hey! i\'m focused on human-centered design + research \n❤️' },
+  { text: 'i got into this after working in healthcare settings and noticing how disconnected tools can shape everyday experiences' },
+  { text: 'outside of work, i’m usually walking my puppy or training her for competitions 🐕🏆' },
 ];
 
 function typeBubble(container, text, onDone) {
