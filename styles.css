@@ -222,6 +222,25 @@ section { margin-bottom: 72px; }
   opacity: 1;
   transform: translateY(-50%) translateY(0);
 }
+.wi-tldr-img {
+  width: 100%;
+  height: 116px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  overflow: hidden;
+}
+.wi-tldr-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .wi-tldr-label {
   font-size: 14px;
   font-weight: 800;
@@ -734,6 +753,8 @@ footer {
   left: 16px;
   bottom: 16px;
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -745,7 +766,23 @@ footer {
   border: 1px solid var(--rule);
   border-radius: 99px;
   padding: 6px 14px;
+  cursor: default;
+  transition: background .2s ease;
 }
+.cs-hero-timeline:hover { background: rgba(255, 255, 255, .96); }
+.cs-hero-timeline .tl-seg {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  transition: grid-template-columns .32s ease;
+}
+.cs-hero-timeline .tl-seg > span {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.cs-hero-timeline .tl-full { grid-template-columns: 0fr; }
+.cs-hero-timeline:hover .tl-short { grid-template-columns: 0fr; }
+.cs-hero-timeline:hover .tl-full { grid-template-columns: 1fr; }
 .cs-hero-phones-wrap {
   overflow: visible;
   display: none;

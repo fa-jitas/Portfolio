@@ -349,7 +349,12 @@ function openCase(i) {
 
   if (p.timeline) {
     const host = (p.heroImgs && p.heroImgs.length) ? phonesWrap : heroEl;
-    host.insertAdjacentHTML('beforeend', `<span class="cs-hero-timeline">${p.timeline}</span>`);
+    const year = (String(p.timeline).match(/\b20\d{2}\b/) || [p.timeline])[0];
+    host.insertAdjacentHTML('beforeend',
+      `<span class="cs-hero-timeline">` +
+        `<span class="tl-seg tl-short"><span>${year}</span></span>` +
+        `<span class="tl-seg tl-full"><span>${p.timeline}</span></span>` +
+      `</span>`);
   }
 
   // cs.querySelector('.cs-label').textContent = p.label; // label hidden
