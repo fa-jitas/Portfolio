@@ -222,6 +222,7 @@ const cases = [
       { q: 'Barcode scanning is fast but fragile', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
       { q: 'A failed scan leaves users stuck', a: 'When Fig can\'t recognize a product it asks users to photograph it to help build the database, but gives them no information in return' },
     ],
+    researchVisual: { src: 'images_fl/Foodlens_Research.png', label: 'Competitive experience map of Fig and Mine' },
     process: 'I explored two approaches for how scanning should work:',
     steps: [
       { title: 'Barcode approach', body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.' },
@@ -253,6 +254,7 @@ const cases = [
       { q: 'Players instructed instead of cooperating', a: 'In playtesting, players delivered instructions to each other rather than discussing their actions' },
       { q: 'The core mechanic felt flat', a: 'Removing devices didn\'t require much thought or exchange, so players said the game felt long and repetitive' },
     ],
+    researchVisual: { src: 'images_cw/research-synthesis.png', label: 'Insight synthesis chart' },
     process: 'We explored two ways to prompt discussion:',
     steps: [
       {
@@ -306,6 +308,7 @@ const cases = [
       { q: 'Matching is slow and manual', a: 'The stakeholder sorts ~30 form submissions per cycle and individually verifies each person\'s background and fit on LinkedIn before finalizing' },
       { q: 'Relationships need a shared connection', a: 'Interviews and affinity mapping showed mentorships were harder to sustain without something in common between mentor and mentee' },
     ],
+    researchVisual: { src: 'images_mp/research-time.png', label: 'Estimated time to manually review and create matches' },
     process: 'We weighed two ways to speed up onboarding intake:',
     steps: [
       { title: 'Voice / video intake', body: 'Users speak or record their background instead of typing it. Ruled out: users may feel uncomfortable when trust is low during onboarding, and important information could be lost.' },
@@ -433,23 +436,39 @@ function openCase(i) {
   cs.querySelector('.cs-research p').textContent = p.research;
 
   const insightData = p.insights || [];
-  [0, 1, 2, 3].forEach(idx => {
-    const card = cs.querySelector(`.cs-insight-${idx}`);
-    if (!card) return;
-    const ins = insightData[idx];
-    if (!ins) { card.style.display = 'none'; return; }
-    card.querySelector('.cs-insight-num').textContent = ['😢','💡','⚠️','✦'][idx] || '✦';
-    card.querySelector('.cs-insight-text').innerHTML = `<strong>${ins.q}</strong>${ins.a}`;
-    card.style.display = '';
-  });
+  const insightsEl = cs.querySelector('.cs-insights');
+  if (insightsEl) {
+    insightsEl.innerHTML = insightData.map(ins => `
+      <div class="cs-insight">
+        <div class="cs-insight-q">${ins.q}</div>
+        <div class="cs-insight-a">${ins.a}</div>
+      </div>`).join('');
+  }
 
-  const resWrap = cs.querySelector('.cs-research-img-wrap');
-  resWrap.innerHTML = '';
-  if (p.images && p.images.insights) {
-    buildCarousel(resWrap, [
-      { src: p.images.insights, alt: 'Research', caption: p.images.insightsCaption || '', description: p.images.insightsDesc || '' },
-      ...(p.images.competitive ? [{ src: p.images.competitive, alt: 'Competitive', caption: p.images.competitiveCaption || '', description: p.images.competitiveDesc || '' }] : [])
-    ]);
+  const visualEl = cs.querySelector('.cs-research-visual');
+  if (visualEl) {
+    const rvRaw = p.researchVisual || (p.images && p.images.insights
+      ? { src: p.images.insights, label: p.images.insightsCaption || '' } : null);
+    const rv = typeof rvRaw === 'string' ? { src: rvRaw, label: '' } : rvRaw;
+    if (rv) {
+      visualEl.innerHTML = `
+        <figure class="cs-rfig">
+          <button type="button" class="cs-rfig-btn" aria-label="Expand image">
+            <img src="${rv.src}" alt="${rv.label || 'Research visual'}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
+            <span class="cs-rfig-zoom" aria-hidden="true">⤢</span>
+          </button>
+          <figcaption>${rv.label || 'Image placeholder'}</figcaption>
+        </figure>`;
+      visualEl.style.display = '';
+      const rBtn = visualEl.querySelector('.cs-rfig-btn');
+      const rImg = visualEl.querySelector('img');
+      if (rBtn && rImg) rBtn.addEventListener('click', () => {
+        if (!rBtn.closest('.cs-rfig').classList.contains('is-missing')) openLightbox(rImg.src, rImg.alt);
+      });
+    } else {
+      visualEl.innerHTML = '';
+      visualEl.style.display = 'none';
+    }
   }
 
   const ideationIntro = cs.querySelector('.cs-ideation-intro');
@@ -462,19 +481,19 @@ function openCase(i) {
       const rawImgs = s.imgs || (s.img ? [s.img] : []);
       const imgItems = rawImgs.map(it => typeof it === 'string' ? { src: it, label: '' } : it);
       const tradeoffs = s.tradeoffs || [];
-      const hasDetail = imgItems.length || tradeoffs.length;
+      const hasContent = imgItems.length || tradeoffs.length;
       return `
       <div class="cs-idea-card">
-        <button type="button" class="cs-idea-head"${hasDetail ? ' aria-expanded="false"' : ' disabled'}>
+        <button type="button" class="cs-idea-head" aria-expanded="false">
           <span class="cs-idea-num">0${idx + 1}</span>
           <span class="cs-idea-main">
             <span class="cs-idea-title">${s.title}</span>
             <span class="cs-idea-text">${s.body}</span>
           </span>
-          ${hasDetail ? '<span class="cs-idea-chevron" aria-hidden="true">⌄</span>' : ''}
+          <span class="cs-idea-chevron" aria-hidden="true">⌄</span>
         </button>
-        ${hasDetail ? `
         <div class="cs-idea-detail">
+          ${!hasContent ? '<p class="cs-idea-progress">In progress</p>' : ''}
           ${imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
             <figure class="cs-idea-fig">
               <img src="${im.src}" alt="${im.label || s.title}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
@@ -489,7 +508,7 @@ function openCase(i) {
               return `<li class="${kind === 'pro' ? 'cs-to-pro' : kind === 'con' ? 'cs-to-con' : ''}">${text}</li>`;
             }).join('')}</ul>
           </div>` : ''}
-        </div>` : ''}
+        </div>
       </div>`;
     }).join('');
     ideaListEl.querySelectorAll('.cs-idea-head[aria-expanded]').forEach(btn => {
@@ -532,7 +551,7 @@ function openCase(i) {
           Your browser doesn&#39;t support embedded video.
         </video>
       </div>
-      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">📄 Prefer to read? View the written rules</button>` : ''}`;
+      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}`;
   } else if (p.solutionImg) {
     flowsEl.innerHTML = `<img src="${p.solutionImg}" alt="${p.title} solution" style="width:100%;border-radius:16px;display:block;">`;
   } else {
