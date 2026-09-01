@@ -185,10 +185,10 @@ const cases = [
     emoji: '👓', bg: '#EEF2F6',
     label: 'Product Design · UX Research · 2026',
     title: 'FoodLens',
-    role: 'Founder · UX / Product Designer',
+    role: ['Founder', 'UX / Product Designer'],
     team: 'Solo project',
     timeline: 'June 2026 – ongoing',
-    tools: 'Figma, Figma MCP, Claude Code, Claude Design, GitHub, VS Code, TestFlight',
+    tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
     overview: 'FoodLens is an allergy-checking, hands-free app that uses smart glasses to surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
     hmw: 'How might we use smart glasses to make food allergy information easily accessible?',
     problem: 'Existing allergy apps like Fig require people to <span class="cs-highlight">stop and pull out their phone</span> to check ingredients. FoodLens explores what that experience looks like through <span class="cs-highlight">smart glasses</span>, without needing to check a phone constantly.',
@@ -216,10 +216,10 @@ const cases = [
     emoji: '👁️', bg: '#EEF0F9',
     label: 'Interaction Design · UX Research · 2026',
     title: 'Co-op Watch',
-    role: 'Interaction Designer · UX Research',
-    team: 'Alison, Anvitha, Lilian',
+    role: ['Interaction Designer', 'UX Research'],
+    team: ['Alison', 'Anvitha', 'Lilian'],
     timeline: 'March 2026 – ongoing',
-    tools: 'Figma, Claude Code, GitHub',
+    tools: ['Figma', 'Claude Code', 'GitHub'],
     overview: 'Co-op Watch is a surveillance-themed interactive tabletop game that sparks discourse on surveillance through shared decision-making.',
     hmw: 'How might we design game moments that require players to discuss with each other rather than just delivering instructions to each other?',
     problem: 'Co-op Watch is designed to spark discourse on surveillance through shared decision-making, but if players default to <span class="cs-highlight">delivering instructions</span> to each other, it loses its <span class="cs-highlight">conversational value</span>.',
@@ -244,10 +244,10 @@ const cases = [
     emoji: '🤝', bg: '#EAF4F0',
     label: 'Product Design · UX Research · 2026',
     title: 'Mentorship Platform',
-    role: 'UX Designer · UX Research · Product Manager',
-    team: '2 design teams, 2 developers, Chair of the MS HCI Department',
+    role: ['UX Designer', 'UX Research', 'Product Manager'],
+    team: ['2 design teams', '2 developers', 'Chair of the MS HCI Department'],
     timeline: 'July 2026 – ongoing',
-    tools: 'Figma, Figma MCP, Claude Code, VS Code, GitHub',
+    tools: ['Figma', 'Figma MCP', 'Claude Code', 'VS Code', 'GitHub'],
     overview: 'A platform that automates matching mentors and mentees for an HCI program, while keeping manual review steps before matches are confirmed.',
     hmw: 'How might we reduce the manual work of matching mentors and mentees?',
     problem: 'The stakeholder currently matches mentors and mentees manually, reviewing <span class="cs-highlight">~30 Google Form submissions</span> per cycle and <span class="cs-highlight">verifying background and fit on LinkedIn</span> before finalizing. This platform automates the matching process while keeping manual review before matches are confirmed.',
@@ -347,14 +347,28 @@ function openCase(i) {
     heroEl.innerHTML = `<span class="cs-hero-emoji">${p.emoji}</span>`;
   }
 
+  if (p.timeline) {
+    const host = (p.heroImgs && p.heroImgs.length) ? phonesWrap : heroEl;
+    host.insertAdjacentHTML('beforeend', `<span class="cs-hero-timeline">${p.timeline}</span>`);
+  }
+
   // cs.querySelector('.cs-label').textContent = p.label; // label hidden
   cs.querySelector('.cs-title').textContent = p.title;
   cs.querySelector('.cs-tags').innerHTML = (p.tags || []).map(t => `<span>${t}</span>`).join('');
   cs.querySelector('.cs-overview p').textContent = p.overview;
   const factsEl = cs.querySelector('.cs-facts');
   if (factsEl) {
-    const facts = [['Role', p.role], ['Team', p.team], ['Timeline', p.timeline], ['Tools', p.tools]].filter(([, v]) => v);
-    factsEl.innerHTML = facts.map(([k, v]) => `<div class="cs-fact"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+    const toolsHtml = Array.isArray(p.tools) && p.tools.length
+      ? `<ul class="cs-fact-tools">${p.tools.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
+    const stack = v => Array.isArray(v) ? { html: v.map(n => `<span>${n}</span>`).join(''), stacked: true } : { html: v, stacked: false };
+    const facts = [];
+    if (toolsHtml) facts.push(`<div class="cs-fact cs-fact--tools"><dt>Tools</dt><dd>${toolsHtml}</dd></div>`);
+    facts.push(...[['Role', p.role], ['Team', p.team]].filter(([, v]) => v)
+      .map(([k, v]) => {
+        const { html, stacked } = stack(v);
+        return `<div class="cs-fact${stacked ? ' cs-fact--stack' : ''}"><dt>${k}</dt><dd>${html}</dd></div>`;
+      }));
+    factsEl.innerHTML = facts.join('');
     factsEl.style.display = facts.length ? '' : 'none';
   }
   const hmwEl = cs.querySelector('.cs-hmw');

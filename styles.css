@@ -729,9 +729,27 @@ footer {
 .cs-hero.cs-hero--phones {
   display: none;
 }
+.cs-hero-timeline {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  padding: 6px 14px;
+}
 .cs-hero-phones-wrap {
   overflow: visible;
   display: none;
+  position: relative;
   margin-top: 8px;
   margin-bottom: 40px;
   margin-left: 186px;
@@ -932,6 +950,30 @@ footer {
   font-size: 14px;
   line-height: 1.5;
   color: var(--ink);
+}
+.cs-fact--tools { grid-column: 1 / -1; }
+.cs-fact--stack dd span {
+  display: block;
+}
+.cs-fact--stack dd span + span {
+  margin-top: 3px;
+}
+.cs-fact-tools {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cs-fact-tools li {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  padding: 4px 12px;
 }
 @media (max-width: 640px) {
   .cs-facts { grid-template-columns: 1fr; }
