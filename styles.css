@@ -131,7 +131,7 @@ section { margin-bottom: 72px; }
 
 .sec-label {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -223,7 +223,7 @@ section { margin-bottom: 72px; }
   transform: translateY(-50%) translateY(0);
 }
 .wi-tldr-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -231,7 +231,7 @@ section { margin-bottom: 72px; }
   margin-bottom: 5px;
 }
 .wi-tldr-text {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink2);
   line-height: 1.5;
 }
@@ -264,13 +264,13 @@ section { margin-bottom: 72px; }
 }
 .work-item:hover::before { transform: translateY(-50%) scaleY(1); }
 .wi-meta {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: 3px;
   display: block;
 }
 .wi-right {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   white-space: nowrap;
   flex-shrink: 0;
@@ -335,7 +335,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
 }
 
@@ -380,7 +380,7 @@ footer {
   text-align: center;
 }
 .chat-contact-sub {
-  font-size: 12px;
+  font-size: 13px;
   color: #6B6B70;
   font-family: -apple-system, 'SF Pro Text', sans-serif;
   text-align: center;
@@ -422,7 +422,7 @@ footer {
 /* timestamp above first bubble */
 .chat-timestamp {
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
   color: #6B6B70;
   font-family: -apple-system, 'SF Pro Text', sans-serif;
   margin-bottom: 8px;
@@ -495,7 +495,7 @@ footer {
 .gp-sub { 
   color: rgba(255,255,255,1); 
   font-family: 'Lato', sans-serif; 
-  font-size: 12px; 
+  font-size: 13px; 
   margin-top: 1px; 
 }
 .gp-body { 
@@ -666,7 +666,7 @@ footer {
 .cs-sidenav a {
   display: block;
   font-family: 'Lato', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   color: var(--muted);
   text-decoration: none;
@@ -865,7 +865,7 @@ footer {
 }
 
 .cs-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -891,7 +891,7 @@ footer {
   margin-bottom: 40px;
 }
 .cs-tags span {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--accent);
   background: var(--bg2);
@@ -949,7 +949,6 @@ footer {
 .cs-section {
   min-height: unset;
   padding: 40px 0;
-  border-bottom: 1px solid var(--rule);
   opacity: 0;
   transform: translateY(16px);
   transition: opacity .5s ease, transform .5s ease;
@@ -1054,7 +1053,7 @@ footer {
 }
 .cs-stat-lbl {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -1180,14 +1179,14 @@ footer {
   opacity: .5;
 }
 .cs-img-placeholder .ph-label {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   font-weight: 600;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
 .cs-img-placeholder .ph-sub {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink3);
   font-weight: 400;
   text-transform: none;
@@ -1305,7 +1304,7 @@ footer {
 .cs-idea-step.cs-idea-active .cs-idea-title { color: var(--accent); }
 .cs-idea-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--muted);
   letter-spacing: .08em;
@@ -1351,7 +1350,7 @@ footer {
 }
 .cs-idea-ph-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1366,7 +1365,7 @@ footer {
   padding: 0 20px;
 }
 .cs-idea-ph-hint {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
 }
 
@@ -1379,7 +1378,7 @@ footer {
   border-radius: 0;
 }
 .cs-hmw-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1573,7 +1572,7 @@ footer {
   opacity: .5; 
 }
 .cs-flow-img .ph-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -1605,7 +1604,7 @@ footer {
 
 .cs-takeaway-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: .1em;
   color: var(--accent2);
@@ -1654,7 +1653,7 @@ footer {
   line-height: 1.8 !important;
 }
 .cs-reflection-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1691,12 +1690,12 @@ footer {
 .cs-research-stat:nth-child(2) .cs-research-stat-num { color: #3B5FC0; }
 .cs-research-stat:nth-child(3) .cs-research-stat-num { color: #2A7A50; }
 .cs-research-stat-label {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink2);
   line-height: 1.45;
 }
 .cs-research-source {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: 8px;
   font-style: italic;
@@ -1742,7 +1741,7 @@ footer {
 }
 .cs-finding-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--muted);
   letter-spacing: .1em;
@@ -1767,7 +1766,7 @@ footer {
 .cs-finding-fixed { align-items: center; }
 .cs-finding-badge {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -1815,7 +1814,7 @@ footer {
   border-radius: 22px;
 }
 .cs-refinement-gif-caption {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   font-style: italic;
   text-align: center;
@@ -1856,7 +1855,7 @@ footer {
   line-height: 1.3;
 }
 .cs-changelog-body {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink2);
   line-height: 1.55;
 }
