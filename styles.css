@@ -1038,6 +1038,10 @@ footer {
 }
 .cs-section:last-child { border-bottom: none; }
 
+/* tighten the gap between the project facts and the Intro */
+.cs-facts-section { padding-top: 0; padding-bottom: 0; }
+.cs-facts-section + #cs-intro { padding-top: 20px; }
+
 .cs-section h3 {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
