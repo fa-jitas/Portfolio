@@ -217,12 +217,12 @@ const cases = [
     overview: 'FoodLens is an allergy-checking, hands-free app that uses smart glasses to surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
     hmw: 'How might we use smart glasses to make food allergy information easily accessible?',
     problem: 'Existing allergy apps like Fig require people to <span class="cs-highlight">stop and pull out their phone</span> to check ingredients. FoodLens explores what that experience looks like through <span class="cs-highlight">smart glasses</span>, without needing to check a phone constantly.',
-    research: 'I ran a comparative usability study against Fig, an existing allergy app, to understand where barcode-based allergy checking breaks down.',
+    research: 'I watched someone use Fig to check an unrecognized product, then ran the same task on my own build, to find where barcode-based checking breaks down.',
     insights: [
       { q: 'Barcode scanning is fast but fragile', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
       { q: 'A failed scan leaves users stuck', a: 'When Fig can\'t recognize a product it asks users to photograph it to help build the database, but gives them no information in return' },
     ],
-    researchVisual: { src: 'images_fl/Foodlens_Research.png', label: 'Competitive experience map of Fig and Mine' },
+    researchVisual: { src: 'images_fl/Foodlens_Research.png', label: 'From observed session' },
     process: 'I explored two approaches for how scanning should work:',
     steps: [
       { title: 'Barcode approach', body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.' },
