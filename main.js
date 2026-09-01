@@ -245,7 +245,7 @@ const cases = [
     label: 'Product Design · UX Research · 2026',
     title: 'Mentorship Platform',
     role: ['UX Designer', 'UX Research', 'Product Manager'],
-    team: ['2 design teams', '2 developers', 'Chair of the MS HCI Department'],
+    team: ['2 Design Teams', '2 Developers', 'Chair of the MS HCI Department'],
     timeline: 'July 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'VS Code', 'GitHub'],
     overview: 'A platform that automates matching mentors and mentees for an HCI program, while keeping manual review steps before matches are confirmed.',
