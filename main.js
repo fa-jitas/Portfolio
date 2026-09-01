@@ -41,7 +41,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(a => {
 
 /* ══ CHAT BUBBLES ══ */
 const bubbles = [
-  { text: 'hey! i\'m focused on human-centered design + research \n❤️' },
+  { text: 'hey! 👋' },
   { text: 'i got into this after working in healthcare settings and noticing how disconnected tools can shape everyday experiences' },
   { text: 'outside of work, i’m usually walking my puppy or training her for competitions 🐕🏆' },
 ];
@@ -182,155 +182,91 @@ function startOrResetGame() {
 /* ══ CASE DATA ══ */
 const cases = [
   {
-    emoji: '✈️', bg: '#ffffff',
-    heroImgs: ['images_fb/onboarding1.png', 'images_fb/onboarding2.png', 'images_fb/onboarding3.png'],
-    label: 'Product Design · UX Research · 2025',
-    title: 'FlyBites',
-    duration: '2 weeks',
-    team: 'Eric Khuu, Jasmine Danila, Nicole Fajardo, Laiy Joshi',
-    tags: ['iOS', 'UX Research', 'Prototyping', 'Systems Thinking', 'Usability Testing'],
-    overview: 'Air travelers struggle to order food without risking delays or missed flights. FlyBites addresses this by integrating real-time flight data with food discovery and ordering so travelers can eat without the stress of missing their boarding call.',
-    hmw: 'How might we help travelers conveniently order food by integrating real-time flight tracking so they can receive their meals on time?',
-    problem: 'Air travelers often face difficulty coordinating meals with <span class="cs-highlight">rigid flight schedules</span>, <span class="cs-highlight">limited airport familiarity</span>, and <span class="cs-highlight">unpredictable wait times</span> which often lead to rushed decisions or skipped meals. Our solution connects flight tracking with food ordering so travelers can pre-order, track readiness, and pick up without the stress.',
-    research: 'We interviewed both travelers and food workers, then ran a competitive analysis across food and travel apps. Food and flight information usually are in separate apps but travelers need them together.',
+    emoji: '👓', bg: '#EEF2F6',
+    label: 'Product Design · UX Research · 2026',
+    title: 'FoodLens',
+    role: 'Founder · UX / Product Designer',
+    team: 'Solo project',
+    timeline: 'June 2026 – ongoing',
+    tools: 'Figma, Figma MCP, Claude Code, Claude Design, GitHub, VS Code, TestFlight',
+    overview: 'FoodLens is an allergy-checking, hands-free app that uses smart glasses to surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
+    hmw: 'How might we use smart glasses to make food allergy information easily accessible?',
+    problem: 'Existing allergy apps like Fig require people to <span class="cs-highlight">stop and pull out their phone</span> to check ingredients. FoodLens explores what that experience looks like through <span class="cs-highlight">smart glasses</span>, without needing to check a phone constantly.',
+    research: 'I ran a comparative usability study against Fig, an existing allergy app, to understand where barcode-based allergy checking breaks down.',
     insights: [
-      { q: 'Travelers skip meals', a: 'Unclear wait times make ordering feel too risky under time pressure' },
-      { q: 'Gate context is missing', a: 'Most travelers have no idea what food is near their gate' },
-      { q: 'Trust breaks the experience', a: 'Fear of missing boarding stops people from ordering at all' },
+      { q: 'Barcode scanning is fast but fragile', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
+      { q: 'A failed scan leaves users stuck', a: 'When Fig can\'t recognize a product it asks users to photograph it to help build the database, but gives them no information in return' },
     ],
+    process: 'I explored two approaches for how scanning should work:',
     steps: [
-      { title: 'Wireframes & Low-fi', body: 'Mapped core user flows flight input, food discovery, order tracking focusing on information hierarchy and cognitive load', img: 'images_fb/low-fi.png' },
-      { title: 'Mid-fidelity & Testing', body: 'Refined layout with the team, removed redundant interactions, and aligned with iOS standards. Tested within the group before converting hi-fi', img: 'images_fb/mid-fi.png' },
-      { title: 'Usability Study (28 participants)', body: 'Led high-fidelity prototype testing. Results drove improvements in map readability, accessibility, and menu clarity', img: 'images_fb/hi-fi.png' },
+      { title: 'V1 · Barcode approach', body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.' },
+      { title: 'V2 · Hybrid approach', body: 'Support barcode and ingredient-label scanning together. After testing it was simpler to include both, since foreign goods are still produced and sold locally.' },
     ],
-    outcome: 'Three features define the final product',
+    outcome: 'FoodLens is hands-free by default and falls back to the phone camera when the smart glasses aren\'t connected.',
     flows: [
-      { title: 'Onboarding', body: 'Allows user to input flight information and airport name to minimize time spent before browsing food', img: 'images_fb/onboarding.gif' },
-      { title: 'Main Menu & Flight-Aware Discovery', body: 'Nearby food options prioritized, with a collapsible flight panel keeping boarding information visible throughout ordering', img: 'images_fb/ordering.gif' },
-      { title: 'Post-Order Guided Pickup', body: 'Navigate to pickup while monitoring flight status via a color-coded bar. A map directory also lets travelers explore nearby restaurants near their gate', img: 'images_fb/navigation.gif' },
+      { title: 'Live barcode scanning', body: 'The camera view actively scans for a barcode with a live status, so the user always knows what state they\'re in' },
+      { title: 'One-tap fallback to ingredient scan', body: 'If a product isn\'t recognized, tapping "scan ingredients label instead" switches to ingredient-scan mode, which photographs the label and reads the ingredients directly' },
     ],
-    usability: {
-      style: 'findings',
-      intro: 'We ran a usability study with 28 participants on our high-fidelity prototype, focusing on three important features.',
-      findings: [
-        {
-          icon: '🗺️',
-          title: 'Directory Readability',
-          observed: 'Users struggled to distinguish and read locations on the map',
-          fixed: 'Color-coded, enlarged, and spaced out dining, restroom, and gate icons for clarity',
-        },
-        {
-          icon: '⏱️',
-          title: 'Order tracking',
-          observed: 'Users had no way to track pickup time while browsing after ordering',
-          fixed: 'Added a persistent bottom bar showing the restaurant and pickup time while browsing',
-        },
-        {
-          icon: '✋',
-          title: 'Map Accessibility',
-          observed: 'Users struggled to notice the boarding status indicator at a glance',
-          fixed: 'Changed the boarding status bar to a full green background for improved visibility',
-        },
-      ],
-    },
-    reflection: 'This project pushed me to think more about designing within real-time systems and constraints. Because flight data, food preparation, and pickup timing are tightly interconnected, small UX decisions had a direct impact on user stress and trust. Designing FlyBites reinforced how important clarity and timing are when users are making decisions under pressure',
+    reflection: 'Assuming one design — barcode scanning — would be enough held up until I tested on multiple products and found barcodes that weren\'t in the database or didn\'t exist at all. The lesson was to design for failure, so the user can always get an answer instead of waiting for one.',
     takeaways: [
-      { title: 'Clarity over features', body: 'Under pressure, users need to know what\'s happening, not more options' },
-      { title: 'Design the full system', body: 'The app only works if the vendor side works too' },
-      { title: 'Words reduce anxiety', body: 'The right status message at the right moment had more impact than visuals alone' },
+      { title: 'What I\'d do differently', body: 'Look into why existing products focus only on barcode scanning and don\'t include ingredient parsing' },
     ],
-    images: {
-      insights: 'images_fb/interview.png', insightsCaption: '📋 Interview Questions', insightsDesc: 'Informed our decision to prioritize gate-aware ordering, wait time transparency, and flight-synced pickups',
-      competitive: 'images_fb/competitive.png', competitiveCaption: '🔍 Competitive Analysis', competitiveDesc: 'Revealed a gap: no existing app combined flight data + food ordering.',
-    },
-    stats: [{ num: 'Eric K. · Jasmine D. · Nicole F. · Laiy J.', lbl: 'Team' }, { num: '2 weeks', lbl: 'Duration' }, { num: 'Map Design · Research Lead · Usability Testing', lbl: 'My Role' }],
   },
   {
-    emoji: '🏠', bg: '#EAF4F0',
-    heroImgs: ['images_hh/home2.png', 'images_hh/home.png', 'images_hh/crisis.png'],
-    phonesStyle: 'phones-perspective',
-    label: 'Research & Design · 2025',
-    title: 'Hope Haven',
-    duration: '1 day',
-    team: 'Nicole Fajardo, Jennie Le, Noor Haider, Rishab Bajaj',
-    tags: ['Mobile', 'Android', 'Service Design', 'Accessibility', 'Designathon'],
-    overview: 'Finding reliable resources while unhoused is overwhelming due to confusing, outdated, and unverified information. Hope Haven is a mobile tool that provides trusted, community-verified updates on shelters, food, and essential services; designed for low-stress use.',
-    hmw: 'How might we design a mobile tool that makes finding and verifying local resources intuitive, fast, and low-stress for people without stable housing?',
-    problem: 'People experiencing housing insecurity often rely on <span class="cs-highlight">word of mouth</span> or <span class="cs-highlight">outdated tools</span> to find food, shelter, and services. This <span class="cs-highlight">lack of verified, trustworthy information</span> creates fear, uncertainty, and missed opportunities for support.',
-    research: 'To understand who we were designing for, we spoke with case managers, dug into government data, and used AI to synthesize existing research. We learned that 64% of unhoused individuals in SF are entirely unsheltered, most rely on low-resource phones, and nearly every existing digital tool assumes resources people simply don\'t have',
+    emoji: '👁️', bg: '#EEF0F9',
+    label: 'Interaction Design · UX Research · 2026',
+    title: 'Co-op Watch',
+    role: 'Interaction Designer · UX Research',
+    team: 'Alison, Anvitha, Lilian',
+    timeline: 'March 2026 – ongoing',
+    tools: 'Figma, Claude Code, GitHub',
+    overview: 'Co-op Watch is a surveillance-themed interactive tabletop game that sparks discourse on surveillance through shared decision-making.',
+    hmw: 'How might we design game moments that require players to discuss with each other rather than just delivering instructions to each other?',
+    problem: 'Co-op Watch is designed to spark discourse on surveillance through shared decision-making, but if players default to <span class="cs-highlight">delivering instructions</span> to each other, it loses its <span class="cs-highlight">conversational value</span>.',
+    research: 'We ran playtests and synthesized what we observed about how players actually communicated during the game.',
     insights: [
-      { q: 'Stigma blocks help-seeking', a: 'Many felt embarrassed or exposed seeking help. Community voices reduce that barrier' },
-      { q: 'Trust must be earned fast', a: 'Match case manager credibility with verified info' },
-      { q: 'Crisis = no time to waste', a: 'Make essential services instantly accessible' },
+      { q: 'Players instructed instead of cooperating', a: 'In playtesting, players delivered instructions to each other rather than discussing their actions' },
+      { q: 'The core mechanic felt flat', a: 'Removing devices didn\'t require much thought or exchange, so players said the game felt long and repetitive' },
     ],
+    process: 'We explored two ways to prompt discussion:',
     steps: [
-      { title: 'AI-accelerated wireframing', body: 'Used UX Pilot to quickly explore user flows and generate low-fi wireframe variations.', img: 'images_hh/aiprompts.png' },
-      { title: 'What we kept & why', body: 'Chose a category dashboard over an intake form since forms add friction for users in crisis.', img: 'images_hh/whatwekept.png' },
-      { title: 'Refinement after winning', body: 'Post-Designathon: added AI chat, aligned with Android, removed the map, and improved the crisis page.', img: 'images_hh/iteration.png' },
+      { title: 'V1 · Direct questions', body: 'Ask players a direct surveillance-related question each round. They engaged at first, but over time answered blindly just to get it out of the way.' },
+      { title: 'V2 · Narrative events', body: 'Reframe the questions as narrative events tied to the game\'s surveillance incidents. Generic questions felt like an add-on; tying them to the mechanics made them feel part of the game.' },
     ],
-    outcome: 'Built in 8 hours, Hope Haven won the Best Novel award at the Google x Designathon for its voice snippet feature',
-    solutionImg: 'images_hh/winner.png',
+    outcome: 'After all players finish their turn, a surveillance incident appears and players must decide together whether to approve surveillance devices added or removed — each decision carrying a cost.',
     flows: [],
-    refinement: {
-      intro: 'After winning, I went back to improve the design',
-      gifPrototype: 'images_hh/prototype.gif',
-      flows: [
-        { icon: '💬', title: 'Added AI Chat', body: 'An AI-powered chat handles nuanced queries that category browsing couldn\'t' },
-        { icon: '🗺️', title: 'Removed the Map', body: 'Distance labels replaced geography — less cognitive load, same utility' },
-        { icon: '📱', title: 'Android Realignment', body: 'Navigation, type, and components realigned to Material Design guidelines' },
-      ],
-    },
-    reflection: 'Redesigning Hope Haven reminded me how important it is to remove obstacles by simplifying navigation. I also got better at using AI to speed up the process without letting it make decisions for me.',
+    reflection: 'Designing for collaboration in a shared physical space taught me that discussion doesn\'t come from good narratives alone — it depends on players having access to the same information at the same time. With players at four different corners of the table, information positioning and orientation can determine whether players engage as a group or default to one person becoming the source of information.',
     takeaways: [
-      { title: 'Design advocacy', body: 'Designing for vulnerable users means advocating for clarity and accessibility, especially in high-stress situations' },
-      { title: 'AI as a tool', body: 'AI sped up research and ideation, which freed time for refinement and validation' },
-      { title: 'Trust is everything', body: 'Verified resources, transparency, and community context are just as important as visual design' },
+      { title: 'What I\'d do differently', body: 'A/B test two different narrative framings against each other to see which promotes more discussion, rather than assuming one method was correct based on playtest feedback' },
     ],
-    images: {
-      insights: 'images_hh/persona.png', insightsCaption: '👤 User Persona', insightsDesc: 'Helped us understand the emotional and practical needs of unhoused individuals',
-      competitive: 'images_hh/userflow.png', competitiveCaption: '🗺️ User Flow', competitiveDesc: 'Mapped the key paths users take to find resources quickly under stress',
-    },
-    stats: [{ num: 'Nicole F. · Jennie L. · Noor H. · Rishab B.', lbl: 'Team' }, { num: '1 day', lbl: 'Duration' }, { num: 'Research & Advocacy · Wireframing · Design Refinement', lbl: 'My Role' }],
   },
   {
-    emoji: '🧠', bg: '#EEF0F9',
-    flowsStyle: 'flows-free',
-    label: 'Wearable · FigBuild · 2026',
-    heroImg: 'images_ms/mnemo.gif',
-    title: 'MnemoSense',
-    team: 'Tereese Bangayan, Anvitha Goli, Diane Pang, Nicole Fajardo',
-    tags: ['Figma', 'FigMake', 'Wearable', 'Health Tech', 'Interaction Design'],
-    overview: 'MnemoSense is a wearable sensory node system designed to help people living with phantom limb sensations reclaim control over how their body feels. Using vibration, pressure, and temperature feedback, it acts as a neural override giving the brain the missing sensory input it\'s seeking.',
-    hmw: 'How might we give people with phantom limb sensations real-time sensory feedback so the brain can interrupt the phantom loop and feel whole again?',
-    problem: 'After amputation, the brain doesn\'t simply forget.  It keeps sending motor commands to a limb that\'s no longer there, stuck in a signal loop. Existing treatments (mirror therapy, VR, medications) focus mainly on <span class="cs-highlight">phantom limb pain</span>, leaving a gap: few wearable systems help users <span class="cs-highlight">interpret or regulate phantom limb sensations</span> during early recovery.',
-    research: 'We reviewed clinical literature on phantom limb phenomena and existing interventions, then analyzed Reddit communities to understand how people describe and live with phantom sensations in daily life.',
+    emoji: '🤝', bg: '#EAF4F0',
+    label: 'Product Design · UX Research · 2026',
+    title: 'Mentorship Platform',
+    role: 'UX Designer · UX Research · Product Manager',
+    team: '2 design teams, 2 developers, Chair of the MS HCI Department',
+    timeline: 'July 2026 – ongoing',
+    tools: 'Figma, Figma MCP, Claude Code, VS Code, GitHub',
+    overview: 'A platform that automates matching mentors and mentees for an HCI program, while keeping manual review steps before matches are confirmed.',
+    hmw: 'How might we reduce the manual work of matching mentors and mentees?',
+    problem: 'The stakeholder currently matches mentors and mentees manually, reviewing <span class="cs-highlight">~30 Google Form submissions</span> per cycle and <span class="cs-highlight">verifying background and fit on LinkedIn</span> before finalizing. This platform automates the matching process while keeping manual review before matches are confirmed.',
+    research: 'The team ran interviews and affinity mapping across mentors and mentees, and quantified the stakeholder\'s current manual workload.',
     insights: [
-      { q: 'Phantom sensations are normal', a: '80–100% of people feel sensations immediately after amputation.' },
-      { q: 'Current treatments focus on pain', a: 'Mirror therapy, VR, and motor imagery treat pain but leave sensation gaps.' },
-      { q: 'Sensory feedback can help', a: 'The right sensory input at the right time can interrupt the phantom loop.' },
+      { q: 'Matching is slow and manual', a: 'The stakeholder sorts ~30 form submissions per cycle and individually verifies each person\'s background and fit on LinkedIn before finalizing' },
+      { q: 'Relationships need a shared connection', a: 'Interviews and affinity mapping showed mentorships were harder to sustain without something in common between mentor and mentee' },
     ],
-    process: 'We mapped key moments where users lose trust in their body:',
+    process: 'We weighed two ways to speed up onboarding intake:',
     steps: [
-      { title: 'Scenario 1: The Phantom Trip', body: 'False tripping sensation while moving', img: 'images_ms/journeymap.png' },
-      { title: 'Scenario 2: The Telescoping Effect', body: 'Limb feels like it is shrinking', img: 'images_ms/journeymap.png' },
-      { title: 'Scenario 3: The Thermal Ghost', body: 'Temperature misinterpreted as swelling', img: 'images_ms/journeymap.png' },
+      { title: 'V1 · Voice / video intake', body: 'Users speak or record their background instead of typing it. Ruled out: users may feel uncomfortable when trust is low during onboarding, and important information could be lost.' },
+      { title: 'V2 · Resume / LinkedIn import', body: 'Auto-populate onboarding fields from an existing resume or LinkedIn profile. Depends on source-data accuracy and completeness, and raises privacy questions around consent and transparency.' },
     ],
-    outcome: 'We designed a wearable node system that lets users adjust sensory feedback in real time.',
-    flows: [
-      { title: 'On-body + app control', body: 'Users can adjust feedback directly from the wearable node for quick interaction' },
-      { title: 'Sensory adjustment', body: 'Feedback (vibration, pressure, temperature) can be changed instantly, allowing users to respond as sensations happen', img: 'images_ms/mnemo.gif' },
-      { title: 'Targeted feedback', body: 'Users can control intensity or fine-tune individual nodes depending on their needs' },
-    ],
-    reflection: 'Designing MnemoSense was tricky because I wasn\'t designing for something you can see, but something you feel',
-    images: {
-      insights: 'images_ms/insights.png', insightsCaption: '📋 Affinity Map', insightsDesc: '',
-    },
+    outcome: 'Users choose to import information from an existing resume or LinkedIn profile, or fill it out manually. Importing auto-populates the relevant fields and lets users review and edit each page to confirm the information is accurate before completing their profile.',
+    flows: [],
+    reflection: 'This project taught me how to think about designing for integrations — evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
     takeaways: [
-      { title: 'Design for the invisible', body: 'If users can\'t see what is happening, then the interaction needs to be clear' },
-      { title: 'Scenario-first > feature-first', body: 'Thinking through actual moments helped inform design decisions' },
-      { title: 'Interface isn\'t just the screen', body: 'The experience depended on how the wearable and app worked together' },
+      { title: 'What I\'d do differently', body: 'Consent for importing resume/LinkedIn data currently happens at the moment a user decides to import; I\'d explore designing consent earlier in the onboarding process instead of at the decision point' },
     ],
-    stats: [{ num: 'Tereese B. · Anvitha G. · Diane P. · Nicole F.', lbl: 'Team' }, { num: '3 days', lbl: 'Duration' }, { num: 'Project Management · Research & Design Lead · Interaction Refinement', lbl: 'My Role' }],
   },
 ];
 
@@ -413,27 +349,30 @@ function openCase(i) {
 
   // cs.querySelector('.cs-label').textContent = p.label; // label hidden
   cs.querySelector('.cs-title').textContent = p.title;
-  cs.querySelector('.cs-tags').innerHTML = p.tags.map(t => `<span>${t}</span>`).join('');
-  cs.querySelector('.cs-meta-team').textContent = p.team;
-  const durWrap = cs.querySelector('.cs-meta-duration-wrap');
-  if (p.duration) { cs.querySelector('.cs-meta-duration').textContent = p.duration; durWrap.style.display = ''; }
-  else { durWrap.style.display = 'none'; }
+  cs.querySelector('.cs-tags').innerHTML = (p.tags || []).map(t => `<span>${t}</span>`).join('');
   cs.querySelector('.cs-overview p').textContent = p.overview;
+  const factsEl = cs.querySelector('.cs-facts');
+  if (factsEl) {
+    const facts = [['Role', p.role], ['Team', p.team], ['Timeline', p.timeline], ['Tools', p.tools]].filter(([, v]) => v);
+    factsEl.innerHTML = facts.map(([k, v]) => `<div class="cs-fact"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+    factsEl.style.display = facts.length ? '' : 'none';
+  }
   const hmwEl = cs.querySelector('.cs-hmw');
   if (p.hmw) { cs.querySelector('.cs-hmw-text').innerHTML = p.hmw; hmwEl.style.display = ''; }
   else { hmwEl.style.display = 'none'; }
   cs.querySelector('.cs-problem p').innerHTML = p.problem;
   cs.querySelector('.cs-research p').textContent = p.research;
 
-  (p.insights || []).forEach((ins, idx) => {
+  const insightData = p.insights || [];
+  [0, 1, 2, 3].forEach(idx => {
     const card = cs.querySelector(`.cs-insight-${idx}`);
     if (!card) return;
+    const ins = insightData[idx];
+    if (!ins) { card.style.display = 'none'; return; }
     card.querySelector('.cs-insight-num').textContent = ['😢','💡','⚠️','✦'][idx] || '✦';
     card.querySelector('.cs-insight-text').innerHTML = `<strong>${ins.q}</strong>${ins.a}`;
     card.style.display = '';
   });
-  const ins3 = cs.querySelector('.cs-insight-3');
-  if (ins3) ins3.style.display = (p.insights || [])[3] ? '' : 'none';
 
   const resWrap = cs.querySelector('.cs-research-img-wrap');
   resWrap.innerHTML = '';
@@ -593,15 +532,22 @@ function openCase(i) {
   cs.querySelector('.cs-takeaways').innerHTML = (p.takeaways||[]).map(t=>`
     <div class="cs-takeaway"><span class="cs-takeaway-num">TAKEAWAY</span>
     <div><div class="cs-takeaway-title">${t.title}</div><div class="cs-takeaway-body">${t.body}</div></div></div>`).join('');
-  const rolestat = p.stats.find(s => s.lbl === 'My Role');
-  const durstat = p.stats.find(s => s.lbl === 'Duration');
-  const teamstat = p.stats.find(s => s.lbl === 'Team');
-  cs.querySelector('.cs-stats').innerHTML = `
-    <div class="cs-stat-row">
-      ${teamstat ? `<div class="cs-stat"><span class="cs-stat-num">${teamstat.num}</span><span class="cs-stat-lbl">Team</span></div>` : ''}
-      ${durstat ? `<div class="cs-stat"><span class="cs-stat-num">${durstat.num}</span><span class="cs-stat-lbl">Duration</span></div>` : ''}
-    </div>
-    ${rolestat ? `<div class="cs-stat cs-stat--full"><span class="cs-stat-num">${rolestat.num}</span><span class="cs-stat-lbl">My Role</span></div>` : ''}`;
+  const statData = p.stats || [];
+  const statsWrap = cs.querySelector('.cs-stats-wrap');
+  if (statData.length) {
+    const rolestat = statData.find(s => s.lbl === 'My Role');
+    const durstat = statData.find(s => s.lbl === 'Duration');
+    const teamstat = statData.find(s => s.lbl === 'Team');
+    cs.querySelector('.cs-stats').innerHTML = `
+      <div class="cs-stat-row">
+        ${teamstat ? `<div class="cs-stat"><span class="cs-stat-num">${teamstat.num}</span><span class="cs-stat-lbl">Team</span></div>` : ''}
+        ${durstat ? `<div class="cs-stat"><span class="cs-stat-num">${durstat.num}</span><span class="cs-stat-lbl">Duration</span></div>` : ''}
+      </div>
+      ${rolestat ? `<div class="cs-stat cs-stat--full"><span class="cs-stat-num">${rolestat.num}</span><span class="cs-stat-lbl">My Role</span></div>` : ''}`;
+    if (statsWrap) statsWrap.style.display = '';
+  } else if (statsWrap) {
+    statsWrap.style.display = 'none';
+  }
 
   cs.querySelectorAll('.cs-section').forEach(s => s.classList.remove('cs-visible'));
   cs.classList.add('open');

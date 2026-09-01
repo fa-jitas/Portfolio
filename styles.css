@@ -911,6 +911,32 @@ footer {
 /* ── META ROW ── */
 .cs-meta-row { display: none; }
 
+/* ── INTRO FACTS ── */
+.cs-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+  margin: 0;
+}
+.cs-fact dt {
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.cs-fact dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .cs-facts { grid-template-columns: 1fr; }
+}
+
 /* ── BODY & SECTIONS ── */
 .cs-body {
   display: flex;
