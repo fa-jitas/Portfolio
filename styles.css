@@ -1627,12 +1627,13 @@ footer {
   font-size: 26px;
 }
 .cs-idea-fig figcaption {
-  margin-top: 6px;
+  margin-top: 8px;
+  font-family: 'Nunito', sans-serif;
   font-size: 14px;
-  color: var(--muted);
+  font-weight: 700;
+  color: var(--ink2);
   line-height: 1.4;
 }
-.cs-idea-fig:not(.is-missing) figcaption { display: none; }
 .cs-idea-trail {
   margin-top: 16px;
   display: grid;

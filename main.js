@@ -217,16 +217,32 @@ const cases = [
     overview: 'FoodLens is an allergy-checking, hands-free app that uses smart glasses to surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
     hmw: 'How might we use smart glasses to make food allergy information easily accessible?',
     problem: 'Existing allergy apps like Fig require people to <span class="cs-highlight">stop and pull out their phone</span> to check ingredients. FoodLens explores what that experience looks like through <span class="cs-highlight">smart glasses</span>, without needing to check a phone constantly.',
-    research: 'I watched someone use Fig to check an unrecognized product, then ran the same task on my own build, to find where barcode-based checking breaks down.',
+    research: 'I observed someone use Fig, the food allergy detecting app, to check an unrecognized product, then ran the same task on my own build, to find where barcode-based checking breaks down.',
     insights: [
-      { q: 'Barcode scanning is fast but fragile', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
+      { q: 'Barcode scanning is fast but still fails', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
       { q: 'A failed scan leaves users stuck', a: 'When Fig can\'t recognize a product it asks users to photograph it to help build the database, but gives them no information in return' },
     ],
     researchVisual: { src: 'images_fl/Foodlens_Research.png', label: 'From observed session' },
     process: 'I explored two approaches for how scanning should work:',
     steps: [
-      { title: 'Barcode approach', body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.' },
-      { title: 'Hybrid approach', body: 'Support barcode and ingredient-label scanning together. After testing it was simpler to include both, since foreign goods are still produced and sold locally.' },
+      {
+        title: 'Barcode approach',
+        body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.',
+        imgs: [{ src: 'images_fl/ideation1.png', label: 'Low-fi wireframes' }],
+        tradeoffs: [
+          { type: 'pro', text: 'Fast, familiar interaction — scan and get an instant readout' },
+          { type: 'con', text: 'Fails on foreign or unlabeled products whose barcode isn\'t in the database' },
+        ],
+      },
+      {
+        title: 'Hybrid approach',
+        body: 'Support barcode and ingredient-label scanning together. After testing it was simpler to include both, since foreign goods are still produced and sold locally.',
+        imgs: [{ src: 'images_fl/ideation2.png', label: 'High-fi screens' }],
+        tradeoffs: [
+          { type: 'pro', text: 'Always returns an answer — falls back to reading the ingredient label directly' },
+          { type: 'con', text: 'More to build and keep in sync: two scan modes and a mode switch' },
+        ],
+      },
     ],
     outcome: 'FoodLens is hands-free by default and falls back to the phone camera when the smart glasses aren\'t connected.',
     flows: [
