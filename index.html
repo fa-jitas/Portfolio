@@ -14,6 +14,13 @@
   <button class="cs-lightbox-close" onclick="closeLightbox()">×</button>
   <img id="cs-lightbox-img" src="" alt="">
 </div>
+<div class="cs-rules-modal" id="cs-rules-modal" onclick="closeRules()">
+  <div class="cs-rules-panel" onclick="event.stopPropagation()">
+    <button class="cs-rules-close" onclick="closeRules()" aria-label="Close">×</button>
+    <h3 class="cs-rules-title">How to Play</h3>
+    <div class="cs-rules-body" id="cs-rules-body"></div>
+  </div>
+</div>
 <div class="wrap">
 
   <!-- ── HEADER ── -->
@@ -58,7 +65,7 @@
       <div class="work-item" onclick="openCase(0)">
         <div class="wi-left">
           <span class="wi-name">FoodLens</span>
-          <span class="wi-meta">iOS · Smart Glasses</span>
+          <span class="wi-meta">iOS 🔗 Smart Glasses</span>
         </div>
         <span class="wi-right">2026 – Present</span>
         <div class="wi-tldr">
@@ -200,14 +207,7 @@
           <div id="cs-ideation" class="cs-section">
             <h3>Ideation</h3>
             <p class="cs-ideation-intro"></p>
-            <div class="cs-ideation-layout">
-              <div class="cs-steps"></div>
-              <div class="cs-idea-placeholder" id="cs-idea-ph" onclick="cycleIdeaStep()">
-                <span class="cs-idea-ph-num"></span>
-                <span class="cs-idea-ph-title"></span>
-                <span class="cs-idea-ph-hint">Click to advance →</span>
-              </div>
-            </div>
+            <div class="cs-idea-list"></div>
           </div>
 
           <!-- SOLUTION -->

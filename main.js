@@ -24,7 +24,32 @@ function closeLightbox() {
   lb.classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeCase(); } });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  const rules = document.getElementById('cs-rules-modal');
+  if (rules && rules.classList.contains('open')) { closeRules(); return; }
+  closeLightbox(); closeCase();
+});
+
+/* ══ RULES MODAL ══ */
+function openRules(i) {
+  const p = cases[i];
+  const modal = document.getElementById('cs-rules-modal');
+  const body = document.getElementById('cs-rules-body');
+  const titleEl = document.querySelector('.cs-rules-title');
+  if (!p || !p.rules || !modal || !body) return;
+  if (titleEl) titleEl.textContent = p.rulesTitle || 'How to Play';
+  body.innerHTML = `<ol class="cs-rules-list">${p.rules.map(r =>
+    `<li><span class="cs-rule-title">${r.title}</span><span class="cs-rule-text">${r.text}</span></li>`).join('')}</ol>`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeRules() {
+  const modal = document.getElementById('cs-rules-modal');
+  if (modal) modal.classList.remove('open');
+  const cs = document.getElementById('case-study');
+  document.body.style.overflow = (cs && cs.classList.contains('open')) ? 'hidden' : '';
+}
 document.addEventListener('click', e => {
   const img = e.target.closest('.cs-carousel-track img');
   if (img) { e.stopPropagation(); openLightbox(img.src, img.alt); }
@@ -199,8 +224,8 @@ const cases = [
     ],
     process: 'I explored two approaches for how scanning should work:',
     steps: [
-      { title: 'V1 · Barcode approach', body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.' },
-      { title: 'V2 · Hybrid approach', body: 'Support barcode and ingredient-label scanning together. After testing it was simpler to include both, since foreign goods are still produced and sold locally.' },
+      { title: 'Barcode approach', body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.' },
+      { title: 'Hybrid approach', body: 'Support barcode and ingredient-label scanning together. After testing it was simpler to include both, since foreign goods are still produced and sold locally.' },
     ],
     outcome: 'FoodLens is hands-free by default and falls back to the phone camera when the smart glasses aren\'t connected.',
     flows: [
@@ -230,11 +255,38 @@ const cases = [
     ],
     process: 'We explored two ways to prompt discussion:',
     steps: [
-      { title: 'V1 · Direct questions', body: 'Ask players a direct surveillance-related question each round. They engaged at first, but over time answered blindly just to get it out of the way.' },
-      { title: 'V2 · Narrative events', body: 'Reframe the questions as narrative events tied to the game\'s surveillance incidents. Generic questions felt like an add-on; tying them to the mechanics made them feel part of the game.' },
+      {
+        title: 'Direct Questions',
+        body: 'Ask players a direct surveillance-related question each round. They engaged at first, but over time answered blindly just to get it out of the way.',
+        imgs: [{ src: 'images_cw/ideation-direct.png', label: 'Round-question sketch' }],
+        tradeoffs: [
+          { type: 'pro', text: 'Fast to prototype and easy for players to understand' },
+          { type: 'con', text: 'Felt bolted-on — players rushed answers to move the game along' },
+        ],
+      },
+      {
+        title: 'Narrative Events',
+        body: 'Reframe the questions as narrative events tied to the game\'s surveillance incidents. Generic questions felt like an add-on; tying them to the mechanics made them feel part of the game.',
+        imgs: [
+          { src: 'images_cw/ideation-narrative-sketch.png', label: 'Narrative event sketch' },
+          { src: 'images_cw/ideation-narrative-matrix.png', label: 'Feasibility matrix' },
+        ],
+        tradeoffs: [
+          { type: 'pro', text: 'Discussion felt native to the game rather than an interruption' },
+          { type: 'con', text: 'More design work to write events for every incident type' },
+        ],
+      },
     ],
     outcome: 'After all players finish their turn, a surveillance incident appears and players must decide together whether to approve surveillance devices added or removed — each decision carrying a cost.',
     flows: [],
+    solutionVideo: 'images_cw/gameplay.mp4',
+    rulesTitle: 'How to Play Co-op Watch',
+    rules: [
+      { title: 'Setup', text: 'Placeholder — describe the board, where the four players sit, and the components each player starts with.' },
+      { title: 'On your turn', text: 'Placeholder — what a player does on their turn (adding or removing a surveillance device, etc.).' },
+      { title: 'Surveillance incident', text: 'Once every player has taken a turn, a surveillance incident appears. Players discuss and vote together on whether to approve the devices added or removed — each decision carries a cost.' },
+      { title: 'Ending the game', text: 'Placeholder — the win/lose condition and how the game concludes.' },
+    ],
     reflection: 'Designing for collaboration in a shared physical space taught me that discussion doesn\'t come from good narratives alone — it depends on players having access to the same information at the same time. With players at four different corners of the table, information positioning and orientation can determine whether players engage as a group or default to one person becoming the source of information.',
     takeaways: [
       { title: 'What I\'d do differently', body: 'A/B test two different narrative framings against each other to see which promotes more discussion, rather than assuming one method was correct based on playtest feedback' },
@@ -258,8 +310,8 @@ const cases = [
     ],
     process: 'We weighed two ways to speed up onboarding intake:',
     steps: [
-      { title: 'V1 · Voice / video intake', body: 'Users speak or record their background instead of typing it. Ruled out: users may feel uncomfortable when trust is low during onboarding, and important information could be lost.' },
-      { title: 'V2 · Resume / LinkedIn import', body: 'Auto-populate onboarding fields from an existing resume or LinkedIn profile. Depends on source-data accuracy and completeness, and raises privacy questions around consent and transparency.' },
+      { title: 'Voice / video intake', body: 'Users speak or record their background instead of typing it. Ruled out: users may feel uncomfortable when trust is low during onboarding, and important information could be lost.' },
+      { title: 'Resume / LinkedIn import', body: 'Auto-populate onboarding fields from an existing resume or LinkedIn profile. Depends on source-data accuracy and completeness, and raises privacy questions around consent and transparency.' },
     ],
     outcome: 'Users choose to import information from an existing resume or LinkedIn profile, or fill it out manually. Importing auto-populates the relevant fields and lets users review and edit each page to confirm the information is accurate before completing their profile.',
     flows: [],
@@ -404,40 +456,60 @@ function openCase(i) {
 
   const ideationIntro = cs.querySelector('.cs-ideation-intro');
   if (ideationIntro) ideationIntro.textContent = p.process || '';
-  const ideationEl = cs.querySelector('.cs-steps');
+  const ideaListEl = cs.querySelector('.cs-idea-list');
   const stepData = p.steps || [];
   const ideationSection = document.getElementById('cs-ideation');
-  if (stepData.length) {
-    let activeStep = 0;
-    function setIdeaStep(idx) {
-      activeStep = ((idx % stepData.length) + stepData.length) % stepData.length;
-      const ph = document.getElementById('cs-idea-ph');
-      if (ph) {
-        const imgSrc = stepData[activeStep].img;
-        const hasImg = !!imgSrc;
-        ph.style.backgroundImage = imgSrc ? `url(${imgSrc})` : '';
-        ph.style.backgroundSize = 'cover'; ph.style.backgroundPosition = 'center';
-        ph.querySelector('.cs-idea-ph-num').textContent = `Step ${activeStep+1} of ${stepData.length}`;
-        ph.querySelector('.cs-idea-ph-num').style.display = hasImg ? 'none' : '';
-        ph.querySelector('.cs-idea-ph-title').textContent = stepData[activeStep].title;
-        ph.querySelector('.cs-idea-ph-title').style.display = hasImg ? 'none' : '';
-        ph.querySelector('.cs-idea-ph-hint').textContent = activeStep === stepData.length-1 ? 'Back to start ↩' : 'Click to advance →';
-        ph.querySelector('.cs-idea-ph-hint').style.display = hasImg ? 'none' : '';
-        ph.onclick = hasImg ? () => openLightbox(imgSrc) : () => setIdeaStep(activeStep+1);
-      }
-      cs.querySelectorAll('.cs-idea-step').forEach((el, i) => el.classList.toggle('cs-idea-active', i === activeStep));
-    }
-    window.cycleIdeaStep = () => setIdeaStep(activeStep+1);
-    ideationEl.innerHTML = stepData.map((s, i) => `
-      <div class="cs-idea-step${i===0?' cs-idea-active':''}" data-idea-idx="${i}">
-        <span class="cs-idea-num">0${i+1}</span>
-        <div class="cs-idea-body"><div class="cs-idea-title">${s.title}</div><div class="cs-idea-text">${s.body}</div></div>
-      </div>`).join('');
-    ideationEl.querySelectorAll('.cs-idea-step').forEach(el => el.addEventListener('click', () => setIdeaStep(parseInt(el.dataset.ideaIdx))));
-    setIdeaStep(0);
+  if (stepData.length && ideaListEl) {
+    ideaListEl.innerHTML = stepData.map((s, idx) => {
+      const rawImgs = s.imgs || (s.img ? [s.img] : []);
+      const imgItems = rawImgs.map(it => typeof it === 'string' ? { src: it, label: '' } : it);
+      const tradeoffs = s.tradeoffs || [];
+      const hasDetail = imgItems.length || tradeoffs.length;
+      return `
+      <div class="cs-idea-card">
+        <button type="button" class="cs-idea-head"${hasDetail ? ' aria-expanded="false"' : ' disabled'}>
+          <span class="cs-idea-num">0${idx + 1}</span>
+          <span class="cs-idea-main">
+            <span class="cs-idea-title">${s.title}</span>
+            <span class="cs-idea-text">${s.body}</span>
+          </span>
+          ${hasDetail ? '<span class="cs-idea-chevron" aria-hidden="true">⌄</span>' : ''}
+        </button>
+        ${hasDetail ? `
+        <div class="cs-idea-detail">
+          ${imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
+            <figure class="cs-idea-fig">
+              <img src="${im.src}" alt="${im.label || s.title}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
+              <figcaption>${im.label || 'Image placeholder'}</figcaption>
+            </figure>`).join('')}</div>` : ''}
+          ${tradeoffs.length ? `<div class="cs-idea-tradeoffs">
+            <span class="cs-idea-tradeoffs-label">Trade-offs</span>
+            <ul>${tradeoffs.map(t => {
+              const obj = t && typeof t === 'object';
+              const kind = obj ? (t.type || '') : '';
+              const text = obj ? t.text : t;
+              return `<li class="${kind === 'pro' ? 'cs-to-pro' : kind === 'con' ? 'cs-to-con' : ''}">${text}</li>`;
+            }).join('')}</ul>
+          </div>` : ''}
+        </div>` : ''}
+      </div>`;
+    }).join('');
+    ideaListEl.querySelectorAll('.cs-idea-head[aria-expanded]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.cs-idea-card');
+        const open = card.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+    ideaListEl.querySelectorAll('.cs-idea-fig img').forEach(img => {
+      img.addEventListener('click', e => {
+        e.stopPropagation();
+        if (!img.closest('.cs-idea-fig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
+      });
+    });
     if (ideationSection) ideationSection.style.display = '';
-  } else {
-    if (ideationSection) ideationSection.style.display = 'none';
+  } else if (ideationSection) {
+    ideationSection.style.display = 'none';
   }
 
   cs.querySelector('.cs-solution p').textContent = p.outcome;
@@ -445,7 +517,16 @@ function openCase(i) {
   flowsEl.className = 'cs-flows' + (p.flowsStyle ? ' ' + p.flowsStyle : '');
   flowsEl.innerHTML = '';
   const flowData = p.flows || [];
-  if (p.solutionImg) {
+  if (p.solutionVideo) {
+    flowsEl.innerHTML = `
+      <div class="cs-video-wrap">
+        <video class="cs-video" controls playsinline preload="metadata"${p.solutionVideoPoster ? ` poster="${p.solutionVideoPoster}"` : ''}>
+          <source src="${p.solutionVideo}" type="video/mp4">
+          Your browser doesn&#39;t support embedded video.
+        </video>
+      </div>
+      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">📄 Prefer to read? View the written rules</button>` : ''}`;
+  } else if (p.solutionImg) {
     flowsEl.innerHTML = `<img src="${p.solutionImg}" alt="${p.title} solution" style="width:100%;border-radius:16px;display:block;">`;
   } else {
     flowsEl.innerHTML = p.flowsStyle === 'flows-free'
