@@ -1586,6 +1586,13 @@ footer {
   line-height: 1.4;
 }
 .cs-idea-fig:not(.is-missing) figcaption { display: none; }
+.cs-idea-trail {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.cs-idea-trail:empty { display: none; }
 .cs-idea-tradeoffs-label {
   display: block;
   font-family: 'Nunito', sans-serif;

@@ -267,16 +267,14 @@ const cases = [
       {
         title: 'Narrative Events',
         body: 'Reframe the questions as narrative events tied to the game\'s surveillance incidents. Generic questions felt like an add-on; tying them to the mechanics made them feel part of the game.',
-        imgs: [
-          { src: 'images_cw/ideation-narrative-sketch.png', label: 'Narrative event sketch' },
-          { src: 'images_cw/ideation-narrative-matrix.png', label: 'Feasibility matrix' },
-        ],
+        imgs: [{ src: 'images_cw/ideation-narrative-sketch.png', label: 'Narrative event sketch' }],
         tradeoffs: [
           { type: 'pro', text: 'Discussion felt native to the game rather than an interruption' },
           { type: 'con', text: 'More design work to write events for every incident type' },
         ],
       },
     ],
+    ideationImgs: [{ src: 'images_cw/ideation-narrative-matrix.png', label: 'Feasibility matrix' }],
     outcome: 'After all players finish their turn, a surveillance incident appears and players must decide together whether to approve surveillance devices added or removed — each decision carrying a cost.',
     flows: [],
     solutionVideo: 'images_cw/gameplay.mp4',
@@ -501,7 +499,16 @@ function openCase(i) {
         btn.setAttribute('aria-expanded', String(open));
       });
     });
-    ideaListEl.querySelectorAll('.cs-idea-fig img').forEach(img => {
+    const trailEl = cs.querySelector('.cs-idea-trail');
+    if (trailEl) {
+      const trailImgs = (p.ideationImgs || []).map(it => typeof it === 'string' ? { src: it, label: '' } : it);
+      trailEl.innerHTML = trailImgs.map(im => `
+        <figure class="cs-idea-fig">
+          <img src="${im.src}" alt="${im.label || 'Ideation'}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
+          <figcaption>${im.label || 'Image placeholder'}</figcaption>
+        </figure>`).join('');
+    }
+    cs.querySelectorAll('.cs-idea-fig img').forEach(img => {
       img.addEventListener('click', e => {
         e.stopPropagation();
         if (!img.closest('.cs-idea-fig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
