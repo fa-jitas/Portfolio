@@ -131,7 +131,7 @@ section { margin-bottom: 72px; }
 
 .sec-label {
   font-family: 'Nunito', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -920,7 +920,7 @@ footer {
 }
 .cs-fact dt {
   font-family: 'Nunito', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -961,7 +961,7 @@ footer {
 
 .cs-section h3 {
   font-family: 'Nunito', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
