@@ -212,8 +212,11 @@ const cases = [
     timeline: 'June 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
     overview: 'FoodLens is an allergy-checking, hands-free app that uses smart glasses to surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
-    hmw: 'How might we use smart glasses to make food allergy information easily accessible?',
-    problem: 'Existing allergy apps like Fig require people to <span class="cs-highlight">stop and pull out their phone</span> to check ingredients. FoodLens explores what that experience looks like through <span class="cs-highlight">smart glasses</span>, without needing to check a phone constantly.',
+    subheads: {
+      problem: 'An allergy scanner is only as good as its database',
+    },
+    hmw: 'How might we give someone an answer about an unrecognized product while they\'re still standing in the aisle?',
+    problem: 'Allergy scanners depend on barcode databases that don\'t have every product. When a scan misses, Fig asks users to photograph the product and wait days  for a response',
     research: 'I observed someone use Fig, the food allergy detecting app, to check an unrecognized product, then ran the same task on my own build, to find where barcode-based checking breaks down.',
     insights: [
       { q: 'Barcode scanning only works on products it already knows', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
@@ -427,6 +430,11 @@ function openCase(i) {
   cs.querySelector('.cs-title').textContent = p.title;
   cs.querySelector('.cs-tags').innerHTML = (p.tags || []).map(t => `<span>${t}</span>`).join('');
   cs.querySelector('.cs-overview p').textContent = p.overview;
+
+  const subheads = p.subheads || {};
+  cs.querySelectorAll('.cs-section-sub').forEach(el => {
+    el.textContent = subheads[el.dataset.sub] || 'Work in progress';
+  });
   const factsEl = cs.querySelector('.cs-facts');
   if (factsEl) {
     const toolsHtml = Array.isArray(p.tools) && p.tools.length
@@ -443,8 +451,10 @@ function openCase(i) {
     factsEl.style.display = facts.length ? '' : 'none';
   }
   const hmwEl = cs.querySelector('.cs-hmw');
-  if (p.hmw) { cs.querySelector('.cs-hmw-text').innerHTML = p.hmw; hmwEl.style.display = ''; }
-  else { hmwEl.style.display = 'none'; }
+  if (p.hmw) {
+    cs.querySelector('.cs-hmw-text').innerHTML = p.hmw.replace(/^how might we\s+/i, '');
+    hmwEl.style.display = '';
+  } else { hmwEl.style.display = 'none'; }
   cs.querySelector('.cs-problem p').innerHTML = p.problem;
   cs.querySelector('.cs-research p').textContent = p.research;
 
@@ -452,9 +462,9 @@ function openCase(i) {
   const insightsEl = cs.querySelector('.cs-insights');
   if (insightsEl) {
     insightsEl.innerHTML = insightData.map(ins => `
-      <div class="cs-insight" tabindex="0">
+      <div class="cs-insight">
         <div class="cs-insight-q">${ins.q}</div>
-        ${ins.a ? `<div class="cs-insight-a"><span>${ins.a}</span></div>` : ''}
+        ${ins.a ? `<div class="cs-insight-a">${ins.a}</div>` : ''}
       </div>`).join('');
   }
 
