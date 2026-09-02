@@ -1443,49 +1443,69 @@ footer {
 }
 
 /* ── RESEARCH ── */
-.cs-insights {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
+.cs-insights-label {
+  margin-top: 24px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
-@media (max-width: 560px) {
-  .cs-insights { grid-template-columns: 1fr; }
+.cs-insights {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 .cs-insight {
-  position: relative;
-  background: linear-gradient(145deg, #FFF0DE 0%, #FBD9B0 100%);
-  border: 1px solid #F3CFA0;
-  border-radius: 16px;
-  padding: 22px 20px;
-  overflow: hidden;
+  display: flex;
+  gap: 14px;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity .4s ease, transform .4s ease, box-shadow .2s ease;
+  transition: opacity .4s ease, transform .4s ease;
 }
 .cs-insight.visible { opacity: 1; transform: none; }
 .cs-insight:nth-child(2) { transition-delay: .1s; }
-.cs-insight.visible:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(125, 29, 46, .12);
+.cs-insight-num {
+  flex-shrink: 0;
+  min-width: 20px;
+  padding-top: 1px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--accent);
 }
+.cs-insight-body { flex: 1; min-width: 0; }
 .cs-insight-q {
-  font-family: 'Lato', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .1em;
   color: var(--ink);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 .cs-insight-a {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink2);
   line-height: 1.6;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 .cs-research-visual {
   position: static;
   margin-top: 20px;
+}
+.cs-research-visual--multi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+.cs-research-visual--multi .cs-rfig { flex: 1; min-width: 200px; }
+.cs-research-visual--multi .cs-rfig--small {
+  flex: 0 0 auto;
+  width: 180px;
+  min-width: 0;
 }
 .cs-rfig { margin: 0; }
 .cs-rfig-btn {
@@ -1836,6 +1856,24 @@ footer {
   gap: 32px;
   margin-top: 28px;
 }
+.cs-flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+.cs-flow-item .cs-flow-text { flex: 1; min-width: 0; padding-top: 4px; }
+.cs-flow-item .cs-sol-fig {
+  margin: 0;
+  flex: 0 0 auto;
+  width: 180px;
+}
+.cs-sol-fig--phone.is-missing::before {
+  aspect-ratio: 9 / 19;
+}
+@media (max-width: 640px) {
+  .cs-flow-item { gap: 18px; }
+  .cs-flow-item .cs-sol-fig { width: 130px; }
+}
 .cs-flow-row {
   display: flex;
   align-items: center;
@@ -1847,10 +1885,39 @@ footer {
 }
 .cs-flow-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 8px;
+}
+.cs-flow-title::before {
+  content: '➔';
+  margin-right: 10px;
+  color: var(--accent);
+  letter-spacing: 0;
+}
+.cs-sol-fig {
+  margin: 24px 0 0;
+}
+.cs-sol-fig img {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+  cursor: zoom-in;
+}
+.cs-sol-fig.is-missing img { display: none; }
+.cs-sol-fig.is-missing::before {
+  content: '🖼️';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg2);
+  border-radius: 16px;
+  font-size: 30px;
 }
 .cs-flow-body {
   font-size: 14px;
@@ -1893,23 +1960,19 @@ footer {
 
 /* ── TAKEAWAY CARDS (Reflection) ── */
 .cs-takeaways {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
   margin-top: 24px;
+}
+@media (max-width: 640px) {
+  .cs-takeaways { grid-template-columns: 1fr; }
 }
 .cs-takeaway {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--rule);
-  background: none;
-  border-radius: 0;
-}
-.cs-takeaway:last-child { 
-  border-bottom: none; 
+  gap: 4px;
 }
 
 .cs-takeaway-num {
@@ -1923,15 +1986,23 @@ footer {
 }
 .cs-takeaway-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+}
+.cs-takeaway-title::before {
+  content: '✦';
+  margin-right: 8px;
+  color: var(--accent);
+  letter-spacing: 0;
 }
 .cs-takeaway-body {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink2);
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
 }
 .cs-reflection-card {

@@ -211,21 +211,29 @@ const cases = [
     team: 'Solo project',
     timeline: 'June 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
-    overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients before they buy either for allergies, sensitivities, or dietary restrictions. When no glasses are connected, it falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often: when a product isn\'t in the database.surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
+    overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients before they buy the product. When no glasses are connected, it falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often: when a product isn\'t in the database.',
     subheads: {
-      intro: 'A food scanner for allergies, sensitivities, and dietary restrictions, designed for smart glasses.',
-      problem: 'An allergy scanner is only as good as its database',
-      research: 'The shopper quit before Fig\'s fallback ever ran.',
+      intro: 'A smart-glasses food scanner for allergies, sensitivities, and dietary restrictions.',
+      problem: 'A food scanner is only as good as its database.',
+      research: 'In a competitor\'s app, the shopper left without knowing if the food was safe.',
+      ideation: 'The label scan has to be findable without making people look for it.',
+      solution: 'The label scan sits on the scanner, before anything fails.',
+      reflection: 'Designing for the moment it doesn\'t work.',
     },
     hmw: 'How might we give someone an answer about an unrecognized product while they\'re still standing in the aisle?',
-    problem: 'Allergy scanners depend on barcode databases that don\'t have every product. When a scan misses, Fig asks users to photograph the product and wait days  for a response',
-    research: 'I observed someone use Fig, the food allergy detecting app, to check an unrecognized product, then ran the same task on my own build, to find where barcode-based checking breaks down.',
+    problem: 'Food scanners depend on barcode databases that don\'t have every product. Store brands, imported goods, and anything new to the shelf are the most likely to be missing. When a scan misses, most apps ask shoppers to photograph the product and wait days for a response. Meanwhile, the shopper is standing there, deciding whether it\'s safe to eat.',
+    research: 'I observed someone use Fig, a food scanner app, to check an unrecognized product, then ran the same task on my own build. The first I watched without intervening. The second I asked to complete the upload prompt, to see what happens after someone gives Fig what it asks for. Alongside the session I went through Fig\'s own documentation and app-store reviews to understand how the missing-product flow is meant to work. ',
     insights: [
-      { q: 'Barcode scanning only works on products it already knows', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
-      { q: 'A failed scan leaves users stuck', a: 'When Fig can\'t recognize a product it asks users to photograph it to help build the database, but gives them no information in return' },
+      { q: 'Barcode scanning only works on products it already knows', a: 'It failed on the imported product in the session, as it does on store brands and anything new to the shelf.' },
+      { q: 'The prompt was abandoned on the first attempt', a: 'Asked to photograph the product for Fig\'s database, the participant backed out without completing it, and only tried again when I asked.' },
+      { q: 'Completing the upload returned nothing', a: 'The app went back to the camera screen — no confirmation, no timeline, no explanation of what the photo would be used for. There was no way to tell whether it had worked.' },
+      { q: 'The path that would have answered the question went unnoticed', a: 'Fig can check a product by brand name through manual search. Nothing on the miss screen pointed there, and the participant didn\'t know it existed.' },
     ],
-    researchVisual: { src: 'images_fl/Foodlens_Research.png', label: 'From observed session' },
-    process: 'A participant scanned a product Fig didn\'t recognize. When it asked them to photograph it for the database, they paused and left. <span class="cs-highlight">So, should the fallback appear only when a scan fails, or keep it available from the start?</span>',
+    researchVisual: [
+      { src: 'images_fl/Foodlens_Research.png', label: 'From observed session' },
+      { src: 'images_fl/fig_prompt.PNG', label: 'Fig\'s photo prompt', small: true },
+    ],
+    process: 'Two participants scanned products Fig didn\'t recognize. One backed out of the upload prompt. The other completed it and was returned to the camera with no confirmation. Neither knew Fig\'s manual search existed. <span class="cs-highlight">So, should the fallback appear only when a scan fails, or keep it available from the start?</span>',
     steps: [
       {
         title: 'Offer it on failure',
@@ -241,19 +249,21 @@ const cases = [
         body: 'Support barcode and ingredient-label scanning together, which is usable before any barcode attempt',
         imgs: [{ src: 'images_fl/ideation2.png' }],
         tradeoffs: [
-          { type: 'pro', text: 'Users with unlabled or unrecognized products can skip the barcode entirely' },
+          { type: 'pro', text: 'Users with unlabeled or unrecognized products can skip the barcode entirely' },
           { type: 'con', text: 'Risks pulling users onto the slower label scan when barcode would have worked in two seconds' },
         ],
       },
     ],
-    outcome: 'FoodLens is hands-free by default and falls back to the phone camera when the smart glasses aren\'t connected.',
+    outcome: 'Both participants stopped using Fig even though it had a search feature that would have answered their question. They didn\'t know it was there. So I put the label scan directly on the scanner screen instead of only showing it after a failed scan. The downside is that people might tap it when scanning the barcode would have been faster.',
     flows: [
-      { title: 'Live barcode scanning', body: 'The camera view actively scans for a barcode with a live status, so the user always knows what state they\'re in' },
-      { title: 'One-tap fallback to ingredient scan', body: 'If a product isn\'t recognized, tapping "scan ingredients label instead" switches to ingredient-scan mode, which photographs the label and reads the ingredients directly' },
+      { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finaldesign-label.png' },
+      { title: 'Labels in other languages', body: 'The label scan translates as it reads, so an imported product works the same way as a local one — which was the case that failed in testing.', img: 'images_fl/finaldesign-translate.png' },
     ],
-    reflection: 'Assuming one design — barcode scanning — would be enough held up until I tested on multiple products and found barcodes that weren\'t in the database or didn\'t exist at all. The lesson was to design for failure, so the user can always get an answer instead of waiting for one.',
+    reflection: 'I started out assuming barcode scanning would be enough. That held up until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from it was to design for the failure, so someone always gets an answer instead of waiting for one.',
     takeaways: [
-      { title: 'What I\'d do differently', body: 'Look into why existing products focus only on barcode scanning and don\'t include ingredient parsing' },
+      { title: 'What I\'d change', body: 'Test the label placement. I need to check whether visible button gets noticed.' },
+      { title: 'What\'s still open', body: 'The label path doesn\'t show a product image. I need to research how to pull one when there\'s no barcode.' },
+      { title: 'Where this goes next', body: 'Using AI to read the whole package instead of a barcode or label.' },
     ],
   },
   {
@@ -461,34 +471,42 @@ function openCase(i) {
   cs.querySelector('.cs-research p').textContent = p.research;
 
   const insightData = p.insights || [];
+  const insightsLabel = cs.querySelector('.cs-insights-label');
+  if (insightsLabel) insightsLabel.style.display = insightData.length ? '' : 'none';
   const insightsEl = cs.querySelector('.cs-insights');
   if (insightsEl) {
     insightsEl.innerHTML = insightData.map(ins => `
       <div class="cs-insight">
-        <div class="cs-insight-q">${ins.q}</div>
-        ${ins.a ? `<div class="cs-insight-a">${ins.a}</div>` : ''}
+        <span class="cs-insight-num" aria-hidden="true">✦</span>
+        <div class="cs-insight-body">
+          <div class="cs-insight-q">${ins.q}</div>
+          ${ins.a ? `<div class="cs-insight-a">${ins.a}</div>` : ''}
+        </div>
       </div>`).join('');
   }
 
   const visualEl = cs.querySelector('.cs-research-visual');
   if (visualEl) {
-    const rvRaw = p.researchVisual || (p.images && p.images.insights
+    let rvRaw = p.researchVisual || (p.images && p.images.insights
       ? { src: p.images.insights, label: p.images.insightsCaption || '' } : null);
-    const rv = typeof rvRaw === 'string' ? { src: rvRaw, label: '' } : rvRaw;
-    if (rv) {
-      visualEl.innerHTML = `
-        <figure class="cs-rfig">
+    const rvList = (Array.isArray(rvRaw) ? rvRaw : (rvRaw ? [rvRaw] : []))
+      .map(v => typeof v === 'string' ? { src: v, label: '' } : v);
+    if (rvList.length) {
+      visualEl.innerHTML = rvList.map(rv => `
+        <figure class="cs-rfig${rv.small ? ' cs-rfig--small' : ''}">
           <button type="button" class="cs-rfig-btn" aria-label="Expand image">
             <img src="${rv.src}" alt="${rv.label || 'Research visual'}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
             <span class="cs-rfig-zoom" aria-hidden="true">⤢</span>
           </button>
           <figcaption>${rv.label || 'Image placeholder'}</figcaption>
-        </figure>`;
+        </figure>`).join('');
+      visualEl.classList.toggle('cs-research-visual--multi', rvList.length > 1);
       visualEl.style.display = '';
-      const rBtn = visualEl.querySelector('.cs-rfig-btn');
-      const rImg = visualEl.querySelector('img');
-      if (rBtn && rImg) rBtn.addEventListener('click', () => {
-        if (!rBtn.closest('.cs-rfig').classList.contains('is-missing')) openLightbox(rImg.src, rImg.alt);
+      visualEl.querySelectorAll('.cs-rfig-btn').forEach(btn => {
+        const img = btn.querySelector('img');
+        btn.addEventListener('click', () => {
+          if (img && !btn.closest('.cs-rfig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
+        });
       });
     } else {
       visualEl.innerHTML = '';
@@ -568,14 +586,23 @@ function openCase(i) {
         </video>
       </div>
       ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}`;
-  } else if (p.solutionImg) {
+  } else if (p.solutionImg && !flowData.length) {
     flowsEl.innerHTML = `<img src="${p.solutionImg}" alt="${p.title} solution" style="width:100%;border-radius:16px;display:block;">`;
   } else {
-    flowsEl.innerHTML = p.flowsStyle === 'flows-free'
+    let html = p.flowsStyle === 'flows-free'
       ? `<div style="display:flex;gap:28px;align-items:flex-start;"><div style="flex:1;">${flowData.map(f=>`<div class="cs-flow-row"><div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div></div>`).join('')}</div><div class="cs-flow-img">${flowData.find(f=>f.img)?`<img src="${flowData.find(f=>f.img).img}" style="width:100%;border-radius:16px;">`:''}
 </div></div>`
-      : flowData.map(f=>`<div class="cs-flow-row"><div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div><div class="cs-flow-img">${f.img?`<img src="${f.img}" alt="${f.title}">`:''}
-</div></div>`).join('');
+      : flowData.map(f => `<div class="cs-flow-item">
+          ${('img' in f) ? `<figure class="cs-sol-fig cs-sol-fig--phone"><img src="${f.img || ''}" alt="${f.title}" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>` : ''}
+          <div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div>
+        </div>`).join('');
+    if (p.solutionImg) {
+      html += `<figure class="cs-sol-fig"><img src="${p.solutionImg}" alt="${p.title} final design" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>`;
+    }
+    flowsEl.innerHTML = html;
+    flowsEl.querySelectorAll('.cs-sol-fig img').forEach(im => im.addEventListener('click', () => {
+      if (!im.closest('.cs-sol-fig').classList.contains('is-missing')) openLightbox(im.src, im.alt);
+    }));
   }
 
   const contribSection = document.getElementById('cs-contribution');
@@ -672,7 +699,7 @@ function openCase(i) {
 
   cs.querySelector('.cs-reflection-text').textContent = p.reflection;
   cs.querySelector('.cs-takeaways').innerHTML = (p.takeaways||[]).map(t=>`
-    <div class="cs-takeaway"><span class="cs-takeaway-num">TAKEAWAY</span>
+    <div class="cs-takeaway">
     <div><div class="cs-takeaway-title">${t.title}</div><div class="cs-takeaway-body">${t.body}</div></div></div>`).join('');
   const statData = p.stats || [];
   const statsWrap = cs.querySelector('.cs-stats-wrap');
