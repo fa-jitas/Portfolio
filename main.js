@@ -211,9 +211,11 @@ const cases = [
     team: 'Solo project',
     timeline: 'June 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
-    overview: 'FoodLens is an allergy-checking, hands-free app that uses smart glasses to surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
+    overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients before they buy either for allergies, sensitivities, or dietary restrictions. When no glasses are connected, it falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often: when a product isn\'t in the database.surface food allergen information, so people don\'t have to stop and pull out their phone to check ingredients.',
     subheads: {
+      intro: 'A food scanner for allergies, sensitivities, and dietary restrictions, designed for smart glasses.',
       problem: 'An allergy scanner is only as good as its database',
+      research: 'The shopper quit before Fig\'s fallback ever ran.',
     },
     hmw: 'How might we give someone an answer about an unrecognized product while they\'re still standing in the aisle?',
     problem: 'Allergy scanners depend on barcode databases that don\'t have every product. When a scan misses, Fig asks users to photograph the product and wait days  for a response',
