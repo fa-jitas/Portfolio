@@ -1683,7 +1683,7 @@ footer {
 }
 .cs-idea-tradeoffs li {
   position: relative;
-  padding-left: 22px;
+  padding-left: 28px;
   font-size: 16px;
   line-height: 1.6;
   color: var(--ink2);
@@ -1692,10 +1692,14 @@ footer {
   content: '•';
   position: absolute;
   left: 4px;
+  top: -1px;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.4;
   color: var(--muted);
 }
-.cs-idea-tradeoffs li.cs-to-pro::before { content: '+'; color: #1a9e5c; font-weight: 800; }
-.cs-idea-tradeoffs li.cs-to-con::before { content: '–'; color: var(--accent2); font-weight: 800; }
+.cs-idea-tradeoffs li.cs-to-pro::before { content: '+'; color: #1a9e5c; }
+.cs-idea-tradeoffs li.cs-to-con::before { content: '–'; color: var(--accent2); }
 
 /* ── HMW BLOCK ── */
 .cs-hmw {

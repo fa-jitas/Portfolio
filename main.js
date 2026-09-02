@@ -263,7 +263,7 @@ const cases = [
     takeaways: [
       { title: 'What I\'d change', body: 'Test the label placement. I need to check whether visible button gets noticed.' },
       { title: 'What\'s still open', body: 'The label path doesn\'t show a product image. I need to research how to pull one when there\'s no barcode.' },
-      { title: 'Where this goes next', body: 'Using AI to read the whole package instead of a barcode or label.' },
+      { title: 'What\'s next', body: 'Using AI to read the whole package instead of a barcode or label.' },
     ],
   },
   {
@@ -274,9 +274,16 @@ const cases = [
     team: ['UI Developer', 'UI Designer', 'UX Research', 'Principal Investigator'],
     timeline: 'March 2026 – ongoing',
     tools: ['Figma', 'Claude Code', 'GitHub'],
-    overview: 'Co-op Watch is a surveillance-themed interactive tabletop game that sparks discourse on surveillance through shared decision-making.',
+    subheads: {
+      intro: 'A surveillance game played on an interactive tabletop display.',
+      problem: 'Players were giving orders instead of talking or collaborating.',
+      research: 'One player read the screen and everyone waited for instructions.',
+      ideation: 'Ensuring players care about the discussion and not just answering it.',
+      solution: 'Every game incident\'s consequences are decided by a discussion.',
+    },
+    overview: 'Co-op Watch is a cooperative game where players work together to remove surveillance devices spreading across their city before the community\'s trust collapses. It runs on a shared single-touch table, which means all four players see the same information at the same time, but only one can touch the screen at a time. The game was built as both a game and a research instrument, to study how people talk about surveillance when they have to make decisions about it together.',
     hmw: 'How might we design game moments that require players to discuss with each other rather than just delivering instructions to each other?',
-    problem: 'Co-op Watch is designed to spark discourse on surveillance through shared decision-making, but if players default to <span class="cs-highlight">delivering instructions</span> to each other, it loses its <span class="cs-highlight">conversational value</span>.',
+    problem: 'Co-op Watch is designed to spark discourse on surveillance through shared decision-making, but if players default to <span class="cs-highlight">delivering instructions</span> to each other, it loses its <span class="cs-highlight">conversational value</span>. In a cooperative game the fastest way to win is for one person to figure out the best move and tell everyone else what to do. In early playtests, players coordinated moves efficiently and never discussed the topic at all.',
     research: 'We ran playtests and synthesized what we observed about how players actually communicated during the game.',
     insights: [
       { q: 'Players instructed instead of cooperating', a: 'In playtesting, players delivered instructions to each other rather than discussing their actions' },
