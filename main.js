@@ -68,7 +68,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(a => {
 const bubbles = [
   { text: 'hey! 👋' },
   { text: 'i got into this after working in healthcare settings and noticing how disconnected tools can shape everyday experiences' },
-  { text: 'outside of work, i’m usually walking my puppy or training her for competitions 🐕🏆' },
+  { text: 'outside of school, im buiding products with AI and working towards my puppies trick dog title🐕🏆' },
 ];
 
 function typeBubble(container, text, onDone) {
@@ -83,14 +83,11 @@ function typeBubble(container, text, onDone) {
     const bubble = document.createElement('div');
     bubble.className = 'bubble bubble-in';
     const p = document.createElement('p');
+    p.innerHTML = text.replace(/\n/g, '<br>');
     bubble.appendChild(p);
     container.appendChild(bubble);
-    let i = 0;
-    const iv = setInterval(() => {
-      p.innerHTML = text.slice(0, ++i).replace(/\n/g, '<br>');
-      container.scrollTop = container.scrollHeight;
-      if (i >= text.length) { clearInterval(iv); if (onDone) onDone(); }
-    }, 18);
+    container.scrollTop = container.scrollHeight;
+    if (onDone) onDone();
   }, typingDuration);
 }
 
@@ -219,28 +216,28 @@ const cases = [
     problem: 'Existing allergy apps like Fig require people to <span class="cs-highlight">stop and pull out their phone</span> to check ingredients. FoodLens explores what that experience looks like through <span class="cs-highlight">smart glasses</span>, without needing to check a phone constantly.',
     research: 'I observed someone use Fig, the food allergy detecting app, to check an unrecognized product, then ran the same task on my own build, to find where barcode-based checking breaks down.',
     insights: [
-      { q: 'Barcode scanning is fast but still fails', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
+      { q: 'Barcode scanning only works on products it already knows', a: 'It fails on unlabeled or foreign food whose barcode isn\'t in the database' },
       { q: 'A failed scan leaves users stuck', a: 'When Fig can\'t recognize a product it asks users to photograph it to help build the database, but gives them no information in return' },
     ],
     researchVisual: { src: 'images_fl/Foodlens_Research.png', label: 'From observed session' },
-    process: 'I explored two approaches for how scanning should work:',
+    process: 'A participant scanned a product Fig didn\'t recognize. When it asked them to photograph it for the database, they paused and left. <span class="cs-highlight">So, should the fallback appear only when a scan fails, or keep it available from the start?</span>',
     steps: [
       {
-        title: 'Barcode approach',
-        body: 'Scan the product barcode for an instant allergen readout. Testing surfaced a gap: foreign products whose barcodes aren\'t in the database. I tried a travel toggle to switch modes.',
-        imgs: [{ src: 'images_fl/ideation1.png', label: 'Low-fi wireframes' }],
+        title: 'Offer it on failure',
+        body: 'The fallback appears in the miss modal, at the moment when a user needs it',
+        imgs: [{ src: 'images_fl/ideation1.png' }],
         tradeoffs: [
-          { type: 'pro', text: 'Fast, familiar interaction — scan and get an instant readout' },
-          { type: 'con', text: 'Fails on foreign or unlabeled products whose barcode isn\'t in the database' },
+          { type: 'pro', text: 'It keeps the default path, barcode scan, simple and familiar' },
+          { type: 'con', text: 'The user has to fail first to discover it and the failure is where Fig loses its users' },
         ],
       },
       {
-        title: 'Hybrid approach',
-        body: 'Support barcode and ingredient-label scanning together. After testing it was simpler to include both, since foreign goods are still produced and sold locally.',
-        imgs: [{ src: 'images_fl/ideation2.png', label: 'High-fi screens' }],
+        title: 'Keep it always available',
+        body: 'Support barcode and ingredient-label scanning together, which is usable before any barcode attempt',
+        imgs: [{ src: 'images_fl/ideation2.png' }],
         tradeoffs: [
-          { type: 'pro', text: 'Always returns an answer — falls back to reading the ingredient label directly' },
-          { type: 'con', text: 'More to build and keep in sync: two scan modes and a mode switch' },
+          { type: 'pro', text: 'Users with unlabled or unrecognized products can skip the barcode entirely' },
+          { type: 'con', text: 'Risks pulling users onto the slower label scan when barcode would have worked in two seconds' },
         ],
       },
     ],
@@ -455,9 +452,9 @@ function openCase(i) {
   const insightsEl = cs.querySelector('.cs-insights');
   if (insightsEl) {
     insightsEl.innerHTML = insightData.map(ins => `
-      <div class="cs-insight">
+      <div class="cs-insight" tabindex="0">
         <div class="cs-insight-q">${ins.q}</div>
-        <div class="cs-insight-a">${ins.a}</div>
+        ${ins.a ? `<div class="cs-insight-a"><span>${ins.a}</span></div>` : ''}
       </div>`).join('');
   }
 
@@ -488,7 +485,7 @@ function openCase(i) {
   }
 
   const ideationIntro = cs.querySelector('.cs-ideation-intro');
-  if (ideationIntro) ideationIntro.textContent = p.process || '';
+  if (ideationIntro) ideationIntro.innerHTML = p.process || '';
   const ideaListEl = cs.querySelector('.cs-idea-list');
   const stepData = p.steps || [];
   const ideationSection = document.getElementById('cs-ideation');
@@ -497,24 +494,22 @@ function openCase(i) {
       const rawImgs = s.imgs || (s.img ? [s.img] : []);
       const imgItems = rawImgs.map(it => typeof it === 'string' ? { src: it, label: '' } : it);
       const tradeoffs = s.tradeoffs || [];
-      const hasContent = imgItems.length || tradeoffs.length;
+      const hasDetail = s.body || tradeoffs.length;
+      const imgsHtml = imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
+        <figure class="cs-idea-fig">
+          <img src="${im.src}" alt="${im.label || s.title}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
+          ${im.label ? `<figcaption>${im.label}</figcaption>` : ''}
+        </figure>`).join('')}</div>` : '';
       return `
       <div class="cs-idea-card">
-        <button type="button" class="cs-idea-head" aria-expanded="false">
+        ${imgsHtml}
+        <div class="cs-idea-head">
           <span class="cs-idea-num">0${idx + 1}</span>
-          <span class="cs-idea-main">
-            <span class="cs-idea-title">${s.title}</span>
-            <span class="cs-idea-text">${s.body}</span>
-          </span>
-          <span class="cs-idea-chevron" aria-hidden="true">⌄</span>
-        </button>
+          <span class="cs-idea-title">${s.title}</span>
+        </div>
         <div class="cs-idea-detail">
-          ${!hasContent ? '<p class="cs-idea-progress">In progress</p>' : ''}
-          ${imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
-            <figure class="cs-idea-fig">
-              <img src="${im.src}" alt="${im.label || s.title}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
-              <figcaption>${im.label || 'Image placeholder'}</figcaption>
-            </figure>`).join('')}</div>` : ''}
+          ${!hasDetail ? '<p class="cs-idea-progress">In progress</p>' : ''}
+          ${s.body ? `<p class="cs-idea-text">${s.body}</p>` : ''}
           ${tradeoffs.length ? `<div class="cs-idea-tradeoffs">
             <span class="cs-idea-tradeoffs-label">Trade-offs</span>
             <ul>${tradeoffs.map(t => {
@@ -527,13 +522,6 @@ function openCase(i) {
         </div>
       </div>`;
     }).join('');
-    ideaListEl.querySelectorAll('.cs-idea-head[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.cs-idea-card');
-        const open = card.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', String(open));
-      });
-    });
     const trailEl = cs.querySelector('.cs-idea-trail');
     if (trailEl) {
       const trailImgs = (p.ideationImgs || []).map(it => typeof it === 'string' ? { src: it, label: '' } : it);
