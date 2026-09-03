@@ -1,3 +1,16 @@
+/* ══ SPA REDIRECT (restores deep-link path after the GitHub Pages 404 fallback) ══ */
+(function () {
+  try {
+    const r = sessionStorage.getItem('spa-redirect');
+    if (r) {
+      sessionStorage.removeItem('spa-redirect');
+      if (r !== location.pathname + location.search + location.hash) {
+        history.replaceState(null, '', r);
+      }
+    }
+  } catch (e) {}
+})();
+
 /* ══ TIMESTAMP ══ */
 const tsEl = document.getElementById('chat-timestamp');
 function updateTimestamp() {
@@ -205,48 +218,49 @@ function startOrResetGame() {
 const cases = [
   {
     emoji: '👓', bg: '#EEF2F6',
+    slug: 'foodlens',
     label: 'Product Design · UX Research · 2026',
     title: 'FoodLens',
     role: ['Founder', 'UX / Product Designer'],
     team: 'Solo project',
     timeline: 'June 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
-    overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients before they buy the product. When no glasses are connected, it falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often: when a product isn\'t in the database.',
+    overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
     subheads: {
       intro: 'A smart-glasses food scanner for allergies, sensitivities, and dietary restrictions.',
       problem: 'A food scanner is only as good as its database.',
       research: 'In a competitor\'s app, the shopper left without knowing if the food was safe.',
       ideation: 'The label scan has to be findable without making people look for it.',
-      solution: 'The label scan sits on the scanner, before anything fails.',
+      solution: 'The label scan coexists with the barcode scanner, before anything fails.',
       reflection: 'Designing for the moment it doesn\'t work.',
     },
     hmw: 'How might we give someone an answer about an unrecognized product while they\'re still standing in the aisle?',
-    problem: 'Food scanners depend on barcode databases that don\'t have every product. Store brands, imported goods, and anything new to the shelf are the most likely to be missing. When a scan misses, most apps ask shoppers to photograph the product and wait days for a response. Meanwhile, the shopper is standing there, deciding whether it\'s safe to eat.',
-    research: 'I observed someone use Fig, a food scanner app, to check an unrecognized product, then ran the same task on my own build. The first I watched without intervening. The second I asked to complete the upload prompt, to see what happens after someone gives Fig what it asks for. Alongside the session I went through Fig\'s own documentation and app-store reviews to understand how the missing-product flow is meant to work. ',
+    problem: 'Food scanners depend on barcode databases that don\'t have every product. Store brands, imported goods, and anything new to the shelf are the most likely to be missing in the database. When a barcode scan does fail, most apps ask shoppers to photograph the product and wait days for a response. Meanwhile, the shopper has to decide whether to verify the ingredients themselves or wait on days for an answer.',
+    research: 'During a competitive usability study, I observed people using Fig, a food scanner app, to check an unrecognized product, then ran the same task on my own build. The first session, I watched them use the barcode scanner feature without intervening. The second, I asked them to complete the upload prompt, to see what happens after someone gives Fig what it asks for. Alongside the session I went through Fig\'s own documentation and app-store reviews to understand how the missing-product flow is meant to work. ',
     insights: [
-      { q: 'Barcode scanning only works on products it already knows', a: 'It failed on the imported product in the session, as it does on store brands and anything new to the shelf.' },
-      { q: 'The prompt was abandoned on the first attempt', a: 'Asked to photograph the product for Fig\'s database, the participant backed out without completing it, and only tried again when I asked.' },
-      { q: 'Completing the upload returned nothing', a: 'The app went back to the camera screen — no confirmation, no timeline, no explanation of what the photo would be used for. There was no way to tell whether it had worked.' },
-      { q: 'The path that would have answered the question went unnoticed', a: 'Fig can check a product by brand name through manual search. Nothing on the miss screen pointed there, and the participant didn\'t know it existed.' },
+      { q: 'Barcode scanning only works on products it already knows', a: 'It failed on imported products in the session, as it does on store brands and anything new to the database.' },
+      { q: 'The upload prompt was abandoned on the first attempt', a: 'When the app asked the participant tophotograph the product for Fig\'s database, the participant backed out without completing it, and only tried again when prompted.' },
+      { q: 'Completing the upload returned nothing', a: 'The app went back to the camera screen which had no confirmation, no timeline, no explanation of what the photo would be used for. Participant had no idea whether it had worked.' },
+      { q: 'A new way to find the information went unnoticed', a: 'Fig can check a product by brand name through manual search. Nothing on the miss screen pointed to that feature, and the participant didn\'t know it existed.' },
     ],
     researchVisual: [
       { src: 'images_fl/Foodlens_Research.png', alt: 'A comparative journey map of the observed session, tracking each step and emotional low as the shopper scanned an unrecognized product in Fig and in my build.' },
       { src: 'images_fl/fig_prompt.PNG', small: true, alt: 'Fig\'s screen asking the user to photograph the unrecognized product to help build its database, with no result shown in return.' },
     ],
-    process: 'Two participants scanned products Fig didn\'t recognize. One backed out of the upload prompt. The other completed it and was returned to the camera with no confirmation. Neither knew Fig\'s manual search existed. <span class="cs-highlight">So, should the fallback appear only when a scan fails, or keep it available from the start?</span>',
+    process: 'From the two participants who scanned products Fig didn\'t recognize: one backed out of the upload prompt and the other completed it and was returned to the camera with no confirmation. Neither knew Fig\'s manual search existed. Instead of relying on the database, I noticed that every package already has an ingredient label, so instead of waiting on a database, the app can read that label and flag ingredients based on the users profile. <span class="cs-highlight">So, should the fallback appear only when a scan fails, or keep it available from the start?</span>',
     steps: [
       {
         title: 'Offer it on failure',
         body: 'The fallback appears in the miss modal, at the moment when a user needs it',
         imgs: [{ src: 'images_fl/ideation1.png', alt: 'Wireframes of the barcode-first flow, where the ingredient-label option only appears after a scan fails.' }],
         tradeoffs: [
-          { type: 'pro', text: 'It keeps the default path, barcode scan, simple and familiar' },
-          { type: 'con', text: 'The user has to fail first to discover it and the failure is where Fig loses its users' },
+          { type: 'pro', text: 'It keeps the default path, barcode scan, simple and familiar for users' },
+          { type: 'con', text: 'The user has to fail first to discover it. However, this risks losing the user.' },
         ],
       },
       {
         title: 'Keep it always available',
-        body: 'Support barcode and ingredient-label scanning together, which is usable before any barcode attempt',
+        body: 'Include barcode and ingredient-label scanning together, which is usable before any barcode scan attempt',
         imgs: [{ src: 'images_fl/ideation2.png', alt: 'Higher-fidelity screens of the hybrid flow, with barcode and ingredient-label scanning available side by side.' }],
         tradeoffs: [
           { type: 'pro', text: 'Users with unlabeled or unrecognized products can skip the barcode entirely' },
@@ -257,17 +271,18 @@ const cases = [
     outcome: 'Both participants stopped using Fig even though it had a search feature that would have answered their question. They didn\'t know it was there. So I put the label scan directly on the scanner screen instead of only showing it after a failed scan. The downside is that people might tap it when scanning the barcode would have been faster.',
     flows: [
       { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finaldesign-label.png', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
-      { title: 'Labels in other languages', body: 'The label scan translates as it reads, so an imported product works the same way as a local one — which was the case that failed in testing.', img: 'images_fl/finaldesign-translate.png', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
+      { title: 'Labels in other languages', body: 'If the label is in another language, the scan translates it, so imported products work the same as English ones.', img: 'images_fl/finaldesign-translate.png', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
     ],
-    reflection: 'I started out assuming barcode scanning would be enough. That held up until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from it was to design for the failure, so someone always gets an answer instead of waiting for one.',
+    reflection: 'I started out assuming barcode scanning would be enough until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from the experience was to design for the failure, so that users always get an answer instead of having to wait for one.',
     takeaways: [
       { title: 'What I\'d change', body: 'Test the label placement. I need to check whether visible button gets noticed.' },
       { title: 'What\'s still open', body: 'The label path doesn\'t show a product image. I need to research how to pull one when there\'s no barcode.' },
-      { title: 'What\'s next', body: 'Using AI to read the whole package instead of a barcode or label.' },
+      { title: 'What\'s next', body: 'Exploring how AI can read the whole package instead of a barcode or label.' },
     ],
   },
   {
     emoji: '👁️', bg: '#EEF0F9',
+    slug: 'co-op-watch',
     label: 'Interaction Design · UX Research · 2026',
     title: 'Co-op Watch',
     role: ['Interaction Designer', 'UX Research', 'Product Management'],
@@ -282,18 +297,18 @@ const cases = [
       solution: 'Every game incident\'s consequences are decided by a discussion.',
       reflection: 'The narrative version hasn\'t been tested yet.',
     },
-    overview: 'Co-op Watch is a cooperative game where players work together to remove surveillance devices spreading across their city before the community\'s trust collapses. It runs on a shared single-touch table, which means all four players see the same information at the same time, but only one can touch the screen at a time. The game was built as both a game and a research instrument, to study how people talk about surveillance when they have to make decisions about it together.',
+    overview: 'Co-op Watch is a cooperative game where players work together to remove surveillance devices spreading across their city before the community\'s trust collapses. It runs on a shared single-touch table, which means all four players see the same information at the same time, but only one can touch the screen at a time. The game was built as both a game and a research tool, to study how people talk about surveillance when they have to make decisions about it together.',
     hmw: 'How might we design game moments that require players to discuss with each other rather than just delivering instructions to each other?',
     problem: 'Co-op Watch is designed to spark discourse on surveillance through shared decision-making, but if players default to <span class="cs-highlight">delivering instructions</span> to each other, it loses its <span class="cs-highlight">conversational value</span>. In a cooperative game the fastest way to win is for one person to figure out the best move and tell everyone else what to do. In early playtests, players coordinated moves efficiently and never discussed the topic at all.',
-    research: 'We started with a literature review on shared tabletop displays, cooperative game design, and surveillance as a discussion topic. Then we ran peer playtests with 2–4 players and took observation notes on how they communicated. Afterward we went back to the literature to check what we\'d seen, which is where embedded narrative came from.',
+    research: 'We started with a literature review on shared tabletop displays, cooperative game design, and surveillance as a discussion topic. Then we ran peer playtests with 2–4 players and took observation notes on how they communicated. Afterward we went back to the literature to check what we\'d seen, which made us explore using embedded narrative to facilitate discussion and collaboration.',
     insights: [
-      { q: 'One player became the director', a: 'A single player ended up telling everyone where to move, explaining the mechanics, and answering questions. Prior research on single-touch shared displays reports the same pattern regardless of the task, so the input model may be causing this as much as the game is.' },
-      { q: 'Other players stopped making their own decisions', a: 'Players asked the leader what to do, and asked whether they were allowed to make moves the rules already let them make.' },
-      { q: 'Leading was tiring', a: 'The leading player showed visible fatigue but kept doing it. Nobody picked this arrangement and nobody changed it.' },
+      { q: 'One player became the leader', a: 'A single player ended up telling everyone where to move, explaining the mechanics, and answering questions. Prior research on single-touch shared displays reports the same pattern regardless of the task, so the input model may be causing this as much as the game is.' },
+      { q: 'Other players stopped making their own decisions', a: 'Players asked the leader what to do, and asked whether they were allowed to make certain moves.' },
+      { q: 'Leading was tiring', a: 'The leading player showed visible fatigue but kept doing it.' },
       { q: 'The core mechanic gave players nothing to talk about', a: 'Removing devices was a placement decision, not a judgment call. Players said the game felt long and repetitive.' },
     ],
     researchVisual: { src: 'images_cw/Research.png', alt: 'Playtest observation notes grouped into themes about how one player took over and the others deferred to them.' },
-    process: 'The second literature review pointed us toward embedded narrative — conveying information through the story of the game rather than around it. We prototyped two ways to prompt discussion and tested both.',
+    process: 'The second literature review allowed us to explore embedded narrative which means conveying information through the story of the game. Instead of verbally asking questions regarding surveillance while they are playing, we thought of ways we can include narrative elements in the game. We prototyped two ways to prompt discussion and tested both using paper prototyping.',
     steps: [
       {
         title: 'Direct Questions',
@@ -326,15 +341,16 @@ const cases = [
       { title: 'Surveillance incident', text: 'Once every player has taken a turn, a surveillance incident appears. Players discuss and vote together on whether to approve the devices added or removed — each decision carries a cost.' },
       { title: 'Ending the game', text: 'Placeholder — the win/lose condition and how the game concludes.' },
     ],
-    reflection: 'The pilot playtests ran on a version without the narrative or discussion prompts, so what we observed came from an incomplete design. The formal study is IRB-approved and starts this month.',
+    reflection: 'The pilot playtests ran on a version without the narrative or discussion prompts, so what we observed came from an incomplete design. The formal study is IRB-approved and testing begins in September 2026.',
     takeaways: [
       { title: 'What I\'d change', body: 'Run comparative playtests on two narrative framings instead of assuming one was right based on early feedback.' },
-      { title: 'What\'s still open', body: 'Whether the narrative prompts change the director dynamic at all. Prior research suggests single-touch displays produce that pattern regardless of the task, so the input model may matter more than the writing.' },
+      { title: 'What\'s still open', body: 'Whether the narrative prompts change the leader dynamic at all.' },
       { title: 'Where this goes next', body: 'Observing 2–4 players across eight narrative rounds, with a post-game survey and a group debrief afterward.' },
     ],
   },
   {
     emoji: '🤝', bg: '#EAF4F0',
+    slug: 'mentorship-platform',
     label: 'Product Design · UX Research · 2026',
     title: 'Mentorship Platform',
     role: ['UX Designer', 'UX Research', 'Project Lead'],
@@ -408,9 +424,13 @@ function buildCarousel(container, images) {
 }
 
 /* ══ OPEN CASE ══ */
-function openCase(i) {
+function openCase(i, push = true) {
   const p = cases[i];
   if (!p) return;
+  if (push && p.slug) {
+    history.pushState({ caseIndex: i }, '', '/' + p.slug);
+  }
+  document.title = p.title + ' — Nicole Fajardo';
   const cs = document.getElementById('case-study');
   if (!cs) return;
 
@@ -802,7 +822,7 @@ function openCase(i) {
   }, 60);
 }
 
-function closeCase() {
+function closeCase(push = true) {
   const cs = document.getElementById('case-study');
   if (!cs) return;
   cs.classList.remove('open');
@@ -810,11 +830,29 @@ function closeCase() {
   document.body.style.overflow = '';
   const btn = document.getElementById('back-to-top');
   if (btn) btn.classList.remove('visible');
+  document.title = 'Nicole Fajardo';
+  if (push) {
+    if (history.state && history.state.caseIndex != null) history.back();
+    else if (location.pathname !== '/') history.pushState({}, '', '/');
+  }
 }
 
-cs.addEventListener('scroll', () => {
-  const btn = document.getElementById('back-to-top');
-  if (!btn) return;
-  btn.classList.toggle('visible', cs.scrollTop > 300);
-  btn.onclick = () => cs.scrollTo({ top: 0, behavior: 'smooth' });
-});
+/* ══ ROUTING ══ */
+function caseIndexForPath() {
+  const slug = decodeURIComponent(location.pathname.replace(/^\/+|\/+$/g, ''));
+  if (!slug) return -1;
+  return cases.findIndex(c => c.slug === slug);
+}
+function syncRoute() {
+  const i = caseIndexForPath();
+  const cs = document.getElementById('case-study');
+  if (i >= 0) {
+    openCase(i, false);
+  } else if (cs && cs.classList.contains('open')) {
+    closeCase(false);
+  } else {
+    document.title = 'Nicole Fajardo';
+  }
+}
+window.addEventListener('popstate', syncRoute);
+syncRoute();

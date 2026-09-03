@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicole Fajardo</title>
+<script>
+  // GitHub Pages serves this file for any unknown path (e.g. /foodlens).
+  // Stash the intended path, then hand off to the single-page app at "/".
+  (function () {
+    try {
+      sessionStorage.setItem('spa-redirect', location.pathname + location.search + location.hash);
+    } catch (e) {}
+    location.replace(location.origin + '/');
+  })();
+</script>
+</head>
+<body></body>
+</html>
