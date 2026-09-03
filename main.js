@@ -230,15 +230,15 @@ const cases = [
       { q: 'The path that would have answered the question went unnoticed', a: 'Fig can check a product by brand name through manual search. Nothing on the miss screen pointed there, and the participant didn\'t know it existed.' },
     ],
     researchVisual: [
-      { src: 'images_fl/Foodlens_Research.png', label: 'From observed session' },
-      { src: 'images_fl/fig_prompt.PNG', label: 'Fig\'s photo prompt', small: true },
+      { src: 'images_fl/Foodlens_Research.png', alt: 'A comparative journey map of the observed session, tracking each step and emotional low as the shopper scanned an unrecognized product in Fig and in my build.' },
+      { src: 'images_fl/fig_prompt.PNG', small: true, alt: 'Fig\'s screen asking the user to photograph the unrecognized product to help build its database, with no result shown in return.' },
     ],
     process: 'Two participants scanned products Fig didn\'t recognize. One backed out of the upload prompt. The other completed it and was returned to the camera with no confirmation. Neither knew Fig\'s manual search existed. <span class="cs-highlight">So, should the fallback appear only when a scan fails, or keep it available from the start?</span>',
     steps: [
       {
         title: 'Offer it on failure',
         body: 'The fallback appears in the miss modal, at the moment when a user needs it',
-        imgs: [{ src: 'images_fl/ideation1.png' }],
+        imgs: [{ src: 'images_fl/ideation1.png', alt: 'Wireframes of the barcode-first flow, where the ingredient-label option only appears after a scan fails.' }],
         tradeoffs: [
           { type: 'pro', text: 'It keeps the default path, barcode scan, simple and familiar' },
           { type: 'con', text: 'The user has to fail first to discover it and the failure is where Fig loses its users' },
@@ -247,7 +247,7 @@ const cases = [
       {
         title: 'Keep it always available',
         body: 'Support barcode and ingredient-label scanning together, which is usable before any barcode attempt',
-        imgs: [{ src: 'images_fl/ideation2.png' }],
+        imgs: [{ src: 'images_fl/ideation2.png', alt: 'Higher-fidelity screens of the hybrid flow, with barcode and ingredient-label scanning available side by side.' }],
         tradeoffs: [
           { type: 'pro', text: 'Users with unlabeled or unrecognized products can skip the barcode entirely' },
           { type: 'con', text: 'Risks pulling users onto the slower label scan when barcode would have worked in two seconds' },
@@ -256,8 +256,8 @@ const cases = [
     ],
     outcome: 'Both participants stopped using Fig even though it had a search feature that would have answered their question. They didn\'t know it was there. So I put the label scan directly on the scanner screen instead of only showing it after a failed scan. The downside is that people might tap it when scanning the barcode would have been faster.',
     flows: [
-      { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finaldesign-label.png' },
-      { title: 'Labels in other languages', body: 'The label scan translates as it reads, so an imported product works the same way as a local one — which was the case that failed in testing.', img: 'images_fl/finaldesign-translate.png' },
+      { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finaldesign-label.png', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
+      { title: 'Labels in other languages', body: 'The label scan translates as it reads, so an imported product works the same way as a local one — which was the case that failed in testing.', img: 'images_fl/finaldesign-translate.png', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
     ],
     reflection: 'I started out assuming barcode scanning would be enough. That held up until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from it was to design for the failure, so someone always gets an answer instead of waiting for one.',
     takeaways: [
@@ -280,41 +280,45 @@ const cases = [
       research: 'One player read the screen and everyone waited for instructions.',
       ideation: 'Ensuring players care about the discussion and not just answering it.',
       solution: 'Every game incident\'s consequences are decided by a discussion.',
+      reflection: 'The narrative version hasn\'t been tested yet.',
     },
     overview: 'Co-op Watch is a cooperative game where players work together to remove surveillance devices spreading across their city before the community\'s trust collapses. It runs on a shared single-touch table, which means all four players see the same information at the same time, but only one can touch the screen at a time. The game was built as both a game and a research instrument, to study how people talk about surveillance when they have to make decisions about it together.',
     hmw: 'How might we design game moments that require players to discuss with each other rather than just delivering instructions to each other?',
     problem: 'Co-op Watch is designed to spark discourse on surveillance through shared decision-making, but if players default to <span class="cs-highlight">delivering instructions</span> to each other, it loses its <span class="cs-highlight">conversational value</span>. In a cooperative game the fastest way to win is for one person to figure out the best move and tell everyone else what to do. In early playtests, players coordinated moves efficiently and never discussed the topic at all.',
-    research: 'We ran playtests and synthesized what we observed about how players actually communicated during the game.',
+    research: 'We started with a literature review on shared tabletop displays, cooperative game design, and surveillance as a discussion topic. Then we ran peer playtests with 2–4 players and took observation notes on how they communicated. Afterward we went back to the literature to check what we\'d seen, which is where embedded narrative came from.',
     insights: [
-      { q: 'Players instructed instead of cooperating', a: 'In playtesting, players delivered instructions to each other rather than discussing their actions' },
-      { q: 'The core mechanic felt flat', a: 'Removing devices didn\'t require much thought or exchange, so players said the game felt long and repetitive' },
+      { q: 'One player became the director', a: 'A single player ended up telling everyone where to move, explaining the mechanics, and answering questions. Prior research on single-touch shared displays reports the same pattern regardless of the task, so the input model may be causing this as much as the game is.' },
+      { q: 'Other players stopped making their own decisions', a: 'Players asked the leader what to do, and asked whether they were allowed to make moves the rules already let them make.' },
+      { q: 'Leading was tiring', a: 'The leading player showed visible fatigue but kept doing it. Nobody picked this arrangement and nobody changed it.' },
+      { q: 'The core mechanic gave players nothing to talk about', a: 'Removing devices was a placement decision, not a judgment call. Players said the game felt long and repetitive.' },
     ],
-    researchVisual: { src: 'images_cw/research-synthesis.png', label: 'Insight synthesis chart' },
-    process: 'We explored two ways to prompt discussion:',
+    researchVisual: { src: 'images_cw/Research.png', alt: 'Playtest observation notes grouped into themes about how one player took over and the others deferred to them.' },
+    process: 'The second literature review pointed us toward embedded narrative — conveying information through the story of the game rather than around it. We prototyped two ways to prompt discussion and tested both.',
     steps: [
       {
         title: 'Direct Questions',
         body: 'Ask players a direct surveillance-related question each round. They engaged at first, but over time answered blindly just to get it out of the way.',
-        imgs: [{ src: 'images_cw/ideation-direct.png', label: 'Round-question sketch' }],
+        imgs: [{ src: 'images_cw/ideation1.png', alt: 'Sketch of the direct-questions approach, where a surveillance question is posed to players each round.' }],
         tradeoffs: [
           { type: 'pro', text: 'Fast to prototype and easy for players to understand' },
-          { type: 'con', text: 'Felt bolted-on — players rushed answers to move the game along' },
+          { type: 'con', text: 'Players engaged at first, then answered blindly to move the game along' },
         ],
       },
       {
         title: 'Narrative Events',
-        body: 'Reframe the questions as narrative events tied to the game\'s surveillance incidents. Generic questions felt like an add-on; tying them to the mechanics made them feel part of the game.',
-        imgs: [{ src: 'images_cw/ideation-narrative-sketch.png', label: 'Narrative event sketch' }],
+        body: 'Reframe the questions as narrative events tied to the game\'s surveillance incidents, so the discussion comes out of what\'s happening in the game.',
+        imgs: [{ src: 'images_cw/ideation2.png', alt: 'Sketch of the narrative-events approach, where discussion prompts are tied to the game\'s surveillance incidents.' }],
         tradeoffs: [
-          { type: 'pro', text: 'Discussion felt native to the game rather than an interruption' },
-          { type: 'con', text: 'More design work to write events for every incident type' },
+          { type: 'pro', text: 'Discussion came from the game rather than interrupting the game flow' },
+          { type: 'con', text: 'More design work to write events for every incident event' },
         ],
       },
     ],
-    ideationImgs: [{ src: 'images_cw/ideation-narrative-matrix.png', label: 'Feasibility matrix' }],
-    outcome: 'After all players finish their turn, a surveillance incident appears and players must decide together whether to approve surveillance devices added or removed — each decision carrying a cost.',
-    flows: [],
-    solutionVideo: 'images_cw/gameplay.mp4',
+    outcome: 'Once all players finish their turn, a surveillance incident comes up and the group decides together whether to approve the devices. Each choice comes with a cost by either adding surveillance devices and/or decreasing the privacy and trust meter, so players have a reason to talk it through.',
+    flows: [
+      { title: 'Consequences stay hidden until the next board phase', body: 'Players can\'t see what either choice will cost while they\'re deciding. If the costs were visible, the discussion would be about optimizing numbers instead of what the group thinks should happen.', img: 'images_cw/finaldesign-hidden.png', alt: 'A surveillance incident screen where the cost of each option is concealed while players decide.' },
+    ],
+    solutionVideo: 'images_cw/surveillance_game.mp4',
     rulesTitle: 'How to Play Co-op Watch',
     rules: [
       { title: 'Setup', text: 'Placeholder — describe the board, where the four players sit, and the components each player starts with.' },
@@ -322,9 +326,11 @@ const cases = [
       { title: 'Surveillance incident', text: 'Once every player has taken a turn, a surveillance incident appears. Players discuss and vote together on whether to approve the devices added or removed — each decision carries a cost.' },
       { title: 'Ending the game', text: 'Placeholder — the win/lose condition and how the game concludes.' },
     ],
-    reflection: 'Designing for collaboration in a shared physical space taught me that discussion doesn\'t come from good narratives alone — it depends on players having access to the same information at the same time. With players at four different corners of the table, information positioning and orientation can determine whether players engage as a group or default to one person becoming the source of information.',
+    reflection: 'The pilot playtests ran on a version without the narrative or discussion prompts, so what we observed came from an incomplete design. The formal study is IRB-approved and starts this month.',
     takeaways: [
-      { title: 'What I\'d do differently', body: 'A/B test two different narrative framings against each other to see which promotes more discussion, rather than assuming one method was correct based on playtest feedback' },
+      { title: 'What I\'d change', body: 'Run comparative playtests on two narrative framings instead of assuming one was right based on early feedback.' },
+      { title: 'What\'s still open', body: 'Whether the narrative prompts change the director dynamic at all. Prior research suggests single-touch displays produce that pattern regardless of the task, so the input model may matter more than the writing.' },
+      { title: 'Where this goes next', body: 'Observing 2–4 players across eight narrative rounds, with a post-game survey and a group debrief afterward.' },
     ],
   },
   {
@@ -501,11 +507,10 @@ function openCase(i) {
     if (rvList.length) {
       visualEl.innerHTML = rvList.map(rv => `
         <figure class="cs-rfig${rv.small ? ' cs-rfig--small' : ''}">
-          <button type="button" class="cs-rfig-btn" aria-label="Expand image">
-            <img src="${rv.src}" alt="${rv.label || 'Research visual'}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
+          <button type="button" class="cs-rfig-btn" aria-label="Expand image: ${rv.alt || rv.label || 'research visual'}">
+            <img src="${rv.src}" alt="${rv.alt || rv.label || 'Research visual'}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
             <span class="cs-rfig-zoom" aria-hidden="true">⤢</span>
           </button>
-          <figcaption>${rv.label || 'Image placeholder'}</figcaption>
         </figure>`).join('');
       visualEl.classList.toggle('cs-research-visual--multi', rvList.length > 1);
       visualEl.style.display = '';
@@ -533,9 +538,8 @@ function openCase(i) {
       const tradeoffs = s.tradeoffs || [];
       const hasDetail = s.body || tradeoffs.length;
       const imgsHtml = imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
-        <figure class="cs-idea-fig">
-          <img src="${im.src}" alt="${im.label || s.title}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
-          ${im.label ? `<figcaption>${im.label}</figcaption>` : ''}
+        <figure class="cs-idea-fig" role="img" aria-label="${(im.alt || im.label || s.title || '').replace(/"/g, '&quot;')}">
+          <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
         </figure>`).join('')}</div>` : '';
       return `
       <div class="cs-idea-card">
@@ -563,9 +567,8 @@ function openCase(i) {
     if (trailEl) {
       const trailImgs = (p.ideationImgs || []).map(it => typeof it === 'string' ? { src: it, label: '' } : it);
       trailEl.innerHTML = trailImgs.map(im => `
-        <figure class="cs-idea-fig">
-          <img src="${im.src}" alt="${im.label || 'Ideation'}" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
-          <figcaption>${im.label || 'Image placeholder'}</figcaption>
+        <figure class="cs-idea-fig" role="img" aria-label="${(im.alt || im.label || 'Ideation image').replace(/"/g, '&quot;')}">
+          <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
         </figure>`).join('');
     }
     cs.querySelectorAll('.cs-idea-fig img').forEach(img => {
@@ -584,11 +587,16 @@ function openCase(i) {
   flowsEl.className = 'cs-flows' + (p.flowsStyle ? ' ' + p.flowsStyle : '');
   flowsEl.innerHTML = '';
   const flowData = p.flows || [];
+  const flowItemsHtml = data => data.map(f => `<div class="cs-flow-item">
+      ${('img' in f) ? `<figure class="cs-sol-fig cs-sol-fig--phone" role="img" aria-label="${(f.alt || f.title || '').replace(/"/g, '&quot;')}"><img src="${f.img || ''}" alt="" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>` : ''}
+      <div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div>
+    </div>`).join('');
   if (p.solutionVideo) {
     flowsEl.innerHTML = `
+      ${flowData.length ? flowItemsHtml(flowData) : ''}
       <div class="cs-video-wrap">
         <video class="cs-video" controls playsinline preload="metadata"${p.solutionVideoPoster ? ` poster="${p.solutionVideoPoster}"` : ''}>
-          <source src="${p.solutionVideo}" type="video/mp4">
+          <source src="${p.solutionVideo}" type="${/\.mov$/i.test(p.solutionVideo) ? 'video/mp4' : 'video/' + (p.solutionVideo.split('.').pop() || 'mp4')}">
           Your browser doesn&#39;t support embedded video.
         </video>
       </div>
@@ -599,18 +607,15 @@ function openCase(i) {
     let html = p.flowsStyle === 'flows-free'
       ? `<div style="display:flex;gap:28px;align-items:flex-start;"><div style="flex:1;">${flowData.map(f=>`<div class="cs-flow-row"><div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div></div>`).join('')}</div><div class="cs-flow-img">${flowData.find(f=>f.img)?`<img src="${flowData.find(f=>f.img).img}" style="width:100%;border-radius:16px;">`:''}
 </div></div>`
-      : flowData.map(f => `<div class="cs-flow-item">
-          ${('img' in f) ? `<figure class="cs-sol-fig cs-sol-fig--phone"><img src="${f.img || ''}" alt="${f.title}" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>` : ''}
-          <div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div>
-        </div>`).join('');
+      : flowItemsHtml(flowData);
     if (p.solutionImg) {
-      html += `<figure class="cs-sol-fig"><img src="${p.solutionImg}" alt="${p.title} final design" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>`;
+      html += `<figure class="cs-sol-fig" role="img" aria-label="${p.title} final design"><img src="${p.solutionImg}" alt="" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>`;
     }
     flowsEl.innerHTML = html;
-    flowsEl.querySelectorAll('.cs-sol-fig img').forEach(im => im.addEventListener('click', () => {
-      if (!im.closest('.cs-sol-fig').classList.contains('is-missing')) openLightbox(im.src, im.alt);
-    }));
   }
+  flowsEl.querySelectorAll('.cs-sol-fig img').forEach(im => im.addEventListener('click', () => {
+    if (!im.closest('.cs-sol-fig').classList.contains('is-missing')) openLightbox(im.src, im.alt);
+  }));
 
   const contribSection = document.getElementById('cs-contribution');
   if (contribSection) contribSection.style.display = 'none';

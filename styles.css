@@ -204,16 +204,17 @@ section { margin-bottom: 72px; }
 /* ── TL;DR PREVIEW ── */
 .wi-tldr {
   position: absolute;
-  right: 60px;
+  left: calc(100% + 28px);
+  right: auto;
   top: 50%;
   transform: translateY(-50%) translateY(6px);
   background: #fff;
   border: 1px solid var(--rule);
-  border-radius: 12px;
-  padding: 12px 14px;
-  width: 220px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.09);
-  z-index: 10;
+  border-radius: 16px;
+  padding: 20px 22px;
+  width: 360px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.16);
+  z-index: 20;
   pointer-events: none;
   opacity: 0;
   transition: opacity .2s ease, transform .2s ease;
@@ -222,11 +223,18 @@ section { margin-bottom: 72px; }
   opacity: 1;
   transform: translateY(-50%) translateY(0);
 }
+@media (max-width: 1080px) {
+  .wi-tldr {
+    left: auto;
+    right: 0;
+    width: min(360px, calc(100vw - 48px));
+  }
+}
 .wi-tldr-img {
   width: 100%;
-  height: 116px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  height: 210px;
+  border-radius: 12px;
+  margin-bottom: 14px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -250,9 +258,9 @@ section { margin-bottom: 72px; }
   margin-bottom: 5px;
 }
 .wi-tldr-text {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--ink2);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .wi-left { flex: 1; min-width: 0; }
@@ -1556,13 +1564,6 @@ footer {
   border-radius: 12px;
   font-size: 30px;
 }
-.cs-rfig figcaption {
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.4;
-}
-.cs-rfig:not(.is-missing) figcaption { color: var(--ink2); }
 
 /* ── IDEATION STEPS (accordion) ── */
 
@@ -1603,14 +1604,6 @@ footer {
   background: var(--bg2);
   border-radius: 10px;
   font-size: 26px;
-}
-.cs-idea-fig figcaption {
-  margin-top: 8px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--ink2);
-  line-height: 1.4;
 }
 .cs-idea-head {
   display: flex;
