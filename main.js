@@ -360,6 +360,7 @@ const cases = [
     subheads: {
       intro: 'An onboarding flow for a HCI master\'s mentorship program that currently matches by hand.',
       problem: 'The chair manages 30 forms each semester while verifying 50 mentors one at a time.',
+      research: 'Mentor and mentee information was missing or out-of-date.',
       ideation: 'Two ways to reduce the amount of time spent on filling in a profile.',
       solution: 'People import their information to fill out their profile.',
     },
