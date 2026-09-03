@@ -377,8 +377,22 @@ const cases = [
     researchVisual: { src: 'images_mp/research-time.png', label: 'Estimated time to manually review and create matches' },
     process: 'We weighed two ways to speed up onboarding intake:',
     steps: [
-      { title: 'Voice / video intake', body: 'Users speak or record their background instead of typing it. Ruled out: users may feel uncomfortable when trust is low during onboarding, and important information could be lost.' },
-      { title: 'Resume / LinkedIn import', body: 'Auto-populate onboarding fields from an existing resume or LinkedIn profile. Depends on source-data accuracy and completeness, and raises privacy questions around consent and transparency.' },
+      {
+        title: 'Voice / video intake',
+        body: 'People speak or record their background instead of typing it.',
+        tradeoffs: [
+          { type: 'pro', text: 'No typing, and people explain themselves more naturally out loud' },
+          { type: 'con', text: 'Recording yourself early in onboarding is uncomfortable when trust is low, and details are harder to capture reliably' },
+        ],
+      },
+      {
+        title: 'Resume / LinkedIn import',
+        body: 'Onboarding fields fill in automatically from an existing resume or LinkedIn profile.',
+        tradeoffs: [
+          { type: 'pro', text: 'Uses information people have already written and maintained' },
+          { type: 'con', text: 'Only as accurate as the source, and raises consent questions about pulling data in' },
+        ],
+      },
     ],
     outcome: 'Users choose to import information from an existing resume or LinkedIn profile, or fill it out manually. Importing auto-populates the relevant fields and lets users review and edit each page to confirm the information is accurate before completing their profile.',
     flows: [],
