@@ -364,8 +364,8 @@ const cases = [
       solution: 'People import their information to fill out their profile.',
     },
     overview: 'The mentor coalition pairs UX and HCI professionals from industry and non-profit organizations with students in UC Santa Cruz\'s HCI master\'s program. This case study covers the onboarding flow for the platform that automates the matching process.',
-    hmw: 'How might we reduce the manual work of matching mentors and mentees?',
-    problem: 'The stakeholder currently matches mentors and mentees manually, reviewing <span class="cs-highlight">~30 Google Form submissions</span> per cycle and <span class="cs-highlight">verifying background and fit on LinkedIn</span> before finalizing. This platform automates the matching process while keeping manual review before matches are confirmed.',
+    hmw: 'Collect mentor and mentee information in a way that stays accurate and can be updated?',
+    problem: 'The chair matches mentors and mentees by hand. Mentors never fill out a form at all, so their background has to be looked up on LinkedIn one at a time — around 50 of them. Mentees do submit a form, but by the time matching happens they often don\'t remember what they wrote, and there\'s no way for them to go back and update it.<br><br>The chair ends up matching people based on <span class="cs-highlight">information nobody can confirm is still accurate</span>.',
     research: 'The team ran interviews and affinity mapping across mentors and mentees, and quantified the stakeholder\'s current manual workload.',
     insights: [
       { q: 'Matching is slow and manual', a: 'The stakeholder sorts ~30 form submissions per cycle and individually verifies each person\'s background and fit on LinkedIn before finalizing' },
