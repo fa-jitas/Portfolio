@@ -401,7 +401,9 @@ const cases = [
     ],
     reflection: 'This project taught me how to think about designing for integrations — evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
     takeaways: [
-      { title: 'What I\'d do differently', body: 'Consent for importing resume/LinkedIn data currently happens at the moment a user decides to import; I\'d explore designing consent earlier in the onboarding process instead of at the decision point' },
+      { title: 'What I\'d change', body: 'Move consent earlier. Right now it happens when someone decides to import, so they agree before knowing what will be taken.' },
+      { title: 'What\'s still open', body: 'Import assumes a maintained LinkedIn or resume, so this experience might be different for some of the users.' },
+      { title: 'Where this goes next', body: 'The chair wanted an audio element in onboarding. It didn\'t work as an intake method, so I\'ll explore having it after the match instead.' },
     ],
   },
 ];
