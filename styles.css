@@ -1323,6 +1323,7 @@ footer {
 }
 .cs-rules-close:hover { background: var(--rule); }
 .cs-rules-title { display: none; }
+.cs-rules-body { min-height: 260px; }
 .cs-rules-body h4 { padding-right: 32px; }
 .cs-rules-sec { margin-bottom: 22px; }
 .cs-rules-sec:last-child { margin-bottom: 0; }
@@ -1397,20 +1398,31 @@ footer {
   color: var(--accent2);
   font-weight: 800;
 }
+.cs-rules-lose { display: flex; flex-direction: column; }
 .cs-rules-lose-line {
   margin: 0;
   font-size: 15px;
   line-height: 1.55;
-  color: var(--ink2);
+  color: var(--ink);
 }
 .cs-rules-or {
-  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
   font-family: 'Nunito', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: .14em;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent2);
+  color: var(--muted);
+}
+.cs-rules-or::before,
+.cs-rules-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
 }
 .cs-rules-pager {
   display: flex;

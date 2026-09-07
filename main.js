@@ -54,7 +54,7 @@ function boldRuleLead(s) {
 }
 function rulesSectionHtml(r) {
   if (r.steps) return `<h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${boldRuleLead(s)}</li>`).join('')}</ol>`;
-  if (r.lose) return `<h4>${r.heading}</h4>${r.lose.map((s, idx) => `${idx ? '<p class="cs-rules-or">or</p>' : ''}<p class="cs-rules-lose-line">${s}</p>`).join('')}`;
+  if (r.lose) return `<h4>${r.heading}</h4><div class="cs-rules-lose">${r.lose.map((s, idx) => `${idx ? '<div class="cs-rules-or"><span>or</span></div>' : ''}<p class="cs-rules-lose-line">${s}</p>`).join('')}</div>`;
   if (r.list) return `<h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul>`;
   return `<h4>${r.title}</h4><p>${r.text}</p>`;
 }
@@ -376,8 +376,8 @@ const cases = [
         'Board’s turn — the board places more surveillance devices and/or lowers the privacy and community trust meter.',
       ] },
       { heading: 'Players lose if', lose: [
-        'Any surveillance devices remain on the board at the end of round 8',
-        'The privacy and community trust meter is depleted at any point',
+        'Any surveillance devices remain on the board at the end of round 8.',
+        'The privacy and community trust meter is depleted at any point.',
       ] },
     ],
     reflection: 'The pilot playtests ran on a version without the narrative or discussion prompts, so what we observed came from an incomplete design. The formal study is IRB-approved and testing begins in September 2026.',
