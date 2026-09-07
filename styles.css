@@ -1398,22 +1398,27 @@ footer {
   color: var(--accent2);
   font-weight: 800;
 }
-.cs-rules-lose { display: flex; flex-direction: column; }
+.cs-rules-lose {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 8px;
+}
 .cs-rules-lose-line {
   margin: 0;
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--ink);
 }
 .cs-rules-or {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 14px 0;
+  gap: 16px;
+  margin: 28px 0;
   font-family: 'Nunito', sans-serif;
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: .1em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--muted);
 }
