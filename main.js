@@ -45,19 +45,40 @@ document.addEventListener('keydown', e => {
 });
 
 /* ══ RULES MODAL ══ */
+let rulesPages = [], rulesPage = 0;
+function rulesSectionHtml(r) {
+  if (r.steps) return `<h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${s}</li>`).join('')}</ol>`;
+  if (r.lose) return `<h4>${r.heading}</h4>${r.lose.map((s, idx) => `${idx ? '<p class="cs-rules-or">or</p>' : ''}<p class="cs-rules-lose-line">${s}</p>`).join('')}`;
+  if (r.list) return `<h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul>`;
+  return `<h4>${r.title}</h4><p>${r.text}</p>`;
+}
+function renderRulesPage() {
+  const body = document.getElementById('cs-rules-body');
+  if (!body || !rulesPages.length) return;
+  const r = rulesPages[rulesPage];
+  const last = rulesPages.length - 1;
+  body.innerHTML = `
+    <div class="cs-rules-sec">${rulesSectionHtml(r)}</div>
+    ${rulesPages.length > 1 ? `<div class="cs-rules-pager">
+      <button type="button" class="cs-rules-pgbtn" ${rulesPage === 0 ? 'disabled' : ''} onclick="gotoRulesPage(${rulesPage - 1})">← Back</button>
+      <span class="cs-rules-pgcount">${rulesPage + 1} / ${rulesPages.length}</span>
+      <button type="button" class="cs-rules-pgbtn" ${rulesPage === last ? 'disabled' : ''} onclick="gotoRulesPage(${rulesPage + 1})">Next →</button>
+    </div>` : ''}`;
+  body.scrollTop = 0;
+}
+function gotoRulesPage(n) {
+  rulesPage = Math.max(0, Math.min(rulesPages.length - 1, n));
+  renderRulesPage();
+}
 function openRules(i) {
   const p = cases[i];
   const modal = document.getElementById('cs-rules-modal');
-  const body = document.getElementById('cs-rules-body');
   const titleEl = document.querySelector('.cs-rules-title');
-  if (!p || !p.rules || !modal || !body) return;
+  if (!p || !p.rules || !modal) return;
   if (titleEl) titleEl.textContent = p.rulesTitle || 'How to Play';
-  body.innerHTML = p.rules.map(r => {
-    if (r.steps) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${s}</li>`).join('')}</ol></div>`;
-    if (r.lose) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><div class="cs-rules-lose">${r.lose.map((s, idx) => `${idx ? '<span class="cs-rules-or">or</span>' : ''}<p>${s}</p>`).join('')}</div></div>`;
-    if (r.list) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul></div>`;
-    return `<div class="cs-rules-sec"><h4>${r.title}</h4><p>${r.text}</p></div>`;
-  }).join('');
+  rulesPages = p.rules;
+  rulesPage = 0;
+  renderRulesPage();
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }

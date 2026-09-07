@@ -1403,29 +1403,45 @@ footer {
   color: var(--accent2);
   font-weight: 800;
 }
-.cs-rules-lose {
-  border: 1px solid var(--accent);
-  border-left-width: 3px;
-  border-radius: 12px;
-  padding: 16px 18px;
-  background: #fdf3f5;
-}
-.cs-rules-lose p {
+.cs-rules-lose-line {
   margin: 0;
   font-size: 15px;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--ink2);
 }
 .cs-rules-or {
-  display: block;
-  text-align: center;
+  margin: 8px 0;
   font-family: 'Nunito', sans-serif;
   font-size: 13px;
   font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--accent2);
-  margin: 10px 0;
+}
+.cs-rules-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+.cs-rules-pgbtn {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  cursor: pointer;
+}
+.cs-rules-pgbtn:disabled { color: var(--rule); cursor: default; }
+.cs-rules-pgcount {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: .04em;
 }
 .cs-carousel-track img {
   cursor: zoom-in;
