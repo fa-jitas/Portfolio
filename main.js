@@ -54,6 +54,7 @@ function openRules(i) {
   if (titleEl) titleEl.textContent = p.rulesTitle || 'How to Play';
   body.innerHTML = p.rules.map(r => {
     if (r.steps) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${s}</li>`).join('')}</ol></div>`;
+    if (r.lose) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><div class="cs-rules-lose">${r.lose.map((s, idx) => `${idx ? '<span class="cs-rules-or">or</span>' : ''}<p>${s}</p>`).join('')}</div></div>`;
     if (r.list) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul></div>`;
     return `<div class="cs-rules-sec"><h4>${r.title}</h4><p>${r.text}</p></div>`;
   }).join('');
@@ -347,9 +348,9 @@ const cases = [
         'Surveillance incident occurs once all players have finished their turns.',
         'Board’s turn — the board places more surveillance devices and/or lowers the privacy and community trust meter.',
       ] },
-      { heading: 'Players lose if', list: [
-        'Any surveillance devices remain on the board at the end of round 8, or',
-        'The privacy and community trust meter is depleted at any point.',
+      { heading: 'Players lose if', lose: [
+        'Any surveillance devices remain on the board at the end of round 8',
+        'The privacy and community trust meter is depleted at any point',
       ] },
     ],
     reflection: 'The pilot playtests ran on a version without the narrative or discussion prompts, so what we observed came from an incomplete design. The formal study is IRB-approved and testing begins in September 2026.',

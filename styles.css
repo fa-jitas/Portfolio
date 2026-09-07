@@ -1403,6 +1403,30 @@ footer {
   color: var(--accent2);
   font-weight: 800;
 }
+.cs-rules-lose {
+  border: 1px solid var(--accent);
+  border-left-width: 3px;
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: #fdf3f5;
+}
+.cs-rules-lose p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.cs-rules-or {
+  display: block;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin: 10px 0;
+}
 .cs-carousel-track img {
   cursor: zoom-in;
 }
