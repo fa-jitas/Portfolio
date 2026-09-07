@@ -1937,8 +1937,30 @@ footer {
   .cs-flow-item .cs-sol-fig { width: 100%; max-width: 320px; }
 }
 /* compact flow layout: smaller image beside the caption */
+.flows-compact .cs-flow-item {
+  align-items: center;
+}
 .flows-compact .cs-flow-item .cs-sol-fig {
   width: 280px;
+}
+/* anchor the ➔ title line to the image's vertical center; body hangs below it */
+.flows-compact .cs-flow-item .cs-flow-text {
+  position: relative;
+  align-self: center;
+  padding-top: 0;
+}
+.flows-compact .cs-flow-item .cs-flow-title { margin-bottom: 0; }
+.flows-compact .cs-flow-item .cs-flow-body {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+}
+@media (max-width: 640px) {
+  .flows-compact .cs-flow-item .cs-sol-fig { width: 100%; max-width: 320px; }
+  .flows-compact .cs-flow-item .cs-flow-text { align-self: stretch; }
+  .flows-compact .cs-flow-item .cs-flow-title { margin-bottom: 8px; }
+  .flows-compact .cs-flow-item .cs-flow-body { position: static; }
 }
 .cs-flow-row {
   display: flex;
