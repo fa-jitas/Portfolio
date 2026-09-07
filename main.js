@@ -362,7 +362,7 @@ const cases = [
       },
     ],
     outcome: 'Once all players finish their turn, a surveillance incident comes up and the group decides together whether to approve the devices. Each choice comes with a cost by either adding surveillance devices and/or decreasing the privacy and trust meter, so players have a reason to talk it through.',
-    flowsStyle: 'flows-stacked',
+    flowsStyle: 'flows-compact',
     flows: [
       { title: 'Consequences stay hidden until the next board phase', body: 'Players can\'t see what either choice will cost while they\'re deciding. If the costs were visible, the discussion would be about optimizing numbers instead of what the group thinks should happen.', img: 'images_cw/solution.gif', alt: 'A surveillance incident screen where the cost of each option is concealed while players decide.' },
     ],

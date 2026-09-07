@@ -1936,15 +1936,9 @@ footer {
   .cs-flow-item { flex-direction: column; gap: 16px; }
   .cs-flow-item .cs-sol-fig { width: 100%; max-width: 320px; }
 }
-/* stacked flow layout: image full-width above the text */
-.flows-stacked .cs-flow-item {
-  flex-direction: column;
-  gap: 16px;
-}
-.flows-stacked .cs-flow-item .cs-flow-text { padding-top: 0; }
-.flows-stacked .cs-flow-item .cs-sol-fig {
-  width: 100%;
-  max-width: 340px;
+/* compact flow layout: smaller image beside the caption */
+.flows-compact .cs-flow-item .cs-sol-fig {
+  width: 220px;
 }
 .cs-flow-row {
   display: flex;
