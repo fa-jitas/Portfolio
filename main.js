@@ -313,6 +313,7 @@ const cases = [
   },
   {
     emoji: '👁️', bg: '#EEF0F9',
+    heroImg: 'images_cw/heroicon.png',
     slug: 'co-op-watch',
     label: 'Interaction Design · UX Research · 2026',
     title: 'Co-op Watch',
