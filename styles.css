@@ -1938,7 +1938,7 @@ footer {
 }
 /* compact flow layout: smaller image beside the caption */
 .flows-compact .cs-flow-item .cs-sol-fig {
-  width: 220px;
+  width: 280px;
 }
 .cs-flow-row {
   display: flex;
