@@ -46,8 +46,14 @@ document.addEventListener('keydown', e => {
 
 /* ══ RULES MODAL ══ */
 let rulesPages = [], rulesPage = 0;
+function boldRuleLead(s) {
+  const dash = s.indexOf(' — ');
+  if (dash > -1) return `<strong>${s.slice(0, dash)}</strong>${s.slice(dash)}`;
+  const m = s.match(/^(\S+\s+\S+)(\s.*)$/);
+  return m ? `<strong>${m[1]}</strong>${m[2]}` : s;
+}
 function rulesSectionHtml(r) {
-  if (r.steps) return `<h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${s}</li>`).join('')}</ol>`;
+  if (r.steps) return `<h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${boldRuleLead(s)}</li>`).join('')}</ol>`;
   if (r.lose) return `<h4>${r.heading}</h4>${r.lose.map((s, idx) => `${idx ? '<p class="cs-rules-or">or</p>' : ''}<p class="cs-rules-lose-line">${s}</p>`).join('')}`;
   if (r.list) return `<h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul>`;
   return `<h4>${r.title}</h4><p>${r.text}</p>`;
@@ -361,7 +367,7 @@ const cases = [
     solutionVideo: 'images_cw/surveillance_game.mp4',
     rulesTitle: 'How to Play Co-op Watch',
     rules: [
-      { heading: 'Each round (8 rounds total)', steps: [
+      { heading: 'How to play Co-op Watch', steps: [
         'Player turn — roll a die to get action points.',
         'Spend action points — move around the board, remove surveillance devices, or use your special ability.',
         'Draw cards at the end of your turn to add to your hand.',

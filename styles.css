@@ -1322,14 +1322,8 @@ footer {
   cursor: pointer;
 }
 .cs-rules-close:hover { background: var(--rule); }
-.cs-rules-title {
-  font-family: 'Nunito', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--ink);
-  margin-bottom: 18px;
-  padding-right: 32px;
-}
+.cs-rules-title { display: none; }
+.cs-rules-body h4 { padding-right: 32px; }
 .cs-rules-sec { margin-bottom: 22px; }
 .cs-rules-sec:last-child { margin-bottom: 0; }
 .cs-rules-sec h4 {
