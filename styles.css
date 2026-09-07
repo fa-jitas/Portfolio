@@ -1927,14 +1927,14 @@ footer {
 .cs-flow-item .cs-sol-fig {
   margin: 0;
   flex: 0 0 auto;
-  width: 180px;
+  width: 300px;
 }
 .cs-sol-fig--phone.is-missing::before {
   aspect-ratio: 9 / 19;
 }
 @media (max-width: 640px) {
-  .cs-flow-item { gap: 18px; }
-  .cs-flow-item .cs-sol-fig { width: 130px; }
+  .cs-flow-item { flex-direction: column; gap: 16px; }
+  .cs-flow-item .cs-sol-fig { width: 100%; max-width: 320px; }
 }
 .cs-flow-row {
   display: flex;
