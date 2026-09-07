@@ -52,8 +52,11 @@ function openRules(i) {
   const titleEl = document.querySelector('.cs-rules-title');
   if (!p || !p.rules || !modal || !body) return;
   if (titleEl) titleEl.textContent = p.rulesTitle || 'How to Play';
-  body.innerHTML = `<ol class="cs-rules-list">${p.rules.map(r =>
-    `<li><span class="cs-rule-title">${r.title}</span><span class="cs-rule-text">${r.text}</span></li>`).join('')}</ol>`;
+  body.innerHTML = p.rules.map(r => {
+    if (r.steps) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${s}</li>`).join('')}</ol></div>`;
+    if (r.list) return `<div class="cs-rules-sec"><h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul></div>`;
+    return `<div class="cs-rules-sec"><h4>${r.title}</h4><p>${r.text}</p></div>`;
+  }).join('');
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -336,10 +339,18 @@ const cases = [
     solutionVideo: 'images_cw/surveillance_game.mp4',
     rulesTitle: 'How to Play Co-op Watch',
     rules: [
-      { title: 'Setup', text: 'Placeholder — describe the board, where the four players sit, and the components each player starts with.' },
-      { title: 'On your turn', text: 'Placeholder — what a player does on their turn (adding or removing a surveillance device, etc.).' },
-      { title: 'Surveillance incident', text: 'Once every player has taken a turn, a surveillance incident appears. Players discuss and vote together on whether to approve the devices added or removed — each decision carries a cost.' },
-      { title: 'Ending the game', text: 'Placeholder — the win/lose condition and how the game concludes.' },
+      { heading: 'Each round (8 rounds total)', steps: [
+        'Player turn — roll a die to get action points.',
+        'Spend action points — move around the board, remove surveillance devices, or use your special ability.',
+        'Draw cards at the end of your turn to add to your hand.',
+        'Repeat steps 1–3 for every player.',
+        'Surveillance incident occurs once all players have finished their turns.',
+        'Board’s turn — the board places more surveillance devices and/or lowers the privacy and community trust meter.',
+      ] },
+      { heading: 'Players lose if', list: [
+        'Any surveillance devices remain on the board at the end of round 8, or',
+        'The privacy and community trust meter is depleted at any point.',
+      ] },
     ],
     reflection: 'The pilot playtests ran on a version without the narrative or discussion prompts, so what we observed came from an incomplete design. The formal study is IRB-approved and testing begins in September 2026.',
     takeaways: [
