@@ -1936,6 +1936,16 @@ footer {
   .cs-flow-item { flex-direction: column; gap: 16px; }
   .cs-flow-item .cs-sol-fig { width: 100%; max-width: 320px; }
 }
+/* stacked flow layout: image full-width above the text */
+.flows-stacked .cs-flow-item {
+  flex-direction: column;
+  gap: 16px;
+}
+.flows-stacked .cs-flow-item .cs-flow-text { padding-top: 0; }
+.flows-stacked .cs-flow-item .cs-sol-fig {
+  width: 100%;
+  max-width: 480px;
+}
 .cs-flow-row {
   display: flex;
   align-items: center;
