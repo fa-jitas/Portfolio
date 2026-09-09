@@ -1428,8 +1428,10 @@ footer {
 }
 .cs-rules-pgbtn {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
   color: var(--accent);
   background: none;
   border: none;
@@ -1438,9 +1440,11 @@ footer {
 }
 .cs-rules-pgbtn:disabled { color: var(--rule); cursor: default; }
 .cs-rules-pgcount {
-  font-size: 13px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
   color: var(--muted);
-  letter-spacing: .04em;
 }
 .cs-carousel-track img {
   cursor: zoom-in;
