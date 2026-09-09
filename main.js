@@ -416,10 +416,7 @@ const cases = [
       { q: 'Career misalignment led to drop-off', a: 'Mentees were more likely to leave when their mentor\'s career path or specialty didn\'t align with theirs.' },
       { q: 'Every platform we looked at offered import', a: 'None of them asked people to type their background from scratch.' },
     ],
-    researchVisual: [
-      { src: 'images_mp/research-time.png', label: 'Estimated time to manually review and create matches' },
-      { src: 'images_mp/affinitymap.png', label: 'Affinity map from the mentor and mentee interviews' },
-    ],
+    researchVisual: { src: 'images_mp/affinitymap.png', label: 'Affinity map from the mentor and mentee interviews' },
     process: 'The audio/video feature was asked for by the chair, who wanted it in the onboarding flow. I thought about using it as an intake method, but recording yourself early in the user flow is uncomfortable and speech can be hard to turn into profile fields.<br><br>Instead of dropping the audio/video feature, I suggested using it after a match is made — a short intro recording between mentor and mentee.',
     steps: [
       {
