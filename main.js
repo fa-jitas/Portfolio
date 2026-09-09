@@ -408,6 +408,7 @@ const cases = [
     overview: 'The mentor coalition pairs UX and HCI professionals from industry and non-profit organizations with students in UC Santa Cruz\'s HCI master\'s program. This case study covers the onboarding flow for the platform that automates the matching process.',
     hmw: 'Collect mentor and mentee information in a way that stays accurate and can be updated?',
     problem: 'The chair matches mentors and mentees by hand. Mentors never fill out a form at all, so their background has to be looked up on LinkedIn one at a time — around 50 of them. Mentees do submit a form, but by the time matching happens they often don\'t remember what they wrote, and there\'s no way for them to go back and update it.<br><br>The chair ends up matching people based on <span class="cs-highlight">information nobody can confirm is still accurate</span>.',
+    problemVisual: { src: 'images_mp/userflow.png', alt: 'User flow of the chair\'s current by-hand matching process.' },
     research: 'We interviewed mentors and mentees, ran affinity mapping across both groups, mapped the chair\'s current process, and looked at how other platforms handle onboarding.',
     insights: [
       { q: 'Mentors never submitted anything', a: 'Their background had to be gathered from LinkedIn by hand, one profile at a time.' },
@@ -570,6 +571,32 @@ function openCase(i, push = true) {
     hmwEl.style.display = '';
   } else { hmwEl.style.display = 'none'; }
   cs.querySelector('.cs-problem p').innerHTML = p.problem;
+
+  const problemVisualEl = cs.querySelector('.cs-problem-visual');
+  if (problemVisualEl) {
+    const pv = p.problemVisual
+      ? (typeof p.problemVisual === 'string' ? { src: p.problemVisual, alt: '' } : p.problemVisual)
+      : null;
+    if (pv) {
+      problemVisualEl.innerHTML = `
+        <figure class="cs-rfig">
+          <button type="button" class="cs-rfig-btn" aria-label="Expand image: ${pv.alt || 'problem visual'}">
+            <img src="${pv.src}" alt="${pv.alt || 'Problem visual'}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
+            <span class="cs-rfig-zoom" aria-hidden="true">⤢</span>
+          </button>
+        </figure>`;
+      problemVisualEl.style.display = '';
+      const btn = problemVisualEl.querySelector('.cs-rfig-btn');
+      const img = btn.querySelector('img');
+      btn.addEventListener('click', () => {
+        if (img && !btn.closest('.cs-rfig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
+      });
+    } else {
+      problemVisualEl.innerHTML = '';
+      problemVisualEl.style.display = 'none';
+    }
+  }
+
   cs.querySelector('.cs-research p').textContent = p.research;
 
   const insightData = p.insights || [];

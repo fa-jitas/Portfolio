@@ -1575,6 +1575,10 @@ footer {
   position: static;
   margin-top: 20px;
 }
+.cs-problem-visual {
+  margin-top: 22px;
+}
+.cs-problem-visual .cs-rfig-btn { max-width: 560px; }
 .cs-research-visual--multi {
   display: flex;
   flex-wrap: wrap;
