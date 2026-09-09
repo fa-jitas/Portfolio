@@ -1420,9 +1420,9 @@ footer {
   background: var(--rule);
 }
 .cs-rules-pager {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   margin-top: 24px;
 }
@@ -1435,9 +1435,11 @@ footer {
   color: var(--accent);
   background: none;
   border: none;
-  padding: 4px 2px;
+  padding: 4px 0;
   cursor: pointer;
 }
+.cs-rules-pgbtn:first-child { justify-self: start; text-align: left; }
+.cs-rules-pgbtn:last-child { justify-self: end; text-align: right; }
 .cs-rules-pgbtn:disabled { color: var(--rule); cursor: default; }
 .cs-rules-pgcount {
   font-family: 'Nunito', sans-serif;
@@ -1445,6 +1447,7 @@ footer {
   font-weight: 800;
   letter-spacing: .08em;
   color: var(--muted);
+  text-align: center;
 }
 .cs-carousel-track img {
   cursor: zoom-in;
