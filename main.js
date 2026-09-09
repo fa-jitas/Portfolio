@@ -413,7 +413,7 @@ const cases = [
     insights: [
       { q: 'Mentors never submitted anything', a: 'Their background had to be gathered from LinkedIn by hand, one profile at a time.' },
       { q: 'Mentees couldn\'t remember or change what they wrote', a: 'The form was filled out months before matching, and there was no way to go back and update it.' },
-      { q: 'Shared context helped mentorships last', a: 'Pairs with something in common sustained the relationship more easily.' },
+      { q: 'Career misalignment led to drop-off', a: 'Mentees were more likely to leave when their mentor\'s career path or specialty didn\'t align with theirs.' },
       { q: 'Every platform we looked at offered import', a: 'None of them asked people to type their background from scratch.' },
     ],
     researchVisual: { src: 'images_mp/research-time.png', label: 'Estimated time to manually review and create matches' },
