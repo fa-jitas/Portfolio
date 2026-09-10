@@ -431,6 +431,7 @@ const cases = [
       {
         title: 'Resume / LinkedIn import',
         body: 'Onboarding fields fill in automatically from an existing resume or LinkedIn profile.',
+        imgs: [{ src: 'images_mp/ideation2.gif', alt: 'Prototype of the resume / LinkedIn import flow.', small: true }],
         tradeoffs: [
           { type: 'pro', text: 'Uses information people have already written and maintained' },
           { type: 'con', text: 'Only as accurate as the source, and raises consent questions about pulling data in' },
