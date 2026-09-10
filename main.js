@@ -302,7 +302,7 @@ const cases = [
     ],
     outcome: 'Both participants stopped using Fig even though it had a search feature that would have answered their question. They didn\'t know it was there. So I put the label scan directly on the scanner screen instead of only showing it after a failed scan. The downside is that people might tap it when scanning the barcode would have been faster.',
     flows: [
-      { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finalsolution1.gif', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
+      { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finalsolution1.mp4', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
       { title: 'Labels in other languages', body: 'If the label is in another language, the scan translates it, so imported products work the same as English ones.', img: 'images_fl/finaldesign-translate.png', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
     ],
     reflection: 'I started out assuming barcode scanning would be enough until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from the experience was to design for the failure, so that users always get an answer instead of having to wait for one.',
@@ -708,8 +708,15 @@ function openCase(i, push = true) {
   flowsEl.className = 'cs-flows' + (p.flowsStyle ? ' ' + p.flowsStyle : '');
   flowsEl.innerHTML = '';
   const flowData = p.flows || [];
+  const flowMediaHtml = f => {
+    const label = (f.alt || f.title || '').replace(/"/g, '&quot;');
+    if (/\.(mp4|mov|webm)$/i.test(f.img || '')) {
+      return `<figure class="cs-sol-fig cs-sol-fig--phone" role="img" aria-label="${label}"><video src="${f.img}" autoplay loop muted playsinline preload="auto"></video></figure>`;
+    }
+    return `<figure class="cs-sol-fig cs-sol-fig--phone" role="img" aria-label="${label}"><img src="${f.img || ''}" alt="" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>`;
+  };
   const flowItemsHtml = data => data.map(f => `<div class="cs-flow-item">
-      ${('img' in f) ? `<figure class="cs-sol-fig cs-sol-fig--phone" role="img" aria-label="${(f.alt || f.title || '').replace(/"/g, '&quot;')}"><img src="${f.img || ''}" alt="" loading="lazy" onerror="this.closest('.cs-sol-fig').classList.add('is-missing')"></figure>` : ''}
+      ${('img' in f) ? flowMediaHtml(f) : ''}
       <div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div>
     </div>`).join('');
   if (p.solutionVideo) {
@@ -737,6 +744,20 @@ function openCase(i, push = true) {
   flowsEl.querySelectorAll('.cs-sol-fig img').forEach(im => im.addEventListener('click', () => {
     if (!im.closest('.cs-sol-fig').classList.contains('is-missing')) openLightbox(im.src, im.alt);
   }));
+  flowsEl.querySelectorAll('.cs-sol-fig video').forEach(v => {
+    // `muted` set via innerHTML doesn't always stick as a property, which
+    // blocks autoplay — force it before asking to play.
+    v.muted = true;
+    v.setAttribute('muted', '');
+    const tryPlay = () => v.play().catch(() => {});
+    v.addEventListener('loadeddata', tryPlay, { once: true });
+    tryPlay();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting ? tryPlay() : v.pause());
+      }, { threshold: 0.2 }).observe(v);
+    }
+  });
 
   const contribSection = document.getElementById('cs-contribution');
   if (contribSection) contribSection.style.display = 'none';

@@ -2019,6 +2019,11 @@ footer {
   display: block;
   cursor: zoom-in;
 }
+.cs-sol-fig video {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+}
 .cs-sol-fig.is-missing img { display: none; }
 .cs-sol-fig.is-missing::before {
   content: '🖼️';
