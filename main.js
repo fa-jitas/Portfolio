@@ -249,6 +249,7 @@ function startOrResetGame() {
 const cases = [
   {
     emoji: '👓', bg: '#EEF2F6',
+    heroImg: 'images_fl/hero.png',
     slug: 'foodlens',
     label: 'Product Design · UX Research · 2026',
     title: 'FoodLens',
