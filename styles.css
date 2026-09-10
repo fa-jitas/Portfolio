@@ -1210,7 +1210,8 @@ footer {
   pointer-events: none;
 }
 .cs-lightbox.open { opacity: 1; pointer-events: auto; }
-.cs-lightbox img {
+.cs-lightbox img,
+.cs-lightbox video {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
@@ -1220,7 +1221,15 @@ footer {
   transition: transform .2s ease;
   cursor: default;
 }
-.cs-lightbox.open img { transform: scale(1); }
+/* keep the player large from the first frame instead of starting at the
+   default 300x150 video box while metadata loads */
+.cs-lightbox video {
+  width: auto;
+  height: 85vh;
+  background: #000;
+}
+.cs-lightbox.open img,
+.cs-lightbox.open video { transform: scale(1); }
 .cs-lightbox-close {
   position: absolute;
   top: 20px; right: 24px;
@@ -2027,6 +2036,7 @@ footer {
   width: 100%;
   border-radius: 16px;
   display: block;
+  cursor: zoom-in;
 }
 .cs-sol-fig.is-missing img { display: none; }
 .cs-sol-fig.is-missing::before {

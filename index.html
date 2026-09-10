@@ -7,12 +7,13 @@
 <title>Nicole Fajardo</title>
 <meta name="color-scheme" content="light">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260910-1l">
+<link rel="stylesheet" href="styles.css?v=20260910-1n">
 </head>
 <body>
 <div class="cs-lightbox" id="cs-lightbox" onclick="closeLightbox()">
   <button class="cs-lightbox-close" onclick="closeLightbox()">×</button>
   <img id="cs-lightbox-img" src="" alt="">
+  <video id="cs-lightbox-video" playsinline controls loop hidden onclick="event.stopPropagation()"></video>
 </div>
 <div class="cs-rules-modal" id="cs-rules-modal" onclick="closeRules()">
   <div class="cs-rules-panel" onclick="event.stopPropagation()">
@@ -222,6 +223,6 @@
   </div><!-- /cs-wrap -->
 </div><!-- /case-study -->
 <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
-<script src="main.js?v=20260910-1l"></script>
+<script src="main.js?v=20260910-1n"></script>
 </body>
 </html>
