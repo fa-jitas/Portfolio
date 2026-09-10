@@ -422,6 +422,7 @@ const cases = [
       {
         title: 'Voice / video intake',
         body: 'People speak or record their background instead of typing it.',
+        imgs: [{ src: 'images_mp/ideation1.gif', alt: 'Prototype of the voice / video intake flow.' }],
         tradeoffs: [
           { type: 'pro', text: 'No typing, and people explain themselves more naturally out loud' },
           { type: 'con', text: 'Recording yourself early in onboarding is uncomfortable when trust is low, and details are harder to capture reliably' },
