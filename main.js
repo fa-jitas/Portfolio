@@ -391,6 +391,7 @@ const cases = [
   },
   {
     emoji: '🤝', bg: '#EAF4F0',
+    heroImg: 'images_mp/hero.png',
     slug: 'mentorship-platform',
     label: 'Product Design · UX Research · 2026',
     title: 'Mentorship Platform',
