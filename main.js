@@ -422,7 +422,7 @@ const cases = [
       {
         title: 'Voice / video intake',
         body: 'People speak or record their background instead of typing it.',
-        imgs: [{ src: 'images_mp/ideation1.gif', alt: 'Prototype of the voice / video intake flow.' }],
+        imgs: [{ src: 'images_mp/ideation1.gif', alt: 'Prototype of the voice / video intake flow.', small: true }],
         tradeoffs: [
           { type: 'pro', text: 'No typing, and people explain themselves more naturally out loud' },
           { type: 'con', text: 'Recording yourself early in onboarding is uncomfortable when trust is low, and details are harder to capture reliably' },
@@ -655,7 +655,7 @@ function openCase(i, push = true) {
       const tradeoffs = s.tradeoffs || [];
       const hasDetail = s.body || tradeoffs.length;
       const imgsHtml = imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
-        <figure class="cs-idea-fig" role="img" aria-label="${(im.alt || im.label || s.title || '').replace(/"/g, '&quot;')}">
+        <figure class="cs-idea-fig${im.small ? ' cs-idea-fig--small' : ''}" role="img" aria-label="${(im.alt || im.label || s.title || '').replace(/"/g, '&quot;')}">
           <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
         </figure>`).join('')}</div>` : '';
       return `
