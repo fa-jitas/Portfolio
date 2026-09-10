@@ -444,7 +444,6 @@ const cases = [
     flowsStyle: 'flows-centered',
     flows: [
       { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/finalsolution1.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
-      { title: 'Import stays available after onboarding', body: 'If someone skips it at the prompt, they can still import from their profile later. It fills anything still empty and flags fields that already have something in them, so nothing gets overwritten without a look.', img: 'images_mp/finalsolution2.gif', alt: 'A profile page with an import option that fills empty fields and flags fields that already have content.' },
     ],
     reflection: 'This project taught me how to think about designing for integrations — evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
     takeaways: [
