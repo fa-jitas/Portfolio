@@ -1956,6 +1956,14 @@ footer {
 }
 .flows-centered .cs-flow-item .cs-flow-text { padding-top: 0; }
 
+/* narrow flow layout: smaller image, caption centered beside it */
+.flows-narrow .cs-flow-item { align-items: center; }
+.flows-narrow .cs-flow-item .cs-flow-text { padding-top: 0; }
+.flows-narrow .cs-flow-item .cs-sol-fig { width: 220px; }
+@media (max-width: 640px) {
+  .flows-narrow .cs-flow-item .cs-sol-fig { width: 100%; max-width: 240px; }
+}
+
 /* compact flow layout: smaller image beside the caption */
 .flows-compact .cs-flow-item {
   align-items: center;

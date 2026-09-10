@@ -301,6 +301,7 @@ const cases = [
       },
     ],
     outcome: 'Both participants stopped using Fig even though it had a search feature that would have answered their question. They didn\'t know it was there. So I put the label scan directly on the scanner screen instead of only showing it after a failed scan. The downside is that people might tap it when scanning the barcode would have been faster.',
+    flowsStyle: 'flows-narrow',
     flows: [
       { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finalsolution1.mp4', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
       { title: 'Labels in other languages', body: 'If the label is in another language, the scan translates it, so imported products work the same as English ones.', img: 'images_fl/finaldesign-translate.png', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
