@@ -319,7 +319,7 @@ const cases = [
     flowsStyle: 'flows-narrow',
     flows: [
       { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finalsolution1.mp4', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
-      { title: 'Labels in other languages', body: 'If the label is in another language, the scan translates it, so imported products work the same as English ones.', img: 'images_fl/finaldesign-translate.png', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
+      { title: 'Labels in other languages', body: 'If the label is in another language, the scan translates it, so imported products work the same as English ones.', img: 'images_fl/finalsolution2.mp4', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
     ],
     reflection: 'I started out assuming barcode scanning would be enough until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from the experience was to design for the failure, so that users always get an answer instead of having to wait for one.',
     takeaways: [
