@@ -384,7 +384,7 @@ const cases = [
     flows: [
       { title: 'Consequences stay hidden until the next board phase', body: 'Players can\'t see what either choice will cost while they\'re deciding. If the costs were visible, the discussion would be about optimizing numbers instead of what the group thinks should happen.', img: 'images_cw/solution.gif', alt: 'A surveillance incident screen where the cost of each option is concealed while players decide.' },
     ],
-    solutionVideo: 'images_cw/surveillance_game.mp4',
+    solutionVideo: 'images_cw/Walkthrough.mp4',
     rulesTitle: 'How to Play Co-op Watch',
     rules: [
       { heading: 'How to play Co-op Watch', steps: [
