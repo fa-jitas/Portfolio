@@ -126,7 +126,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(a => {
 /* ══ CHAT BUBBLES ══ */
 const bubbles = [
   { text: 'hey! 👋' },
-  { text: 'i got into this after working in healthcare settings and noticing how disconnected tools can shape everyday experiences' },
+  { text: 'thoughts: I worked in healthcare, so naturally, ive been drawn towards messy problems and fixing them. turns out, healthcare had an even messier one which was technology and now im here studying HCI' },
   { text: 'outside of school, im buiding products with AI and working towards my puppies trick dog title🐕🏆' },
 ];
 
