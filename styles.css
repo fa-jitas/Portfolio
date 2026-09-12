@@ -116,15 +116,13 @@ nav ul {
   gap: 28px;
 }
 nav a {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 400;
   color: var(--muted);
   text-decoration: none;
   transition: color .12s;
-  border-bottom: 1.5px solid var(--rule);
-  padding-bottom: 2px;
 }
-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+nav a:hover { color: var(--accent); }
 
 /* ── SECTIONS ── */
 section { margin-bottom: 72px; }
