@@ -116,13 +116,14 @@ nav ul {
   gap: 28px;
 }
 nav a {
+  display: inline-block;
   font-size: 17px;
   font-weight: 400;
   color: var(--muted);
   text-decoration: none;
-  transition: color .12s;
+  transition: color .12s, transform .35s cubic-bezier(.34, 1.56, .64, 1);
 }
-nav a:hover { color: var(--accent); }
+nav a:hover { color: var(--accent); transform: translateY(-4px); }
 
 /* ── SECTIONS ── */
 section { margin-bottom: 72px; }
@@ -313,14 +314,6 @@ section { margin-bottom: 72px; }
 }
 
 /* ── CONTACT ── */
-.contact-block {
-  font-family: 'Nunito', sans-serif;
-  font-size: clamp(24px, 4vw, 36px);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--ink);
-  margin-bottom: 24px;
-}
 
 .contact-links {
   margin-top: 24px;
