@@ -430,7 +430,7 @@ const cases = [
     problemVisual: { src: 'images_mp/userflow.png', alt: 'User flow of the chair\'s current by-hand matching process.' },
     research: 'We interviewed mentors and mentees, ran affinity mapping across both groups, mapped the chair\'s current process, and looked at how other platforms handle onboarding.',
     insights: [
-      { q: 'Mentors never submitted anything', a: 'Their background had to be gathered from LinkedIn by hand, one profile at a time.' },
+      { q: 'Mentors never submitted anything', a: 'Their background had to be gathered from LinkedIn by hand.' },
       { q: 'Mentees couldn\'t remember or change what they wrote', a: 'The form was filled out months before matching, and there was no way to go back and update it.' },
       { q: 'Career misalignment led to drop-off', a: 'Mentees were more likely to leave when their mentor\'s career path or specialty didn\'t align with theirs.' },
       { q: 'Every platform we looked at offered import', a: 'None of them asked people to type their background from scratch.' },
