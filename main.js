@@ -62,8 +62,8 @@ document.addEventListener('keydown', e => {
 /* ══ RULES MODAL ══ */
 let rulesPages = [], rulesPage = 0;
 function boldRuleLead(s) {
-  const dash = s.indexOf(' — ');
-  if (dash > -1) return `<strong>${s.slice(0, dash)}</strong>${s.slice(dash)}`;
+  const colon = s.indexOf(': ');
+  if (colon > -1) return `<strong>${s.slice(0, colon + 1)}</strong>${s.slice(colon + 1)}`;
   const m = s.match(/^(\S+\s+\S+)(\s.*)$/);
   return m ? `<strong>${m[1]}</strong>${m[2]}` : s;
 }
@@ -388,12 +388,12 @@ const cases = [
     rulesTitle: 'How to Play Co-op Watch',
     rules: [
       { heading: 'How to play Co-op Watch', steps: [
-        'Player turn — roll a die to get action points.',
-        'Spend action points — move around the board, remove surveillance devices, or use your special ability.',
+        'Player turn: roll a die to get action points.',
+        'Spend action points: move around the board, remove surveillance devices, or use your special ability.',
         'Draw cards at the end of your turn to add to your hand.',
         'Repeat steps 1–3 for every player.',
         'Surveillance incident occurs once all players have finished their turns.',
-        'Board’s turn — the board places more surveillance devices and/or lowers the privacy and community trust meter.',
+        'Board’s turn: the board places more surveillance devices and/or lowers the privacy and community trust meter.',
       ] },
       { heading: 'Players lose if', lose: [
         'Any surveillance devices remain on the board at the end of round 8.',
@@ -426,7 +426,7 @@ const cases = [
     },
     overview: 'The mentor coalition pairs UX and HCI professionals from industry and non-profit organizations with students in UC Santa Cruz\'s HCI master\'s program. This case study covers the onboarding flow for the platform that automates the matching process.',
     hmw: 'Collect mentor and mentee information in a way that stays accurate and can be updated?',
-    problem: 'The chair matches mentors and mentees by hand. Mentors never fill out a form at all, so their background has to be looked up on LinkedIn one at a time — around 50 of them. Mentees do submit a form, but by the time matching happens they often don\'t remember what they wrote, and there\'s no way for them to go back and update it.<br><br>The chair ends up matching people based on <span class="cs-highlight">information nobody can confirm is still accurate</span>.',
+    problem: 'The chair matches mentors and mentees by hand. Mentors never fill out a form at all, so their background has to be looked up on LinkedIn one at a time, around 50 of them. Mentees do submit a form, but by the time matching happens they often don\'t remember what they wrote, and there\'s no way for them to go back and update it.<br><br>The chair ends up matching people based on <span class="cs-highlight">information nobody can confirm is still accurate</span>.',
     problemVisual: { src: 'images_mp/userflow.png', alt: 'User flow of the chair\'s current by-hand matching process.' },
     research: 'We interviewed mentors and mentees, ran affinity mapping across both groups, mapped the chair\'s current process, and looked at how other platforms handle onboarding.',
     insights: [
@@ -436,7 +436,7 @@ const cases = [
       { q: 'Every platform we looked at offered import', a: 'None of them asked people to type their background from scratch.' },
     ],
     researchVisual: { src: 'images_mp/affinitymap.png', label: 'Affinity map from the mentor and mentee interviews' },
-    process: 'The audio/video feature was asked for by the chair, who wanted it in the onboarding flow. I thought about using it as an intake method, but recording yourself early in the user flow is uncomfortable and speech can be hard to turn into profile fields.<br><br>Instead of dropping the audio/video feature, I suggested using it after a match is made — a short intro recording between mentor and mentee.',
+    process: 'The audio/video feature was asked for by the chair, who wanted it in the onboarding flow. I thought about using it as an intake method, but recording yourself early in the user flow is uncomfortable and speech can be hard to turn into profile fields.<br><br>Instead of dropping the audio/video feature, I suggested using it after a match is made: a short intro recording between mentor and mentee.',
     steps: [
       {
         title: 'Voice / video intake',
@@ -462,7 +462,7 @@ const cases = [
     flows: [
       { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/finalsolution1.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
     ],
-    reflection: 'This project taught me how to think about designing for integrations — evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
+    reflection: 'This project taught me how to think about designing for integrations: evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
     takeaways: [
       { title: 'What I\'d change', body: 'Move consent earlier. Right now it happens when someone decides to import, so they agree before knowing what will be taken.' },
       { title: 'What\'s still open', body: 'Import requires a structured LinkedIn or resume, so some users might rely on manual entry.' },
@@ -521,7 +521,7 @@ function openCase(i, push = true) {
   if (push && p.slug) {
     history.pushState({ caseIndex: i }, '', '/' + p.slug);
   }
-  document.title = p.title + ' — Nicole Fajardo';
+  document.title = p.title + ' · Nicole Fajardo';
   const cs = document.getElementById('case-study');
   if (!cs) return;
 
