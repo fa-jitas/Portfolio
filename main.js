@@ -740,15 +740,10 @@ function openCase(i, push = true) {
       <div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div>
     </div>`).join('');
   if (p.solutionVideo) {
-    flowsEl.innerHTML = `
-      ${flowData.length ? flowItemsHtml(flowData) : ''}
-      <div class="cs-video-wrap">
-        <video class="cs-video" controls playsinline preload="metadata"${p.solutionVideoPoster ? ` poster="${p.solutionVideoPoster}"` : ''}>
-          <source src="${p.solutionVideo}" type="${/\.mov$/i.test(p.solutionVideo) ? 'video/mp4' : 'video/' + (p.solutionVideo.split('.').pop() || 'mp4')}">
-          Your browser doesn&#39;t support embedded video.
-        </video>
-      </div>
-      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}`;
+    // The video + Written Rules button live at the top of the page (see
+    // the cs-top-video block below), not here — Final Designs just keeps
+    // its flow items, if any.
+    flowsEl.innerHTML = flowData.length ? flowItemsHtml(flowData) : '';
   } else if (p.solutionImg && !flowData.length) {
     flowsEl.innerHTML = `<img src="${p.solutionImg}" alt="${p.title} solution" style="width:100%;border-radius:16px;display:block;">`;
   } else {
@@ -794,6 +789,24 @@ function openCase(i, push = true) {
   const solutionSection = document.getElementById('cs-solution');
   const reflectionSection = document.getElementById('cs-reflection');
   const sidenav = cs.querySelector('.cs-sidenav');
+
+  // Solution video + Written Rules button, moved to the top of the page
+  // (right above the Overview heading) instead of sitting in Final Designs.
+  if (p.solutionVideo) {
+    const introSection = document.getElementById('cs-intro');
+    const topVideoSec = document.createElement('div');
+    topVideoSec.id = 'cs-top-video';
+    topVideoSec.className = 'cs-section cs-dynamic-section cs-top-video';
+    topVideoSec.innerHTML = `
+      <div class="cs-video-wrap">
+        <video class="cs-video" controls playsinline preload="metadata"${p.solutionVideoPoster ? ` poster="${p.solutionVideoPoster}"` : ''}>
+          <source src="${p.solutionVideo}" type="${/\.mov$/i.test(p.solutionVideo) ? 'video/mp4' : 'video/' + (p.solutionVideo.split('.').pop() || 'mp4')}">
+          Your browser doesn&#39;t support embedded video.
+        </video>
+      </div>
+      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}`;
+    introSection.insertAdjacentElement('beforebegin', topVideoSec);
+  }
 
   function buildDynamicSection(id, label, data) {
     const sec = document.createElement('div');
@@ -949,7 +962,7 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
+    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
