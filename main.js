@@ -410,6 +410,11 @@ const cases = [
       { title: 'What\'s still open', body: 'Whether the narrative prompts change the leader dynamic at all.' },
       { title: 'Where this goes next', body: 'Observing 2–4 players across eight narrative rounds, with a post-game survey and a group debrief afterward.' },
     ],
+    recognition: {
+      note: 'Abstract/poster accepted to <strong>SIGGRAPH Asia 2026: Weaving to the Future</strong>.',
+      file: 'images_cw/Abstract_NF.pdf',
+      label: 'Read the Abstract',
+    },
   },
   {
     emoji: '🤝', bg: '#EAF4F0',
@@ -934,6 +939,19 @@ function openCase(i, push = true) {
   cs.querySelector('.cs-takeaways').innerHTML = (p.takeaways||[]).map(t=>`
     <div class="cs-takeaway">
     <div><div class="cs-takeaway-title">${t.title}</div><div class="cs-takeaway-body">${t.body}</div></div></div>`).join('');
+
+  const recognitionEl = cs.querySelector('.cs-recognition');
+  if (recognitionEl) {
+    if (p.recognition) {
+      recognitionEl.innerHTML = `
+        <p class="cs-recognition-note">✦ ${p.recognition.note}</p>
+        ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'Read more'} →</a>` : ''}`;
+      recognitionEl.style.display = '';
+    } else {
+      recognitionEl.innerHTML = '';
+      recognitionEl.style.display = 'none';
+    }
+  }
   const statData = p.stats || [];
   const statsWrap = cs.querySelector('.cs-stats-wrap');
   if (statData.length) {
