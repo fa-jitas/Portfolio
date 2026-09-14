@@ -274,6 +274,10 @@ const cases = [
     timeline: 'June 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
     overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
+    experiences: {
+      phoneIntro: 'The research, ideation, and final designs below cover the phone fallback experience: what people see when the smart glasses aren\'t connected.',
+      glassesIntro: 'Coming soon. This case study currently covers the phone fallback experience only.',
+    },
     subheads: {
       intro: 'A smart-glasses food scanner for allergies, sensitivities, and dietary restrictions.',
       problem: 'A food scanner is only as good as its database.',
@@ -784,6 +788,7 @@ function openCase(i, push = true) {
   // Remove any previously injected dynamic sections
   cs.querySelectorAll('.cs-dynamic-section').forEach(el => el.remove());
   cs.querySelectorAll('.cs-nav-link[data-dynamic]').forEach(el => el.remove());
+  cs.querySelectorAll('.cs-nav-link.cs-nav-sub').forEach(a => a.classList.remove('cs-nav-sub'));
 
   const csBody = cs.querySelector('.cs-body');
   const solutionSection = document.getElementById('cs-solution');
@@ -870,6 +875,48 @@ function openCase(i, push = true) {
     if (reflectionNav) reflectionNav.insertAdjacentElement('beforebegin', navLink);
   }
 
+  // Phone / Smart Glasses experience grouping (FoodLens only): a "Phone
+  // Experience" heading sits above Research/Ideation/Final Designs, whose
+  // sidenav links get indented under it; a "Smart Glasses Experience" stub
+  // follows Final Designs since that side isn't built out yet.
+  if (p.experiences) {
+    const researchSection = document.getElementById('cs-research');
+    const researchNav = sidenav.querySelector('[data-target="cs-research"]');
+
+    const phoneSec = document.createElement('div');
+    phoneSec.id = 'cs-phone-experience';
+    phoneSec.className = 'cs-section cs-dynamic-section cs-experience-header';
+    phoneSec.innerHTML = `<h3>Phone Experience</h3><p>${p.experiences.phoneIntro}</p>`;
+    researchSection.insertAdjacentElement('beforebegin', phoneSec);
+
+    const phoneNav = document.createElement('a');
+    phoneNav.className = 'cs-nav-link';
+    phoneNav.setAttribute('data-target', 'cs-phone-experience');
+    phoneNav.setAttribute('data-dynamic', '1');
+    phoneNav.textContent = 'Phone Experience';
+    if (researchNav) {
+      researchNav.insertAdjacentElement('beforebegin', phoneNav);
+      ['cs-research', 'cs-ideation', 'cs-solution'].forEach(id => {
+        const link = sidenav.querySelector(`[data-target="${id}"]`);
+        if (link) link.classList.add('cs-nav-sub');
+      });
+    }
+
+    const glassesSec = document.createElement('div');
+    glassesSec.id = 'cs-glasses-experience';
+    glassesSec.className = 'cs-section cs-dynamic-section cs-experience-header';
+    glassesSec.innerHTML = `<h3>Smart Glasses Experience</h3><p class="cs-experience-stub">${p.experiences.glassesIntro}</p>`;
+    solutionSection.insertAdjacentElement('afterend', glassesSec);
+
+    const glassesNav = document.createElement('a');
+    glassesNav.className = 'cs-nav-link';
+    glassesNav.setAttribute('data-target', 'cs-glasses-experience');
+    glassesNav.setAttribute('data-dynamic', '1');
+    glassesNav.textContent = 'Smart Glasses Experience';
+    const reflectionNav2 = sidenav.querySelector('[data-target="cs-reflection"]');
+    if (reflectionNav2) reflectionNav2.insertAdjacentElement('beforebegin', glassesNav);
+  }
+
   cs.querySelector('.cs-reflection-text').textContent = p.reflection;
   cs.querySelector('.cs-takeaways').innerHTML = (p.takeaways||[]).map(t=>`
     <div class="cs-takeaway">
@@ -902,7 +949,7 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-intro','cs-problem','cs-research','cs-ideation','cs-usability','cs-solution','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
+    const sectionIds = ['cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
