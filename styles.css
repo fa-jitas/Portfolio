@@ -2145,24 +2145,37 @@ footer {
   background: var(--bg2);
   border: 1px solid var(--rule);
   border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 28px;
+  flex-wrap: wrap;
 }
 .cs-recognition:empty { display: none; }
 .cs-recognition-note {
-  margin: 0 0 12px;
+  flex: 1 1 320px;
+  margin: 0 !important;
   font-size: 15px !important;
   color: var(--ink) !important;
   line-height: 1.6 !important;
 }
-.cs-recognition-note strong { color: var(--accent); }
+.cs-recognition-highlight {
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent) 0%, #E33554 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .cs-recognition-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  flex: 0 0 auto;
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   color: var(--accent);
   text-decoration: none;
+  white-space: nowrap;
 }
 .cs-recognition-link:hover { color: var(--ink); }
 .cs-reflection-card {

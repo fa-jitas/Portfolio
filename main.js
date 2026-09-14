@@ -411,9 +411,9 @@ const cases = [
       { title: 'Where this goes next', body: 'Observing 2–4 players across eight narrative rounds, with a post-game survey and a group debrief afterward.' },
     ],
     recognition: {
-      note: 'Abstract/poster accepted to <strong>SIGGRAPH Asia 2026: Weaving to the Future</strong>.',
+      note: 'Poster accepted to <span class="cs-recognition-highlight">SIGGRAPH Asia 2026: Weaving to the Future</span>',
       file: 'images_cw/Abstract_NF.pdf',
-      label: 'Read the Abstract',
+      label: 'View Abstract',
     },
   },
   {
@@ -944,8 +944,8 @@ function openCase(i, push = true) {
   if (recognitionEl) {
     if (p.recognition) {
       recognitionEl.innerHTML = `
-        <p class="cs-recognition-note">✦ ${p.recognition.note}</p>
-        ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'Read more'} →</a>` : ''}`;
+        <p class="cs-recognition-note">${p.recognition.note}</p>
+        ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'View'}</a>` : ''}`;
       recognitionEl.style.display = '';
     } else {
       recognitionEl.innerHTML = '';
