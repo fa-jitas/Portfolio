@@ -1072,6 +1072,13 @@ footer {
    read as one group instead of two unrelated sections */
 .cs-experience-header + .cs-section { padding-top: 12px; }
 .cs-experience-stub { font-style: italic; color: var(--muted); }
+/* same red-to-pink gradient text as the SIGGRAPH recognition callout */
+.cs-experience-header h3 {
+  background: linear-gradient(90deg, var(--accent) 0%, #E33554 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 /* sidenav links nested under an experience heading */
 .cs-sidenav a.cs-nav-sub { padding-left: 30px; }

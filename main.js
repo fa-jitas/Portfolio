@@ -278,7 +278,8 @@ const cases = [
       phoneIntro: 'The research, ideation, and final designs below cover the phone fallback experience: what people see when the smart glasses aren\'t connected.',
       glassesIntro: 'Research and ideation are underway on the smart glasses experience below. Final designs aren\'t ready yet.',
       glassesResearch: {
-        intro: '<strong>Two rounds of testing revealed the glasses\' real bottleneck wasn\'t allergen detection: it was capture quality.</strong> The camera doesn\'t take photos; it pulls frames from a low-latency video stream tuned for bandwidth over sharpness, and there\'s no higher-resolution capture API exposed to third-party developers. That, combined with no scan-in-progress feedback and awkward left-lens positioning, meant most scans took multiple tries before one succeeded.',
+        subhead: 'Two rounds of testing revealed the glasses\' real bottleneck wasn\'t allergen detection: it was capture quality.',
+        body: 'The camera doesn\'t take photos; it pulls frames from a low-latency video stream tuned for bandwidth over sharpness, and there\'s no higher-resolution capture API exposed to third-party developers. That, combined with no scan-in-progress feedback and awkward left-lens positioning, meant most scans took multiple tries before one succeeded.',
         insights: [
           { q: 'No feedback during scanning', a: 'Debug logs showed repeated attempts, sometimes for a full minute, before one succeeded.' },
           { q: 'No true photo API', a: 'capturePhoto() grabs a frame from the same stream used for continuous scanning, capped well below the glasses\' own 12MP camera.' },
@@ -286,7 +287,8 @@ const cases = [
         ],
       },
       glassesIdeation: {
-        intro: 'Two problems needed solving at once: how to trigger a capture, and how to get a usable identification from a capped-quality image.<br><br>Auto-scan seemed like the more "hands-free" answer on paper, but testing showed it had no way to signal when a scan was happening, and often needed a full minute of repeated attempts before succeeding. With no still-photo API and no access to the glasses\' physical shutter button, I needed another way to trigger a reliable capture, and a way to still get an accurate read from a lower-quality frame once I had one.',
+        subhead: 'Two problems needed solving at once: how to trigger a capture, and how to get a usable identification from a capped-quality image.',
+        body: 'Auto-scan seemed like the more "hands-free" answer on paper, but testing showed it had no way to signal when a scan was happening, and often needed a full minute of repeated attempts before succeeding. With no still-photo API and no access to the glasses\' physical shutter button, I needed another way to trigger a reliable capture, and a way to still get an accurate read from a lower-quality frame once I had one.',
         steps: [
           {
             title: 'Auto-scan',
@@ -985,7 +987,8 @@ function openCase(i, push = true) {
       poSec.className = 'cs-section cs-dynamic-section';
       poSec.innerHTML = `
         <h3>Outcomes</h3>
-        <p><strong>${po.subhead}</strong> ${po.body}</p>
+        <div class="cs-section-sub">${po.subhead}</div>
+        <p>${po.body}</p>
         ${poTakeaways.length ? `<div class="cs-takeaways">${poTakeaways.map(t => `
           <div class="cs-takeaway">
             <div>
@@ -1036,7 +1039,8 @@ function openCase(i, push = true) {
       grSec.className = 'cs-section cs-dynamic-section';
       grSec.innerHTML = `
         <h3>Research</h3>
-        <p>${gr.intro}</p>
+        <div class="cs-section-sub">${gr.subhead}</div>
+        <p>${gr.body}</p>
         ${(gr.insights && gr.insights.length) ? `
           <div class="cs-insights-label">What I found</div>
           <div class="cs-insights">${gr.insights.map(ins => `
@@ -1068,7 +1072,8 @@ function openCase(i, push = true) {
       giSec.className = 'cs-section cs-dynamic-section';
       giSec.innerHTML = `
         <h3>Ideation</h3>
-        <p>${gi.intro || ''}</p>
+        <div class="cs-section-sub">${gi.subhead || ''}</div>
+        <p>${gi.body || ''}</p>
         <div class="cs-idea-list">${giSteps.map((s, idx) => {
           const tradeoffs = s.tradeoffs || [];
           return `
@@ -1107,7 +1112,8 @@ function openCase(i, push = true) {
       gfSec.className = 'cs-section cs-dynamic-section';
       gfSec.innerHTML = `
         <h3>Final Designs</h3>
-        <p><strong>${gf.subhead}</strong> ${gf.body}</p>
+        <div class="cs-section-sub">${gf.subhead}</div>
+        <p>${gf.body}</p>
         ${gfImgs.length ? `<div class="cs-idea-imgs">${gfImgs.map(im => `
           <figure class="cs-idea-fig" role="img" aria-label="${(im.alt || '').replace(/"/g, '&quot;')}">
             <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
@@ -1138,7 +1144,8 @@ function openCase(i, push = true) {
       goSec.className = 'cs-section cs-dynamic-section';
       goSec.innerHTML = `
         <h3>Outcomes</h3>
-        <p><strong>${go.subhead}</strong> ${go.body}</p>
+        <div class="cs-section-sub">${go.subhead}</div>
+        <p>${go.body}</p>
         ${goTakeaways.length ? `<div class="cs-takeaways">${goTakeaways.map(t => `
           <div class="cs-takeaway">
             <div>
