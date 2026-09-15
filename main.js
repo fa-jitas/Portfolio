@@ -306,6 +306,23 @@ const cases = [
           },
         ],
       },
+      glassesFinal: {
+        subhead: 'The phone becomes the shutter the glasses don\'t have.',
+        body: 'Pressing the capture button in the app takes a photo through the glasses\' camera. That frame is sent to Claude, which identifies the product and checks its ingredients against what the user is avoiding, surfacing a warning if there\'s a match. Rather than trying to force a barcode read out of a capped-quality video frame, the app leans on AI identification to recover the accuracy the hardware and SDK couldn\'t provide directly.',
+        imgs: [
+          { src: 'images_fl/glasses-capture.png', alt: 'Phone screen showing the capture button.' },
+          { src: 'images_fl/glasses-result.png', alt: 'Result screen showing the identified product and an allergy warning if there\'s a match.' },
+        ],
+      },
+      glassesOutcomes: {
+        subhead: 'Working around what the SDK won\'t let you touch.',
+        body: 'I started this expecting auto-scan to be the obvious hands-free solution, until testing showed it offered no feedback and often took a full minute of repeated attempts to succeed. The real constraint wasn\'t the scanning logic: it was that the SDK only exposes a low-quality video frame, not a true photo, and gives no access to the glasses\' own shutter button. Once I stopped trying to force a better scan out of a capped pipeline and instead let Claude interpret whatever frame I could get, the accuracy problem mostly disappeared.',
+        takeaways: [
+          { title: 'What I\'d change', body: 'Reconsider the manual trigger. A deliberate button press works, but it\'s a step away from the fully hands-free promise. Worth testing whether users mind it, or whether it undermines the core pitch.' },
+          { title: 'What\'s still open', body: 'No access to the physical shutter button on the glasses, since Meta\'s developer SDK doesn\'t expose an API for it.' },
+          { title: 'What\'s next', body: 'Exploring whether a mapped button on a paired iPhone, or an Apple Watch, could serve as a more natural capture trigger than reaching for the phone itself.' },
+        ],
+      },
     },
     subheads: {
       intro: 'A smart-glasses food scanner for allergies, sensitivities, and dietary restrictions.',
@@ -1036,6 +1053,66 @@ function openCase(i, push = true) {
       lastGlassesSec = giSec;
       lastGlassesNav = giNav;
     }
+
+    if (p.experiences.glassesFinal) {
+      const gf = p.experiences.glassesFinal;
+      const gfImgs = gf.imgs || [];
+      const gfSec = document.createElement('div');
+      gfSec.id = 'cs-glasses-final';
+      gfSec.className = 'cs-section cs-dynamic-section';
+      gfSec.innerHTML = `
+        <h3>Final Designs</h3>
+        <p><strong>${gf.subhead}</strong> ${gf.body}</p>
+        ${gfImgs.length ? `<div class="cs-idea-imgs">${gfImgs.map(im => `
+          <figure class="cs-idea-fig" role="img" aria-label="${(im.alt || '').replace(/"/g, '&quot;')}">
+            <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
+          </figure>`).join('')}</div>` : ''}`;
+      lastGlassesSec.insertAdjacentElement('afterend', gfSec);
+      gfSec.querySelectorAll('.cs-idea-fig img').forEach(img => {
+        img.addEventListener('click', () => {
+          if (!img.closest('.cs-idea-fig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
+        });
+      });
+
+      const gfNav = document.createElement('a');
+      gfNav.className = 'cs-nav-link cs-nav-sub';
+      gfNav.setAttribute('data-target', 'cs-glasses-final');
+      gfNav.setAttribute('data-dynamic', '1');
+      gfNav.textContent = 'Final Designs';
+      lastGlassesNav.insertAdjacentElement('afterend', gfNav);
+
+      lastGlassesSec = gfSec;
+      lastGlassesNav = gfNav;
+    }
+
+    if (p.experiences.glassesOutcomes) {
+      const go = p.experiences.glassesOutcomes;
+      const goTakeaways = go.takeaways || [];
+      const goSec = document.createElement('div');
+      goSec.id = 'cs-glasses-outcomes';
+      goSec.className = 'cs-section cs-dynamic-section';
+      goSec.innerHTML = `
+        <h3>Outcomes</h3>
+        <p><strong>${go.subhead}</strong> ${go.body}</p>
+        ${goTakeaways.length ? `<div class="cs-takeaways">${goTakeaways.map(t => `
+          <div class="cs-takeaway">
+            <div>
+              <div class="cs-takeaway-title">${t.title}</div>
+              <div class="cs-takeaway-body">${t.body}</div>
+            </div>
+          </div>`).join('')}</div>` : ''}`;
+      lastGlassesSec.insertAdjacentElement('afterend', goSec);
+
+      const goNav = document.createElement('a');
+      goNav.className = 'cs-nav-link cs-nav-sub';
+      goNav.setAttribute('data-target', 'cs-glasses-outcomes');
+      goNav.setAttribute('data-dynamic', '1');
+      goNav.textContent = 'Outcomes';
+      lastGlassesNav.insertAdjacentElement('afterend', goNav);
+
+      lastGlassesSec = goSec;
+      lastGlassesNav = goNav;
+    }
   }
 
   cs.querySelector('.cs-reflection-text').textContent = p.reflection;
@@ -1083,7 +1160,7 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
+    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-glasses-final','cs-glasses-outcomes','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
