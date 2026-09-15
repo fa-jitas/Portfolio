@@ -1248,6 +1248,7 @@ footer {
 
 /* ── SOLUTION VIDEO + RULES ── */
 .cs-video-wrap {
+  position: relative;
   border-radius: 16px;
   overflow: hidden;
   background: #000;
@@ -1255,6 +1256,27 @@ footer {
   line-height: 0;
 }
 .cs-video { width: 100%; display: block; }
+.cs-video-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .88);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 99px;
+  padding: 6px 14px;
+  line-height: 1;
+  pointer-events: none;
+}
 .cs-rules-btn {
   margin: 20px auto 0;
   display: flex;

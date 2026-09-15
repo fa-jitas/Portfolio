@@ -804,6 +804,7 @@ function openCase(i, push = true) {
     topVideoSec.className = 'cs-section cs-dynamic-section cs-top-video';
     topVideoSec.innerHTML = `
       <div class="cs-video-wrap">
+        <span class="cs-video-badge">Video Tutorial</span>
         <video class="cs-video" controls playsinline preload="metadata"${p.solutionVideoPoster ? ` poster="${p.solutionVideoPoster}"` : ''}>
           <source src="${p.solutionVideo}" type="${/\.mov$/i.test(p.solutionVideo) ? 'video/mp4' : 'video/' + (p.solutionVideo.split('.').pop() || 'mp4')}">
           Your browser doesn&#39;t support embedded video.
