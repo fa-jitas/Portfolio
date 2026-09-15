@@ -1630,6 +1630,7 @@ footer {
   margin-top: 22px;
 }
 .cs-problem-visual .cs-rfig-btn { max-width: 560px; }
+#cs-glasses-research .cs-rfig-btn { max-width: 420px; }
 .cs-research-visual--multi {
   display: flex;
   flex-wrap: wrap;
