@@ -1278,9 +1278,9 @@ footer {
   pointer-events: none;
 }
 .cs-rules-btn {
-  margin: 20px auto 0;
+  margin: 20px 0 0;
   display: flex;
-  width: fit-content;
+  width: 100%;
   align-items: center;
   justify-content: center;
   gap: 8px;
