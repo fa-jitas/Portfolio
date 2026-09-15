@@ -276,7 +276,7 @@ const cases = [
     overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
     experiences: {
       phoneIntro: 'The research, ideation, and final designs below cover the phone fallback experience: what people see when the smart glasses aren\'t connected.',
-      glassesIntro: 'Research and ideation are underway on the smart glasses experience below. Final designs aren\'t ready yet.',
+      glassesIntro: 'The research, ideation, final designs, and outcomes below cover the smart glasses experience: capturing a photo through the glasses\' camera and using AI to identify the product, since the SDK exposes no true photo API or barcode reader.',
       glassesResearch: {
         subhead: 'Two rounds of testing revealed the glasses\' real bottleneck wasn\'t allergen detection: it was capture quality.',
         body: 'The camera doesn\'t take photos; it pulls frames from a low-latency video stream tuned for bandwidth over sharpness, and there\'s no higher-resolution capture API exposed to third-party developers. That, combined with no scan-in-progress feedback and awkward left-lens positioning, meant most scans took multiple tries before one succeeded.',
@@ -285,6 +285,7 @@ const cases = [
           { q: 'No true photo API', a: 'capturePhoto() grabs a frame from the same stream used for continuous scanning, capped well below the glasses\' own 12MP camera.' },
           { q: 'Positioning was awkward', a: 'Products had to sit near the left lens, uncomfortable for right-handed users.' },
         ],
+        visual: { src: 'images_fl/research2.png', alt: 'Findings from smart glasses capture-quality testing.' },
       },
       glassesIdeation: {
         subhead: 'Two problems needed solving at once: how to trigger a capture, and how to get a usable identification from a capped-quality image.',
@@ -1018,7 +1019,7 @@ function openCase(i, push = true) {
     const glassesSec = document.createElement('div');
     glassesSec.id = 'cs-glasses-experience';
     glassesSec.className = 'cs-section cs-dynamic-section cs-experience-header';
-    glassesSec.innerHTML = `<h3>Smart Glasses Experience</h3><p class="cs-experience-stub">${p.experiences.glassesIntro}</p>`;
+    glassesSec.innerHTML = `<h3>Smart Glasses Experience</h3><p>${p.experiences.glassesIntro}</p>`;
     lastPhoneSec.insertAdjacentElement('afterend', glassesSec);
 
     const glassesNav = document.createElement('a');
@@ -1034,6 +1035,7 @@ function openCase(i, push = true) {
 
     if (p.experiences.glassesResearch) {
       const gr = p.experiences.glassesResearch;
+      const grVisual = gr.visual;
       const grSec = document.createElement('div');
       grSec.id = 'cs-glasses-research';
       grSec.className = 'cs-section cs-dynamic-section';
@@ -1050,8 +1052,23 @@ function openCase(i, push = true) {
                 <div class="cs-insight-q">${ins.q}</div>
                 ${ins.a ? `<div class="cs-insight-a">${ins.a}</div>` : ''}
               </div>
-            </div>`).join('')}</div>` : ''}`;
+            </div>`).join('')}</div>` : ''}
+        ${grVisual ? `
+          <div class="cs-research-visual">
+            <figure class="cs-rfig">
+              <button type="button" class="cs-rfig-btn" aria-label="Expand image: ${(grVisual.alt || '').replace(/"/g, '&quot;')}">
+                <img src="${grVisual.src}" alt="${(grVisual.alt || '').replace(/"/g, '&quot;')}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
+                <span class="cs-rfig-zoom" aria-hidden="true">⤢</span>
+              </button>
+            </figure>
+          </div>` : ''}`;
       lastGlassesSec.insertAdjacentElement('afterend', grSec);
+      grSec.querySelectorAll('.cs-rfig-btn').forEach(btn => {
+        const img = btn.querySelector('img');
+        btn.addEventListener('click', () => {
+          if (img && !btn.closest('.cs-rfig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
+        });
+      });
 
       const grNav = document.createElement('a');
       grNav.className = 'cs-nav-link cs-nav-sub';
