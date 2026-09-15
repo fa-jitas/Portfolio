@@ -276,7 +276,15 @@ const cases = [
     overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
     experiences: {
       phoneIntro: 'The research, ideation, and final designs below cover the phone fallback experience: what people see when the smart glasses aren\'t connected.',
-      glassesIntro: 'Coming soon. This case study currently covers the phone fallback experience only.',
+      glassesIntro: 'Research is underway on the smart glasses experience below. Ideation and final designs aren\'t ready yet.',
+      glassesResearch: {
+        intro: '<strong>Two rounds of testing revealed the glasses\' real bottleneck wasn\'t allergen detection: it was capture quality.</strong> The camera doesn\'t take photos; it pulls frames from a low-latency video stream tuned for bandwidth over sharpness, and there\'s no higher-resolution capture API exposed to third-party developers. That, combined with no scan-in-progress feedback and awkward left-lens positioning, meant most scans took multiple tries before one succeeded.',
+        insights: [
+          { q: 'No feedback during scanning', a: 'Debug logs showed repeated attempts, sometimes for a full minute, before one succeeded.' },
+          { q: 'No true photo API', a: 'capturePhoto() grabs a frame from the same stream used for continuous scanning, capped well below the glasses\' own 12MP camera.' },
+          { q: 'Positioning was awkward', a: 'Products had to sit near the left lens, uncomfortable for right-handed users.' },
+        ],
+      },
     },
     subheads: {
       intro: 'A smart-glasses food scanner for allergies, sensitivities, and dietary restrictions.',
@@ -934,6 +942,34 @@ function openCase(i, push = true) {
     glassesNav.textContent = 'Smart Glasses Experience';
     const reflectionNav2 = sidenav.querySelector('[data-target="cs-reflection"]');
     if (reflectionNav2) reflectionNav2.insertAdjacentElement('beforebegin', glassesNav);
+
+    if (p.experiences.glassesResearch) {
+      const gr = p.experiences.glassesResearch;
+      const grSec = document.createElement('div');
+      grSec.id = 'cs-glasses-research';
+      grSec.className = 'cs-section cs-dynamic-section';
+      grSec.innerHTML = `
+        <h3>Research</h3>
+        <p>${gr.intro}</p>
+        ${(gr.insights && gr.insights.length) ? `
+          <div class="cs-insights-label">What I found</div>
+          <div class="cs-insights">${gr.insights.map(ins => `
+            <div class="cs-insight">
+              <span class="cs-insight-num" aria-hidden="true">✦</span>
+              <div class="cs-insight-body">
+                <div class="cs-insight-q">${ins.q}</div>
+                ${ins.a ? `<div class="cs-insight-a">${ins.a}</div>` : ''}
+              </div>
+            </div>`).join('')}</div>` : ''}`;
+      glassesSec.insertAdjacentElement('afterend', grSec);
+
+      const grNav = document.createElement('a');
+      grNav.className = 'cs-nav-link cs-nav-sub';
+      grNav.setAttribute('data-target', 'cs-glasses-research');
+      grNav.setAttribute('data-dynamic', '1');
+      grNav.textContent = 'Research';
+      glassesNav.insertAdjacentElement('afterend', grNav);
+    }
   }
 
   cs.querySelector('.cs-reflection-text').textContent = p.reflection;
@@ -981,7 +1017,7 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
+    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-glasses-research','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
