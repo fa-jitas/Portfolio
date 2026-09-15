@@ -1342,7 +1342,6 @@ footer {
 }
 .cs-rules-close:hover { background: var(--rule); }
 .cs-rules-title { display: none; }
-.cs-rules-body { min-height: 260px; }
 .cs-rules-body h4 { padding-right: 32px; }
 .cs-rules-sec { margin-bottom: 22px; }
 .cs-rules-sec:last-child { margin-bottom: 0; }
