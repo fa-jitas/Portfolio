@@ -1405,7 +1405,7 @@ footer {
   margin: 0;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--ink2);
 }
 .cs-rules-or {
   display: flex;
