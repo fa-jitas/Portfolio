@@ -1077,6 +1077,22 @@ footer {
 .cs-sidenav a.cs-nav-sub { padding-left: 30px; }
 .cs-sidenav a.cs-nav-sub:hover { padding-left: 34px; }
 .cs-sidenav a.cs-nav-sub.cs-nav-active { padding-left: 34px; }
+.cs-sidenav a.cs-nav-sub.cs-nav-collapsed { display: none; }
+
+/* expand/collapse arrow on a group header (Phone Experience / Smart
+   Glasses Experience) — rotates to point down once its sub-items show */
+.cs-sidenav a.cs-nav-group { display: flex; align-items: center; gap: 6px; }
+.cs-sidenav a.cs-nav-group::after {
+  content: '';
+  width: 0; height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+  opacity: .5;
+  transition: transform .15s ease;
+  flex-shrink: 0;
+}
+.cs-sidenav a.cs-nav-group[aria-expanded="true"]::after { transform: rotate(90deg); }
 
 .cs-rule { display: none; }
 

@@ -323,6 +323,15 @@ const cases = [
           { title: 'What\'s next', body: 'Exploring whether a mapped button on a paired iPhone, or an Apple Watch, could serve as a more natural capture trigger than reaching for the phone itself.' },
         ],
       },
+      phoneOutcomes: {
+        subhead: 'Designing for the moment it doesn\'t work.',
+        body: 'I started out assuming barcode scanning would be enough until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from the experience was to design for the failure, so that users always get an answer instead of having to wait for one.',
+        takeaways: [
+          { title: 'What I\'d change', body: 'Test the label placement. I need to check whether visible button gets noticed.' },
+          { title: 'What\'s still open', body: 'The label path doesn\'t show a product image. I need to research how to pull one when there\'s no barcode.' },
+          { title: 'What\'s next', body: 'Exploring how AI can read the whole package instead of a barcode or label.' },
+        ],
+      },
     },
     subheads: {
       intro: 'A smart-glasses food scanner for allergies, sensitivities, and dietary restrictions.',
@@ -330,7 +339,6 @@ const cases = [
       research: 'In a competitor\'s app, the shopper left without knowing if the food was safe.',
       ideation: 'The label scan has to be findable without making people look for it.',
       solution: 'The label scan coexists with the barcode scanner, before anything fails.',
-      reflection: 'Designing for the moment it doesn\'t work.',
     },
     hmw: 'How might we give someone an answer about an unrecognized product while they\'re still standing in the aisle?',
     problem: 'Food scanners depend on barcode databases that don\'t have every product. Store brands, imported goods, and anything new to the shelf are the most likely to be missing in the database. When a barcode scan does fail, most apps ask shoppers to photograph the product and wait days for a response. Meanwhile, the shopper has to decide whether to verify the ingredients themselves or wait on days for an answer.',
@@ -371,12 +379,6 @@ const cases = [
     flows: [
       { title: 'Skip the barcode, read the ingredient label', body: '"Scan ingredients label instead" sits under the camera view. Tapping it photographs the ingredients label and reads it directly, with no barcode attempt needed.', img: 'images_fl/finalsolution1.gif', alt: 'The scanner screen with a "Scan ingredients label instead" button placed directly beneath the camera view.' },
       { title: 'Labels in other languages', body: 'If the label is in another language, the scan translates it, so imported products work the same as English ones.', img: 'images_fl/finalsolution2.gif', alt: 'An ingredient-label scan result for an imported product, translated into English as it is read.' },
-    ],
-    reflection: 'I started out assuming barcode scanning would be enough until I tested on multiple products and hit barcodes that weren\'t in the database, or didn\'t exist at all. What I took from the experience was to design for the failure, so that users always get an answer instead of having to wait for one.',
-    takeaways: [
-      { title: 'What I\'d change', body: 'Test the label placement. I need to check whether visible button gets noticed.' },
-      { title: 'What\'s still open', body: 'The label path doesn\'t show a product image. I need to research how to pull one when there\'s no barcode.' },
-      { title: 'What\'s next', body: 'Exploring how AI can read the whole package instead of a barcode or label.' },
     ],
   },
   {
@@ -840,6 +842,11 @@ function openCase(i, push = true) {
   const solutionSection = document.getElementById('cs-solution');
   const reflectionSection = document.getElementById('cs-reflection');
   const sidenav = cs.querySelector('.cs-sidenav');
+  // Reset in case a previous case (FoodLens) hid these when its Outcomes
+  // moved under Phone Experience; re-shown here, re-hidden below if needed.
+  reflectionSection.style.display = '';
+  const reflectionNavStatic = sidenav.querySelector('.cs-nav-link[data-target="cs-reflection"]');
+  if (reflectionNavStatic) reflectionNavStatic.style.display = '';
 
   // Solution video + Written Rules button, moved to the top of the page
   // (right above the Overview heading) instead of sitting in Final Designs.
@@ -967,11 +974,49 @@ function openCase(i, push = true) {
       });
     }
 
+    let lastPhoneSec = solutionSection;
+    let lastPhoneNav = sidenav.querySelector('[data-target="cs-solution"]');
+
+    if (p.experiences.phoneOutcomes) {
+      const po = p.experiences.phoneOutcomes;
+      const poTakeaways = po.takeaways || [];
+      const poSec = document.createElement('div');
+      poSec.id = 'cs-phone-outcomes';
+      poSec.className = 'cs-section cs-dynamic-section';
+      poSec.innerHTML = `
+        <h3>Outcomes</h3>
+        <p><strong>${po.subhead}</strong> ${po.body}</p>
+        ${poTakeaways.length ? `<div class="cs-takeaways">${poTakeaways.map(t => `
+          <div class="cs-takeaway">
+            <div>
+              <div class="cs-takeaway-title">${t.title}</div>
+              <div class="cs-takeaway-body">${t.body}</div>
+            </div>
+          </div>`).join('')}</div>` : ''}`;
+      lastPhoneSec.insertAdjacentElement('afterend', poSec);
+
+      if (lastPhoneNav) {
+        const poNav = document.createElement('a');
+        poNav.className = 'cs-nav-link cs-nav-sub';
+        poNav.setAttribute('data-target', 'cs-phone-outcomes');
+        poNav.setAttribute('data-dynamic', '1');
+        poNav.textContent = 'Outcomes';
+        lastPhoneNav.insertAdjacentElement('afterend', poNav);
+        lastPhoneNav = poNav;
+      }
+      lastPhoneSec = poSec;
+
+      // This content replaces the shared Outcomes section at the bottom of
+      // the page — hide it and its nav link so it isn't shown twice.
+      reflectionSection.style.display = 'none';
+      if (reflectionNavStatic) reflectionNavStatic.style.display = 'none';
+    }
+
     const glassesSec = document.createElement('div');
     glassesSec.id = 'cs-glasses-experience';
     glassesSec.className = 'cs-section cs-dynamic-section cs-experience-header';
     glassesSec.innerHTML = `<h3>Smart Glasses Experience</h3><p class="cs-experience-stub">${p.experiences.glassesIntro}</p>`;
-    solutionSection.insertAdjacentElement('afterend', glassesSec);
+    lastPhoneSec.insertAdjacentElement('afterend', glassesSec);
 
     const glassesNav = document.createElement('a');
     glassesNav.className = 'cs-nav-link';
@@ -1115,12 +1160,12 @@ function openCase(i, push = true) {
     }
   }
 
-  cs.querySelector('.cs-reflection-text').textContent = p.reflection;
-  cs.querySelector('.cs-takeaways').innerHTML = (p.takeaways||[]).map(t=>`
+  reflectionSection.querySelector('.cs-reflection-text').textContent = p.reflection || '';
+  reflectionSection.querySelector('.cs-takeaways').innerHTML = (p.takeaways||[]).map(t=>`
     <div class="cs-takeaway">
     <div><div class="cs-takeaway-title">${t.title}</div><div class="cs-takeaway-body">${t.body}</div></div></div>`).join('');
 
-  const recognitionEl = cs.querySelector('.cs-recognition');
+  const recognitionEl = reflectionSection.querySelector('.cs-recognition');
   if (recognitionEl) {
     if (p.recognition) {
       recognitionEl.innerHTML = `
@@ -1160,7 +1205,14 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-glasses-final','cs-glasses-outcomes','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
+    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-phone-outcomes','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-glasses-final','cs-glasses-outcomes','cs-refinement','cs-reflection'].filter(id => {
+      const el = document.getElementById(id);
+      // Excludes display:none sections (e.g. the shared Outcomes section
+      // when FoodLens moves its content under Phone Experience) — a hidden
+      // element's rect is all zeros, which would otherwise always look
+      // "above" the real scroll position and hijack the scrollspy.
+      return !!el && el.offsetParent !== null;
+    });
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
@@ -1174,11 +1226,35 @@ function openCase(i, push = true) {
     cs._navScrolling = false;
     clearTimeout(cs._navScrollTimer);
 
+    // Collapsible experience groups: "Phone Experience" / "Smart Glasses
+    // Experience" start collapsed, hiding their Research/Ideation/etc.
+    // sub-links until the group header is clicked (or scrolled into).
+    function setGroupExpanded(header, expanded) {
+      header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      let sib = header.nextElementSibling;
+      while (sib && sib.classList.contains('cs-nav-sub')) {
+        sib.classList.toggle('cs-nav-collapsed', !expanded);
+        sib = sib.nextElementSibling;
+      }
+    }
+    function findGroupHeader(link) {
+      let sib = link.previousElementSibling;
+      while (sib && sib.classList.contains('cs-nav-sub')) sib = sib.previousElementSibling;
+      return sib && sib.classList.contains('cs-nav-group') ? sib : null;
+    }
+    cs.querySelectorAll('.cs-nav-link[data-target="cs-phone-experience"], .cs-nav-link[data-target="cs-glasses-experience"]').forEach(header => {
+      header.classList.add('cs-nav-group');
+      setGroupExpanded(header, false);
+    });
+
     cs.querySelectorAll('.cs-nav-link').forEach(a => a.classList.remove('cs-nav-active'));
     const firstNav = cs.querySelector('[data-target="cs-intro"]');
     if (firstNav) firstNav.classList.add('cs-nav-active');
     cs.querySelectorAll('.cs-nav-link').forEach(a => {
       a.onclick = () => {
+        if (a.classList.contains('cs-nav-group')) {
+          setGroupExpanded(a, a.getAttribute('aria-expanded') !== 'true');
+        }
         const target = document.getElementById(a.getAttribute('data-target'));
         if (target) {
           cs.querySelectorAll('.cs-nav-link').forEach(l => l.classList.remove('cs-nav-active'));
@@ -1191,12 +1267,22 @@ function openCase(i, push = true) {
       };
     });
     cs.removeEventListener('scroll', cs._scrollSpy);
+    function activateNav(id) {
+      const link = cs.querySelector(`.cs-nav-link[data-target="${id}"]`);
+      // Scrolled into a collapsed group's content without clicking its
+      // header (e.g. via direct URL or plain scrolling) — expand it so the
+      // active link is actually visible instead of just active-but-hidden.
+      if (link && link.classList.contains('cs-nav-sub') && link.classList.contains('cs-nav-collapsed')) {
+        const header = findGroupHeader(link);
+        if (header) setGroupExpanded(header, true);
+      }
+      cs.querySelectorAll('.cs-nav-link').forEach(a => a.classList.toggle('cs-nav-active', a.getAttribute('data-target') === id));
+    }
     cs._scrollSpy = () => {
       if (cs._navScrolling) return;
       // If near the bottom of the page, always highlight the last section
       if (cs.scrollTop + cs.clientHeight >= cs.scrollHeight - 80) {
-        const lastId = sectionIds[sectionIds.length - 1];
-        cs.querySelectorAll('.cs-nav-link').forEach(a => a.classList.toggle('cs-nav-active', a.getAttribute('data-target') === lastId));
+        activateNav(sectionIds[sectionIds.length - 1]);
         return;
       }
       const csTop = cs.getBoundingClientRect().top;
@@ -1207,7 +1293,7 @@ function openCase(i, push = true) {
         // elOffset is how far the section top is from the visible top of the scroll container
         if (el.getBoundingClientRect().top - csTop <= 140) current = id;
       });
-      cs.querySelectorAll('.cs-nav-link').forEach(a => a.classList.toggle('cs-nav-active', a.getAttribute('data-target') === current));
+      activateNav(current);
     };
     cs.addEventListener('scroll', cs._scrollSpy);
 
