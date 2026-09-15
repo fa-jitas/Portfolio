@@ -411,7 +411,7 @@ const cases = [
       { title: 'Where this goes next', body: 'Observing 2–4 players across eight narrative rounds, with a post-game survey and a group debrief afterward.' },
     ],
     recognition: {
-      note: 'Poster accepted to <span class="cs-recognition-highlight">SIGGRAPH Asia 2026: Weaving to the Future</span>',
+      note: 'Poster accepted to <span class="cs-recognition-highlight">SIGGRAPH Asia 2026: Weaving the Future</span>',
       file: 'images_cw/Abstract_NF.pdf',
       label: 'View Abstract',
     },
