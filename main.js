@@ -276,13 +276,34 @@ const cases = [
     overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
     experiences: {
       phoneIntro: 'The research, ideation, and final designs below cover the phone fallback experience: what people see when the smart glasses aren\'t connected.',
-      glassesIntro: 'Research is underway on the smart glasses experience below. Ideation and final designs aren\'t ready yet.',
+      glassesIntro: 'Research and ideation are underway on the smart glasses experience below. Final designs aren\'t ready yet.',
       glassesResearch: {
         intro: '<strong>Two rounds of testing revealed the glasses\' real bottleneck wasn\'t allergen detection: it was capture quality.</strong> The camera doesn\'t take photos; it pulls frames from a low-latency video stream tuned for bandwidth over sharpness, and there\'s no higher-resolution capture API exposed to third-party developers. That, combined with no scan-in-progress feedback and awkward left-lens positioning, meant most scans took multiple tries before one succeeded.',
         insights: [
           { q: 'No feedback during scanning', a: 'Debug logs showed repeated attempts, sometimes for a full minute, before one succeeded.' },
           { q: 'No true photo API', a: 'capturePhoto() grabs a frame from the same stream used for continuous scanning, capped well below the glasses\' own 12MP camera.' },
           { q: 'Positioning was awkward', a: 'Products had to sit near the left lens, uncomfortable for right-handed users.' },
+        ],
+      },
+      glassesIdeation: {
+        intro: 'Two problems needed solving at once: how to trigger a capture, and how to get a usable identification from a capped-quality image.<br><br>Auto-scan seemed like the more "hands-free" answer on paper, but testing showed it had no way to signal when a scan was happening, and often needed a full minute of repeated attempts before succeeding. With no still-photo API and no access to the glasses\' physical shutter button, I needed another way to trigger a reliable capture, and a way to still get an accurate read from a lower-quality frame once I had one.',
+        steps: [
+          {
+            title: 'Auto-scan',
+            body: 'Continuously scan for a barcode or label in the background, no manual trigger needed.',
+            tradeoffs: [
+              { type: 'pro', text: 'True to the hands-free promise of the product' },
+              { type: 'con', text: 'No feedback on when scanning is happening, and repeated failed attempts before a scan succeeds' },
+            ],
+          },
+          {
+            title: 'Phone as manual trigger + AI identification',
+            body: 'Use the phone as a deliberate photo trigger, then pass that frame to Claude to identify the product and check ingredients, instead of relying on barcode-database lookup.',
+            tradeoffs: [
+              { type: 'pro', text: 'Gives the user control over exactly when a photo is taken, avoiding the ambiguous "is it scanning right now" problem' },
+              { type: 'con', text: 'Adds a manual step, which is a small step away from fully hands-free, but recovers accuracy that the capped image quality would otherwise have lost' },
+            ],
+          },
         ],
       },
     },
@@ -943,6 +964,9 @@ function openCase(i, push = true) {
     const reflectionNav2 = sidenav.querySelector('[data-target="cs-reflection"]');
     if (reflectionNav2) reflectionNav2.insertAdjacentElement('beforebegin', glassesNav);
 
+    let lastGlassesSec = glassesSec;
+    let lastGlassesNav = glassesNav;
+
     if (p.experiences.glassesResearch) {
       const gr = p.experiences.glassesResearch;
       const grSec = document.createElement('div');
@@ -961,14 +985,56 @@ function openCase(i, push = true) {
                 ${ins.a ? `<div class="cs-insight-a">${ins.a}</div>` : ''}
               </div>
             </div>`).join('')}</div>` : ''}`;
-      glassesSec.insertAdjacentElement('afterend', grSec);
+      lastGlassesSec.insertAdjacentElement('afterend', grSec);
 
       const grNav = document.createElement('a');
       grNav.className = 'cs-nav-link cs-nav-sub';
       grNav.setAttribute('data-target', 'cs-glasses-research');
       grNav.setAttribute('data-dynamic', '1');
       grNav.textContent = 'Research';
-      glassesNav.insertAdjacentElement('afterend', grNav);
+      lastGlassesNav.insertAdjacentElement('afterend', grNav);
+
+      lastGlassesSec = grSec;
+      lastGlassesNav = grNav;
+    }
+
+    if (p.experiences.glassesIdeation) {
+      const gi = p.experiences.glassesIdeation;
+      const giSteps = gi.steps || [];
+      const giSec = document.createElement('div');
+      giSec.id = 'cs-glasses-ideation';
+      giSec.className = 'cs-section cs-dynamic-section';
+      giSec.innerHTML = `
+        <h3>Ideation</h3>
+        <p>${gi.intro || ''}</p>
+        <div class="cs-idea-list">${giSteps.map((s, idx) => {
+          const tradeoffs = s.tradeoffs || [];
+          return `
+          <div class="cs-idea-card">
+            <div class="cs-idea-head">
+              <span class="cs-idea-num">0${idx + 1}</span>
+              <span class="cs-idea-title">${s.title}</span>
+            </div>
+            <div class="cs-idea-detail">
+              ${s.body ? `<p class="cs-idea-text">${s.body}</p>` : ''}
+              ${tradeoffs.length ? `<div class="cs-idea-tradeoffs">
+                <span class="cs-idea-tradeoffs-label">Trade-offs</span>
+                <ul>${tradeoffs.map(t => `<li class="${t.type === 'pro' ? 'cs-to-pro' : t.type === 'con' ? 'cs-to-con' : ''}">${t.text}</li>`).join('')}</ul>
+              </div>` : ''}
+            </div>
+          </div>`;
+        }).join('')}</div>`;
+      lastGlassesSec.insertAdjacentElement('afterend', giSec);
+
+      const giNav = document.createElement('a');
+      giNav.className = 'cs-nav-link cs-nav-sub';
+      giNav.setAttribute('data-target', 'cs-glasses-ideation');
+      giNav.setAttribute('data-dynamic', '1');
+      giNav.textContent = 'Ideation';
+      lastGlassesNav.insertAdjacentElement('afterend', giNav);
+
+      lastGlassesSec = giSec;
+      lastGlassesNav = giNav;
     }
   }
 
@@ -1017,7 +1083,7 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-glasses-research','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
+    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-refinement','cs-reflection'].filter(id => !!document.getElementById(id));
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
