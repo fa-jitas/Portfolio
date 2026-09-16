@@ -294,7 +294,7 @@ const cases = [
           {
             title: 'Auto-scan',
             body: 'Continuously scan for a barcode or label in the background, no manual trigger needed.',
-            imgs: [{ src: 'images_fl/ideation3.jpeg', alt: 'Sketch of the auto-scan concept, continuously scanning in the background with no manual trigger.' }],
+            imgs: [{ src: 'images_fl/ideation3.png', alt: 'Sketch of the auto-scan concept, continuously scanning in the background with no manual trigger.' }],
             tradeoffs: [
               { type: 'pro', text: 'True to the hands-free promise of the product' },
               { type: 'con', text: 'No feedback on when scanning is happening, and repeated failed attempts before a scan succeeds' },
