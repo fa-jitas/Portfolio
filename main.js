@@ -1352,13 +1352,18 @@ function openCase(i, push = true) {
     };
     cs.addEventListener('scroll', cs._scrollSpy);
 
-    const researchSection = document.getElementById('cs-research');
-    if (researchSection) {
+    // Reveal each Research section's insights independently, keyed to that
+    // section's own scroll position — not just the first one on the page.
+    // A single shared trigger (tied to whichever Research came first) left
+    // a later one's insights permanently invisible if its section starts
+    // collapsed and the wearer expands it without ever passing the first.
+    cs.querySelectorAll('.cs-insights').forEach(container => {
+      if (!container.querySelector('.cs-insight')) return;
       const insightObs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { cs.querySelectorAll('.cs-insight').forEach(c=>c.classList.add('visible')); insightObs.disconnect(); } });
+        entries.forEach(e => { if (e.isIntersecting) { container.querySelectorAll('.cs-insight').forEach(c=>c.classList.add('visible')); insightObs.disconnect(); } });
       }, { root: cs, threshold: 0 });
-      insightObs.observe(researchSection);
-    }
+      insightObs.observe(container);
+    });
   }, 60);
 }
 
