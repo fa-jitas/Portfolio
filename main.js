@@ -285,7 +285,7 @@ const cases = [
           { q: 'No true photo API', a: 'capturePhoto() grabs a frame from the same stream used for continuous scanning, capped well below the glasses\' own 12MP camera.' },
           { q: 'Positioning was awkward', a: 'Products had to sit near the left lens, uncomfortable for right-handed users.' },
         ],
-        visual: { src: 'images_fl/research2.png', alt: 'Findings from smart glasses capture-quality testing.' },
+        visual: { src: 'images_fl/research2.png', alt: 'Findings from smart glasses capture-quality testing.', caption: 'Low-resolution captures, representative of what the Meta AI glasses\' camera actually sees.' },
       },
       glassesIdeation: {
         subhead: 'Two problems needed solving at once: how to trigger a capture, and how to get a usable identification from a capped-quality image.',
@@ -1059,6 +1059,7 @@ function openCase(i, push = true) {
                 <img src="${grVisual.src}" alt="${(grVisual.alt || '').replace(/"/g, '&quot;')}" loading="lazy" onerror="this.closest('.cs-rfig').classList.add('is-missing')">
                 <span class="cs-rfig-zoom" aria-hidden="true">⤢</span>
               </button>
+              ${grVisual.caption ? `<figcaption class="cs-rfig-caption">${grVisual.caption}</figcaption>` : ''}
             </figure>
           </div>` : ''}`;
       lastGlassesSec.insertAdjacentElement('afterend', grSec);

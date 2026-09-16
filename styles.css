@@ -1631,6 +1631,14 @@ footer {
 }
 .cs-problem-visual .cs-rfig-btn { max-width: 560px; }
 #cs-glasses-research .cs-rfig-btn { max-width: 420px; }
+.cs-rfig-caption {
+  max-width: 420px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.5;
+}
 .cs-research-visual--multi {
   display: flex;
   flex-wrap: wrap;
