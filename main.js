@@ -845,10 +845,15 @@ function openCase(i, push = true) {
   const csBody = cs.querySelector('.cs-body');
   const solutionSection = document.getElementById('cs-solution');
   const reflectionSection = document.getElementById('cs-reflection');
+  const researchSectionEl = document.getElementById('cs-research');
   const sidenav = cs.querySelector('.cs-sidenav');
-  // Reset in case a previous case (FoodLens) hid these when its Outcomes
-  // moved under Phone Experience; re-shown here, re-hidden below if needed.
+  // Reset in case a previous case (FoodLens) hid these — either because its
+  // Outcomes moved under Phone Experience, or because Phone Experience's
+  // collapsible group hid its own Research/Ideation/Final Designs content.
+  // Re-shown here, re-hidden below if this case needs it.
   reflectionSection.style.display = '';
+  solutionSection.style.display = '';
+  if (researchSectionEl) researchSectionEl.style.display = '';
   const reflectionNavStatic = sidenav.querySelector('.cs-nav-link[data-target="cs-reflection"]');
   if (reflectionNavStatic) reflectionNavStatic.style.display = '';
 
@@ -1244,14 +1249,21 @@ function openCase(i, push = true) {
   cs.addEventListener('scroll', cs._progressHandler);
 
   setTimeout(() => {
-    const sectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-phone-outcomes','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-glasses-final','cs-glasses-outcomes','cs-refinement','cs-reflection'].filter(id => {
-      const el = document.getElementById(id);
+    // Not pre-filtered: sections collapsed under an experience group start
+    // hidden and become visible later (on click), so "is this visible"
+    // has to be checked live in the scrollspy below, not just once here.
+    const allSectionIds = ['cs-top-video','cs-intro','cs-problem','cs-phone-experience','cs-research','cs-ideation','cs-usability','cs-solution','cs-phone-outcomes','cs-glasses-experience','cs-glasses-research','cs-glasses-ideation','cs-glasses-final','cs-glasses-outcomes','cs-refinement','cs-reflection'];
+    function visibleSectionIds() {
       // Excludes display:none sections (e.g. the shared Outcomes section
-      // when FoodLens moves its content under Phone Experience) — a hidden
-      // element's rect is all zeros, which would otherwise always look
-      // "above" the real scroll position and hijack the scrollspy.
-      return !!el && el.offsetParent !== null;
-    });
+      // when FoodLens moves its content under Phone Experience, or a
+      // collapsed experience group's content) — a hidden element's rect is
+      // all zeros, which would otherwise always look "above" the real
+      // scroll position and hijack the scrollspy.
+      return allSectionIds.filter(id => {
+        const el = document.getElementById(id);
+        return !!el && el.offsetParent !== null;
+      });
+    }
     const secObs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('cs-visible'); });
     }, { root: cs, threshold: 0 });
@@ -1266,13 +1278,16 @@ function openCase(i, push = true) {
     clearTimeout(cs._navScrollTimer);
 
     // Collapsible experience groups: "Phone Experience" / "Smart Glasses
-    // Experience" start collapsed, hiding their Research/Ideation/etc.
-    // sub-links until the group header is clicked (or scrolled into).
+    // Experience" start collapsed, hiding both their Research/Ideation/etc.
+    // sub-links AND the matching content sections in the page itself, until
+    // the group header is clicked (or scrolled into, for a sub-link).
     function setGroupExpanded(header, expanded) {
       header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       let sib = header.nextElementSibling;
       while (sib && sib.classList.contains('cs-nav-sub')) {
         sib.classList.toggle('cs-nav-collapsed', !expanded);
+        const content = document.getElementById(sib.getAttribute('data-target'));
+        if (content) content.style.display = expanded ? '' : 'none';
         sib = sib.nextElementSibling;
       }
     }
@@ -1319,6 +1334,7 @@ function openCase(i, push = true) {
     }
     cs._scrollSpy = () => {
       if (cs._navScrolling) return;
+      const sectionIds = visibleSectionIds();
       // If near the bottom of the page, always highlight the last section
       if (cs.scrollTop + cs.clientHeight >= cs.scrollHeight - 80) {
         activateNav(sectionIds[sectionIds.length - 1]);
