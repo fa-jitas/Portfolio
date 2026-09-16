@@ -1080,6 +1080,33 @@ footer {
   color: transparent;
 }
 
+/* clickable title row on the content header itself, mirroring the
+   sidenav's collapse/expand arrow */
+.cs-experience-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  cursor: pointer;
+}
+.cs-experience-title:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.cs-exp-arrow {
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 7px solid var(--accent);
+  opacity: .55;
+  flex-shrink: 0;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.cs-experience-title:hover .cs-exp-arrow { opacity: .85; }
+.cs-experience-title[aria-expanded="true"] .cs-exp-arrow { transform: rotate(90deg); }
+
 /* sidenav links nested under an experience heading */
 .cs-sidenav a.cs-nav-sub { padding-left: 30px; }
 .cs-sidenav a.cs-nav-sub:hover { padding-left: 34px; }

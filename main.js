@@ -967,7 +967,7 @@ function openCase(i, push = true) {
     const phoneSec = document.createElement('div');
     phoneSec.id = 'cs-phone-experience';
     phoneSec.className = 'cs-section cs-dynamic-section cs-experience-header';
-    phoneSec.innerHTML = `<h3>Phone Experience</h3><p>${p.experiences.phoneIntro}</p>`;
+    phoneSec.innerHTML = `<div class="cs-experience-title" role="button" tabindex="0" aria-expanded="false" data-target="cs-phone-experience"><h3>Phone Experience</h3><span class="cs-exp-arrow" aria-hidden="true"></span></div><p>${p.experiences.phoneIntro}</p>`;
     researchSection.insertAdjacentElement('beforebegin', phoneSec);
 
     const phoneNav = document.createElement('a');
@@ -1025,7 +1025,7 @@ function openCase(i, push = true) {
     const glassesSec = document.createElement('div');
     glassesSec.id = 'cs-glasses-experience';
     glassesSec.className = 'cs-section cs-dynamic-section cs-experience-header';
-    glassesSec.innerHTML = `<h3>Smart Glasses Experience</h3><p>${p.experiences.glassesIntro}</p>`;
+    glassesSec.innerHTML = `<div class="cs-experience-title" role="button" tabindex="0" aria-expanded="false" data-target="cs-glasses-experience"><h3>Smart Glasses Experience</h3><span class="cs-exp-arrow" aria-hidden="true"></span></div><p>${p.experiences.glassesIntro}</p>`;
     lastPhoneSec.insertAdjacentElement('afterend', glassesSec);
 
     const glassesNav = document.createElement('a');
@@ -1283,6 +1283,8 @@ function openCase(i, push = true) {
     // the group header is clicked (or scrolled into, for a sub-link).
     function setGroupExpanded(header, expanded) {
       header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      const title = cs.querySelector(`.cs-experience-title[data-target="${header.getAttribute('data-target')}"]`);
+      if (title) title.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       let sib = header.nextElementSibling;
       while (sib && sib.classList.contains('cs-nav-sub')) {
         sib.classList.toggle('cs-nav-collapsed', !expanded);
@@ -1299,6 +1301,17 @@ function openCase(i, push = true) {
     cs.querySelectorAll('.cs-nav-link[data-target="cs-phone-experience"], .cs-nav-link[data-target="cs-glasses-experience"]').forEach(header => {
       header.classList.add('cs-nav-group');
       setGroupExpanded(header, false);
+    });
+    // The arrow on the content header itself (not just the sidenav) toggles
+    // the same group, so it also works for someone reading the page rather
+    // than the sidenav.
+    cs.querySelectorAll('.cs-experience-title').forEach(title => {
+      const toggle = () => {
+        const navHeader = cs.querySelector(`.cs-nav-link[data-target="${title.getAttribute('data-target')}"]`);
+        if (navHeader) setGroupExpanded(navHeader, navHeader.getAttribute('aria-expanded') !== 'true');
+      };
+      title.onclick = toggle;
+      title.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
     });
 
     cs.querySelectorAll('.cs-nav-link').forEach(a => a.classList.remove('cs-nav-active'));
