@@ -294,6 +294,7 @@ const cases = [
           {
             title: 'Auto-scan',
             body: 'Continuously scan for a barcode or label in the background, no manual trigger needed.',
+            imgs: [{ src: 'images_fl/ideation3.jpeg', alt: 'Sketch of the auto-scan concept, continuously scanning in the background with no manual trigger.' }],
             tradeoffs: [
               { type: 'pro', text: 'True to the hands-free promise of the product' },
               { type: 'con', text: 'No feedback on when scanning is happening, and repeated failed attempts before a scan succeeds' },
@@ -1093,8 +1094,15 @@ function openCase(i, push = true) {
         <p>${gi.body || ''}</p>
         <div class="cs-idea-list">${giSteps.map((s, idx) => {
           const tradeoffs = s.tradeoffs || [];
+          const rawImgs = s.imgs || (s.img ? [s.img] : []);
+          const imgItems = rawImgs.map(it => typeof it === 'string' ? { src: it, label: '' } : it);
+          const imgsHtml = imgItems.length ? `<div class="cs-idea-imgs">${imgItems.map(im => `
+            <figure class="cs-idea-fig${im.small ? ' cs-idea-fig--small' : ''}" role="img" aria-label="${(im.alt || im.label || s.title || '').replace(/"/g, '&quot;')}">
+              <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
+            </figure>`).join('')}</div>` : '';
           return `
           <div class="cs-idea-card">
+            ${imgsHtml}
             <div class="cs-idea-head">
               <span class="cs-idea-num">0${idx + 1}</span>
               <span class="cs-idea-title">${s.title}</span>
@@ -1109,6 +1117,12 @@ function openCase(i, push = true) {
           </div>`;
         }).join('')}</div>`;
       lastGlassesSec.insertAdjacentElement('afterend', giSec);
+      giSec.querySelectorAll('.cs-idea-fig img').forEach(img => {
+        img.addEventListener('click', e => {
+          e.stopPropagation();
+          if (!img.closest('.cs-idea-fig').classList.contains('is-missing')) openLightbox(img.src, img.alt);
+        });
+      });
 
       const giNav = document.createElement('a');
       giNav.className = 'cs-nav-link cs-nav-sub';
