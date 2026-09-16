@@ -312,10 +312,9 @@ const cases = [
       glassesFinal: {
         subhead: 'The phone becomes the shutter the glasses don\'t have.',
         body: 'Pressing the capture button in the app takes a photo through the glasses\' camera. That frame is sent to Claude, which identifies the product and checks its ingredients against what the user is avoiding, surfacing a warning if there\'s a match. Rather than trying to force a barcode read out of a capped-quality video frame, the app leans on AI identification to recover the accuracy the hardware and SDK couldn\'t provide directly.',
-        imgs: [
-          { src: 'images_fl/glasses-capture.png', alt: 'Phone screen showing the capture button.' },
-          { src: 'images_fl/glasses-result.png', alt: 'Result screen showing the identified product and an allergy warning if there\'s a match.' },
-        ],
+        // imgs: capture-button and result screens, pending upload:
+        // { src: 'images_fl/glasses-capture.png', alt: 'Phone screen showing the capture button.' },
+        // { src: 'images_fl/glasses-result.png', alt: 'Result screen showing the identified product and an allergy warning if there\'s a match.' },
       },
       glassesOutcomes: {
         subhead: 'Working around what the SDK won\'t let you touch.',
