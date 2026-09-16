@@ -303,6 +303,7 @@ const cases = [
           {
             title: 'Phone as manual trigger + AI identification',
             body: 'Use the phone as a deliberate photo trigger, then pass that frame to Claude to identify the product and check ingredients, instead of relying on barcode-database lookup.',
+            imgs: [{ src: 'images_fl/ideation4.png', alt: 'Sketch of the phone-as-trigger concept, capturing a photo on demand and sending it to Claude for identification.' }],
             tradeoffs: [
               { type: 'pro', text: 'Gives the user control over exactly when a photo is taken, avoiding the ambiguous "is it scanning right now" problem' },
               { type: 'con', text: 'Adds a manual step, which is a small step away from fully hands-free, but recovers accuracy that the capped image quality would otherwise have lost' },
