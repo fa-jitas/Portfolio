@@ -473,7 +473,7 @@ const cases = [
     heroImg: 'images_mp/hero.png',
     slug: 'mentorship-platform',
     label: 'Product Design · UX Research · 2026',
-    title: 'Mentorship Platform',
+    title: 'UCSC MS HCI Mentorship Platform',
     role: ['UX Designer', 'UX Research', 'Project Lead'],
     team: ['2 Design Teams', '2 Developers', 'Chair of the MS HCI Department'],
     timeline: 'July 2026 – ongoing',

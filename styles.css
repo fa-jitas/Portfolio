@@ -1088,6 +1088,10 @@ footer {
   gap: 10px;
   width: fit-content;
   cursor: pointer;
+  margin-bottom: 12px;
+}
+.cs-experience-title h3 {
+  margin-bottom: 0;
 }
 .cs-experience-title:focus-visible {
   outline: 2px solid var(--accent);
