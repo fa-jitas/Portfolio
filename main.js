@@ -270,7 +270,7 @@ const cases = [
     label: 'Product Design · UX Research · 2026',
     title: 'FoodLens',
     role: ['Founder', 'UX / Product Designer'],
-    team: 'Solo project',
+    team: ['1 Developer'],
     timeline: 'June 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
     overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
