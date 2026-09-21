@@ -1807,6 +1807,7 @@ footer {
   border-radius: 14px;
   background: #fff;
   padding: 12px 12px 10px;
+  align-self: start;
 }
 .cs-idea-fig--framed img { border-radius: 10px; }
 .cs-idea-fig.is-missing img { display: none; }
