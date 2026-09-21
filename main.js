@@ -315,7 +315,7 @@ const cases = [
         subhead: 'The phone becomes the shutter the glasses don\'t have.',
         body: 'Pressing the capture button in the app takes a photo through the glasses\' camera. That frame is sent to Claude, which identifies the product and checks its ingredients against what the user is avoiding, surfacing a warning if there\'s a match. Rather than trying to force a barcode read out of a capped-quality video frame, the app leans on AI identification to recover the accuracy the hardware and SDK couldn\'t provide directly.',
         imgs: [
-          { src: 'images_fl/finalsolution3.gif', alt: 'Phone screen showing the capture button that triggers a photo through the glasses\' camera.', caption: 'Glasses play audio notifying user if product contains allergy ingredient' },
+          { src: 'images_fl/finalsolution3.gif', alt: 'Phone screen showing the capture button that triggers a photo through the glasses\' camera.', caption: 'Glasses play audio notifying user if product contains allergy ingredient', frame: true },
           { src: 'images_fl/finalsolution4.gif', alt: 'Result screen showing the identified product and an allergy warning if there\'s a match.', small: true },
         ],
       },
@@ -1153,7 +1153,7 @@ function openCase(i, push = true) {
         <div class="cs-section-sub">${gf.subhead}</div>
         <p>${gf.body}</p>
         ${gfImgs.length ? `<div class="cs-idea-imgs">${gfImgs.map(im => `
-          <figure class="cs-idea-fig${im.small ? ' cs-idea-fig--small' : ''}" role="img" aria-label="${(im.alt || '').replace(/"/g, '&quot;')}">
+          <figure class="cs-idea-fig${im.small ? ' cs-idea-fig--small' : ''}${im.frame ? ' cs-idea-fig--framed' : ''}" role="img" aria-label="${(im.alt || '').replace(/"/g, '&quot;')}">
             <img src="${im.src}" alt="" loading="lazy" onerror="this.closest('.cs-idea-fig').classList.add('is-missing')">
             ${im.caption ? `<figcaption class="cs-idea-fig-caption">${im.caption}</figcaption>` : ''}
           </figure>`).join('')}</div>` : ''}`;

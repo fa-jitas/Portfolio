@@ -1801,6 +1801,14 @@ footer {
   text-align: center;
   letter-spacing: .02em;
 }
+/* bordered card around an image + its caption, e.g. to set off one gif in a mixed row */
+.cs-idea-fig--framed {
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: #fff;
+  padding: 12px 12px 10px;
+}
+.cs-idea-fig--framed img { border-radius: 10px; }
 .cs-idea-fig.is-missing img { display: none; }
 .cs-idea-fig.is-missing::before {
   content: '🖼️';
