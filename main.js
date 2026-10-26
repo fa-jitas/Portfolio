@@ -125,10 +125,10 @@ document.querySelectorAll('nav a[href^="#"]').forEach(a => {
 
 /* ══ CHAT BUBBLES ══ */
 const bubbles = [
-  { text: 'hey! 👋' },
-  { text: 'I worked in healthcare, so naturally, ive been drawn towards messy problems and fixing them' },
-  { text: 'turns out, healthcare had an even messier one:  technology.  now im here studying HCI' },
-  { text: 'outside of school, im buiding products with AI and working towards my puppies trick dog title🐕🏆' },
+  { text: 'Hey! 👋' },
+  { text: 'I worked in healthcare, so naturally, I\'ve been drawn towards messy problems and fixing them' },
+  { text: 'Turns out, healthcare had an even messier one:  technology.  Now I\'m here studying HCI' },
+  { text: 'Outside of school, I\'m building products with AI and working towards my puppy\'s trick dog title🐕🏆' },
 ];
 
 function typeBubble(container, text, onDone) {
