@@ -2285,6 +2285,10 @@ footer {
   flex-wrap: wrap;
 }
 .cs-recognition:empty { display: none; }
+.cs-top-video .cs-recognition {
+  margin: 0 0 20px;
+  border: 2px solid #E33554;
+}
 .cs-recognition-note {
   flex: 1 1 320px;
   margin: 0 !important;

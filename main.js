@@ -887,6 +887,10 @@ function openCase(i, push = true) {
     topVideoSec.id = 'cs-top-video';
     topVideoSec.className = 'cs-section cs-dynamic-section cs-top-video';
     topVideoSec.innerHTML = `
+      ${p.recognition ? `<div class="cs-recognition">
+        <p class="cs-recognition-note">${p.recognition.note}</p>
+        ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'View'}</a>` : ''}
+      </div>` : ''}
       <div class="cs-video-wrap">
         <span class="cs-video-badge">Video Tutorial</span>
         <video class="cs-video" controls playsinline preload="metadata"${p.solutionVideoPoster ? ` poster="${p.solutionVideoPoster}"` : ''}>
@@ -894,11 +898,7 @@ function openCase(i, push = true) {
           Your browser doesn&#39;t support embedded video.
         </video>
       </div>
-      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}
-      ${p.recognition ? `<div class="cs-recognition">
-        <p class="cs-recognition-note">${p.recognition.note}</p>
-        ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'View'}</a>` : ''}
-      </div>` : ''}`;
+      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}`;
     introSection.insertAdjacentElement('beforebegin', topVideoSec);
   }
 
