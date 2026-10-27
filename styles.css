@@ -1014,6 +1014,7 @@ footer {
 .cs-fact--stack dd span {
   display: block;
 }
+.cs-fact--stack dd span.cs-highlight { display: inline-block; }
 .cs-fact--stack dd span + span {
   margin-top: 3px;
 }
@@ -2287,7 +2288,6 @@ footer {
 .cs-recognition:empty { display: none; }
 .cs-top-video .cs-recognition {
   margin: 0 0 20px;
-  border: 2px solid var(--accent);
 }
 .cs-recognition-note {
   flex: 1 1 320px;

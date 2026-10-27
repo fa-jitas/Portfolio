@@ -413,7 +413,8 @@ const cases = [
     slug: 'co-op-watch',
     label: 'Interaction Design · UX Research · 2026',
     title: 'Co-op Watch',
-    role: ['Interaction Designer', 'UX Research', 'Product Management'],
+    roleHighlight: 'Interaction Designer',
+    role: ['Interaction Designer', 'UX Research', 'Product Management', 'Agentic Front-End Developer'],
     team: ['UI Developer', 'UI Designer', 'UX Research', 'Principal Investigator'],
     timeline: 'March 2026 – ongoing',
     tools: ['Figma', 'Claude Code', 'GitHub'],
@@ -496,8 +497,9 @@ const cases = [
     slug: 'mentorship-platform',
     label: 'Product Design · UX Research · 2026',
     title: 'UCSC MS HCI Mentorship Platform',
-    role: ['UX Designer', 'UX Research', 'Product Manager'],
-    team: ['2 Design Teams', '2 Developers', '1 Research', 'Chair of the MS HCI Department'],
+    roleHighlight: 'Product Manager',
+    role: ['UX Designer', 'UX Research', 'Product Manager', 'Agentic Front-End Developer'],
+    team: ['2 Design Teams', '2 Developers', '1 UX Research', 'Chair of the MS HCI Department'],
     timeline: 'July 2026 – ongoing',
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'VS Code', 'GitHub'],
     subheads: {
@@ -658,12 +660,12 @@ function openCase(i, push = true) {
   if (factsEl) {
     const toolsHtml = Array.isArray(p.tools) && p.tools.length
       ? `<ul class="cs-fact-tools">${p.tools.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
-    const stack = v => Array.isArray(v) ? { html: v.map(n => `<span>${n}</span>`).join(''), stacked: true } : { html: v, stacked: false };
+    const stack = (v, hl) => Array.isArray(v) ? { html: v.map(n => `<span${n === hl ? ' class="cs-highlight"' : ''}>${n}</span>`).join(''), stacked: true } : { html: v, stacked: false };
     const facts = [];
     if (toolsHtml) facts.push(`<div class="cs-fact cs-fact--tools"><dt>Tools</dt><dd>${toolsHtml}</dd></div>`);
     facts.push(...[['Role', p.role], ['Team', p.team]].filter(([, v]) => v)
       .map(([k, v]) => {
-        const { html, stacked } = stack(v);
+        const { html, stacked } = stack(v, k === 'Role' ? p.roleHighlight : null);
         return `<div class="cs-fact${stacked ? ' cs-fact--stack' : ''}"><dt>${k}</dt><dd>${html}</dd></div>`;
       }));
     factsEl.innerHTML = facts.join('');
