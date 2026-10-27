@@ -422,6 +422,7 @@ footer {
   gap: 8px;
   padding: 20px 16px 24px;
   background: #FFFFFF;
+  position: relative;
 }
 .bubble {
   max-width: 75%;
@@ -487,6 +488,10 @@ footer {
   margin-left: 4px;
   opacity: 0;
   animation: bubblePop .22s cubic-bezier(.34,1.56,.64,1) forwards;
+  /* pinned to the bottom of the fixed-height window; sent messages stack from the top */
+  position: absolute;
+  left: 16px;
+  bottom: 24px;
 }
 .bubble-typing .dot {
   width: 6px; height: 6px;
@@ -1796,16 +1801,17 @@ footer {
 .cs-idea-fig-caption {
   margin: 8px 0 0;
   font-size: 13px;
+  line-height: 1.65;
   color: var(--muted);
-  font-style: italic;
+  font-weight: 700;
   text-align: center;
   letter-spacing: .02em;
 }
 /* bordered card around an image + its caption, e.g. to set off one gif in a mixed row */
 .cs-idea-fig--framed {
-  border: 1px solid var(--rule);
+  border: 1px solid #D4D4D4;
   border-radius: 14px;
-  background: #fff;
+  background: #F0ECEC;
   padding: 12px 12px 10px;
   align-self: start;
 }

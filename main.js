@@ -154,6 +154,27 @@ function typeBubble(container, text, onDone) {
 function startChat() {
   const container = document.getElementById('chat-bubbles');
   if (!container) return;
+  // Reserve the final height up front so the window doesn't grow as messages arrive.
+  function reserveHeight() {
+    container.style.minHeight = '';
+    const ghosts = bubbles.map(({ text }) => {
+      const g = document.createElement('div');
+      g.className = 'bubble';
+      g.style.animation = 'none';
+      g.innerHTML = `<p>${text.replace(/\n/g, '<br>')}</p>`;
+      container.appendChild(g);
+      return g;
+    });
+    appendGamePigeon(container);
+    const gp = container.lastElementChild;
+    container.style.minHeight = container.offsetHeight + 'px';
+    ghosts.forEach(g => g.remove());
+    gp.remove();
+  }
+  if (!container.querySelector('.bubble, .gp-bubble')) reserveHeight();
+  window.addEventListener('resize', () => {
+    if (!container.querySelector('.bubble, .gp-bubble')) reserveHeight();
+  });
   let idx = 0;
   function next() {
     if (idx >= bubbles.length) { setTimeout(() => appendGamePigeon(container), 700); return; }
@@ -873,7 +894,11 @@ function openCase(i, push = true) {
           Your browser doesn&#39;t support embedded video.
         </video>
       </div>
-      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}`;
+      ${(p.rules && p.rules.length) ? `<button type="button" class="cs-rules-btn" onclick="openRules(${i})">Written Rules</button>` : ''}
+      ${p.recognition ? `<div class="cs-recognition">
+        <p class="cs-recognition-note">${p.recognition.note}</p>
+        ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'View'}</a>` : ''}
+      </div>` : ''}`;
     introSection.insertAdjacentElement('beforebegin', topVideoSec);
   }
 
@@ -1213,7 +1238,7 @@ function openCase(i, push = true) {
 
   const recognitionEl = reflectionSection.querySelector('.cs-recognition');
   if (recognitionEl) {
-    if (p.recognition) {
+    if (p.recognition && !p.solutionVideo) {
       recognitionEl.innerHTML = `
         <p class="cs-recognition-note">${p.recognition.note}</p>
         ${p.recognition.file ? `<a class="cs-recognition-link" href="${p.recognition.file}" target="_blank" rel="noopener">${p.recognition.label || 'View'}</a>` : ''}`;
