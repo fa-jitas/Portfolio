@@ -508,7 +508,7 @@ const cases = [
       research: 'Mentor and mentee information was missing or out-of-date.',
       ideation: 'Two ways to reduce the amount of time spent on filling in a profile.',
       solution: 'People import their information to fill out their profile.',
-      reflection: 'Designing for deadlines and limited resources',
+      reflection: 'Designing within technical constraints',
     },
     overview: 'The mentor coalition pairs UX and HCI professionals from industry and non-profit organizations with students in UC Santa Cruz\'s HCI master\'s program. This case study covers the onboarding flow for the platform that automates the matching process.',
     hmw: 'Collect mentor and mentee information in a way that stays accurate and can be updated?',
@@ -548,11 +548,11 @@ const cases = [
     flows: [
       { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/ucscfinal.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
     ],
-    reflection: 'This project taught me how to think about designing for integrations: evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
+    reflection: 'This project taught me how to balance user experience with technical feasibility and development resources. I explored different ways to import profile information and refined the onboarding experience based on what our team could realistically implement.',
     takeaways: [
-      { title: 'What I\'d change', body: 'Move consent earlier. Right now it happens when someone decides to import, so they agree before knowing what will be taken.' },
-      { title: 'What\'s still open', body: 'Import requires a structured LinkedIn or resume, so some users might rely on manual entry.' },
-      { title: 'Where this goes next', body: 'The chair wanted an audio element in onboarding. It didn\'t work as an intake method, so I\'ll explore having it after the match instead.' },
+      { title: 'What I\'d change', body: 'Validate the updated onboarding UI through usability testing, particularly whether users understand the two profile completion options and their selected states.' },
+      { title: 'What\'s still open', body: 'Resume importing depends on how accurately information can be extracted and populated into profile fields. Users may still need to review or manually enter missing information.' },
+      { title: 'Where this goes next', body: 'Continue refining the onboarding flow and explore introducing the chair\'s proposed audio feature after matching, rather than during initial profile setup.' },
     ],
   },
 ];
