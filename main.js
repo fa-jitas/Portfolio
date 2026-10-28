@@ -508,6 +508,7 @@ const cases = [
       research: 'Mentor and mentee information was missing or out-of-date.',
       ideation: 'Two ways to reduce the amount of time spent on filling in a profile.',
       solution: 'People import their information to fill out their profile.',
+      reflection: 'Designing for deadlines and limited resources',
     },
     overview: 'The mentor coalition pairs UX and HCI professionals from industry and non-profit organizations with students in UC Santa Cruz\'s HCI master\'s program. This case study covers the onboarding flow for the platform that automates the matching process.',
     hmw: 'Collect mentor and mentee information in a way that stays accurate and can be updated?',
