@@ -546,7 +546,8 @@ const cases = [
     outcome: 'Users choose to import from an existing resume or LinkedIn profile, or fill it out manually. Importing fills the relevant fields automatically.',
     flowsStyle: 'flows-centered',
     flows: [
-      { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/ucscfinal.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
+      { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/ucscfinalsuccess.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
+      { title: 'Designing for Edge Cases', body: 'Designed an error screen for failed resume uploads, allowing users to retry or fill out their profile manually', img: 'images_mp/ucscfinalerror.gif', alt: 'An error screen shown when a resume upload fails, with options to retry or fill out the profile manually.' },
     ],
     reflection: 'This project taught me how to balance user experience with technical feasibility and development resources. I explored different ways to import profile information and refined the onboarding experience based on what our team could realistically implement.',
     takeaways: [
