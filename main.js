@@ -545,7 +545,7 @@ const cases = [
     outcome: 'Users choose to import from an existing resume or LinkedIn profile, or fill it out manually. Importing fills the relevant fields automatically.',
     flowsStyle: 'flows-centered',
     flows: [
-      { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/finalsolution1.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
+      { title: 'Import says what it will take before it takes it', body: 'Before connecting, people see which fields will be filled and what won\'t be touched. The import is scoped to what the profile needs rather than everything the source has.', img: 'images_mp/ucscfinal.gif', alt: 'A pre-import screen listing the profile fields that will be filled and the ones that stay untouched.' },
     ],
     reflection: 'This project taught me how to think about designing for integrations: evaluating different methods to pull in outside data and weighing what is actually feasible to build.',
     takeaways: [
