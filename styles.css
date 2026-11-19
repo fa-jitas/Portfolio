@@ -2739,3 +2739,17 @@ footer {
 
 /* closed overlays are taken out of the page (and the accessibility tree) with the hidden attribute */
 [hidden] { display: none !important; }
+
+/* "See more" and the Phone / Ray-Ban toggle share one bottom row */
+@media (min-width: 701px) {
+  .cs-pv-text { justify-content: flex-start; padding-bottom: 32px; }
+  .cs-pv-main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .cs-pv-more { margin-top: 16px; height: 48px; padding-top: 0; padding-bottom: 0; }
+  .cs-pv-img { padding-bottom: 32px; justify-content: flex-start; }
+  .cs-pv-img img { flex: 1; min-height: 0; height: auto; }
+  .cs-pv-tabs { height: 48px; align-items: center; flex-shrink: 0; margin-top: 16px; }
+  .cs-pv-img.no-tabs::after { height: 48px; margin-top: 16px; }
+}
+@media (min-width: 701px) {
+  .cs-pv-img img { flex: 1 1 0; height: 0; min-height: 0; }
+}

@@ -71,6 +71,7 @@ function renderPreview() {
   const pg = pages[previewPage];
   body.innerHTML = `
     <div class="cs-pv-text">
+      <div class="cs-pv-main">
       <h3 class="cs-pv-title">${p.title}</h3>
       <p class="cs-pv-sub">${v.role} · ${(String(v.date).match(/\b20\d{2}\b/) || [v.date])[0]}</p>
       <p class="cs-pv-did">${pg.did}</p>
@@ -78,6 +79,7 @@ function renderPreview() {
       <p class="cs-pv-impact">${pg.impact}</p>
       <h4 class="eyebrow cs-pv-label">Keywords</h4>
       <p class="cs-pv-impact">${pg.keywords.join(' · ')}</p>
+      </div>
       <button type="button" class="cs-pv-more" onclick="openCaseFromPreview()">See more →</button>
     </div>
     <div class="cs-pv-img${pages.length > 1 ? '' : ' no-tabs'}"><img src="${pg.img}" alt="${p.title} ${pg.tab || ''} prototype">
