@@ -74,9 +74,9 @@ function renderPreview() {
       <h3 class="cs-pv-title">${p.title}</h3>
       <p class="cs-pv-sub">${v.role} · ${(String(v.date).match(/\b20\d{2}\b/) || [v.date])[0]}</p>
       <p class="cs-pv-did">${pg.did}</p>
-      <h4 class="cs-pv-label">Impact</h4>
+      <h4 class="eyebrow cs-pv-label">Impact</h4>
       <p class="cs-pv-impact">${pg.impact}</p>
-      <h4 class="cs-pv-label">Keywords</h4>
+      <h4 class="eyebrow cs-pv-label">Keywords</h4>
       <p class="cs-pv-impact">${pg.keywords.join(' · ')}</p>
       <button type="button" class="cs-pv-more" onclick="openCaseFromPreview()">See more →</button>
     </div>
@@ -122,10 +122,10 @@ function boldRuleLead(s) {
   return m ? `<strong>${m[1]}</strong>${m[2]}` : s;
 }
 function rulesSectionHtml(r) {
-  if (r.steps) return `<h4>${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${boldRuleLead(s)}</li>`).join('')}</ol>`;
-  if (r.lose) return `<h4>${r.heading}</h4><div class="cs-rules-lose">${r.lose.map((s, idx) => `${idx ? '<div class="cs-rules-or"><span>or</span></div>' : ''}<p class="cs-rules-lose-line">${s}</p>`).join('')}</div>`;
-  if (r.list) return `<h4>${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul>`;
-  return `<h4>${r.title}</h4><p>${r.text}</p>`;
+  if (r.steps) return `<h4 class="eyebrow">${r.heading}</h4><ol class="cs-rules-steps">${r.steps.map(s => `<li>${boldRuleLead(s)}</li>`).join('')}</ol>`;
+  if (r.lose) return `<h4 class="eyebrow">${r.heading}</h4><div class="cs-rules-lose">${r.lose.map((s, idx) => `${idx ? '<div class="cs-rules-or"><span>or</span></div>' : ''}<p class="cs-rules-lose-line">${s}</p>`).join('')}</div>`;
+  if (r.list) return `<h4 class="eyebrow">${r.heading}</h4><ul class="cs-rules-plain">${r.list.map(s => `<li>${s}</li>`).join('')}</ul>`;
+  return `<h4 class="eyebrow">${r.title}</h4><p>${r.text}</p>`;
 }
 function renderRulesPage() {
   const body = document.getElementById('cs-rules-body');
@@ -758,11 +758,11 @@ function openCase(i, push = true) {
       ? `<ul class="cs-fact-tools">${p.tools.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
     const stack = (v, hl) => Array.isArray(v) ? { html: v.map(n => `<span${n === hl ? ' class="cs-highlight"' : ''}>${n}</span>`).join(''), stacked: true } : { html: v, stacked: false };
     const facts = [];
-    if (toolsHtml) facts.push(`<div class="cs-fact cs-fact--tools"><dt>Tools</dt><dd>${toolsHtml}</dd></div>`);
+    if (toolsHtml) facts.push(`<div class="cs-fact cs-fact--tools"><dt class="eyebrow">Tools</dt><dd>${toolsHtml}</dd></div>`);
     facts.push(...[['Role', p.role], ['Team', p.team]].filter(([, v]) => v)
       .map(([k, v]) => {
         const { html, stacked } = stack(v, k === 'Role' ? p.roleHighlight : null);
-        return `<div class="cs-fact${stacked ? ' cs-fact--stack' : ''}"><dt>${k}</dt><dd>${html}</dd></div>`;
+        return `<div class="cs-fact${stacked ? ' cs-fact--stack' : ''}"><dt class="eyebrow">${k}</dt><dd>${html}</dd></div>`;
       }));
     factsEl.innerHTML = facts.join('');
     factsEl.style.display = facts.length ? '' : 'none';
@@ -870,7 +870,7 @@ function openCase(i, push = true) {
           ${!hasDetail ? '<p class="cs-idea-progress">In progress</p>' : ''}
           ${s.body ? `<p class="cs-idea-text">${s.body}</p>` : ''}
           ${tradeoffs.length ? `<div class="cs-idea-tradeoffs">
-            <span class="cs-idea-tradeoffs-label">Trade-offs</span>
+            <span class="eyebrow cs-idea-tradeoffs-label">Trade-offs</span>
             <ul>${tradeoffs.map(t => {
               const obj = t && typeof t === 'object';
               const kind = obj ? (t.type || '') : '';
@@ -922,10 +922,10 @@ function openCase(i, push = true) {
     // its flow items, if any.
     flowsEl.innerHTML = flowData.length ? flowItemsHtml(flowData) : '';
   } else if (p.solutionImg && !flowData.length) {
-    flowsEl.innerHTML = `<img src="${p.solutionImg}" alt="${p.title} solution" style="width:100%;border-radius:16px;display:block;">`;
+    flowsEl.innerHTML = `<img src="${p.solutionImg}" alt="${p.title} solution" style="width:100%;border-radius:var(--r-md);display:block;">`;
   } else {
     let html = p.flowsStyle === 'flows-free'
-      ? `<div style="display:flex;gap:28px;align-items:flex-start;"><div style="flex:1;">${flowData.map(f=>`<div class="cs-flow-row"><div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div></div>`).join('')}</div><div class="cs-flow-img">${flowData.find(f=>f.img)?`<img src="${flowData.find(f=>f.img).img}" style="width:100%;border-radius:16px;">`:''}
+      ? `<div style="display:flex;gap:28px;align-items:flex-start;"><div style="flex:1;">${flowData.map(f=>`<div class="cs-flow-row"><div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div></div>`).join('')}</div><div class="cs-flow-img">${flowData.find(f=>f.img)?`<img src="${flowData.find(f=>f.img).img}" style="width:100%;border-radius:var(--r-md);">`:''}
 </div></div>`
       : flowItemsHtml(flowData);
     if (p.solutionImg) {
@@ -1008,7 +1008,7 @@ function openCase(i, push = true) {
     const hasGif = !!data.gifPrototype;
     const isFindings = data.style === 'findings';
 
-    let innerHTML = `<h3>${label}</h3><p>${data.intro}</p>`;
+    let innerHTML = `<h3 class="eyebrow">${label}</h3><p>${data.intro}</p>`;
 
     if (isFindings) {
       // Finding cards: icon + title + observed → fixed
@@ -1050,7 +1050,7 @@ function openCase(i, push = true) {
         </div>`;
     } else {
       // Default: standard flow-rows
-      innerHTML += `${data.img ? `<img src="${data.img}" alt="${label}" style="width:100%;border-radius:16px;display:block;margin-top:24px;">` : ''}
+      innerHTML += `${data.img ? `<img src="${data.img}" alt="${label}" style="width:100%;border-radius:var(--r-md);display:block;margin-top:24px;">` : ''}
         <div class="cs-flows" style="margin-top:${data.img ? '28px' : '0'}">${
           (data.flows || []).map(f => `<div class="cs-flow-row"><div class="cs-flow-text"><div class="cs-flow-title">${f.title}</div><div class="cs-flow-body">${f.body}</div></div>${f.img ? `<div class="cs-flow-img"><img src="${f.img}" alt="${f.title}"></div>` : ''}</div>`).join('')
         }</div>`;
@@ -1117,7 +1117,7 @@ function openCase(i, push = true) {
       poSec.id = 'cs-phone-outcomes';
       poSec.className = 'cs-section cs-dynamic-section';
       poSec.innerHTML = `
-        <h3>Outcomes</h3>
+        <h3 class="eyebrow">Outcomes</h3>
         <div class="cs-section-sub">${po.subhead}</div>
         <p>${po.body}</p>
         ${poTakeaways.length ? `<div class="cs-takeaways">${poTakeaways.map(t => `
@@ -1170,11 +1170,11 @@ function openCase(i, push = true) {
       grSec.id = 'cs-glasses-research';
       grSec.className = 'cs-section cs-dynamic-section';
       grSec.innerHTML = `
-        <h3>Research</h3>
+        <h3 class="eyebrow">Research</h3>
         <div class="cs-section-sub">${gr.subhead}</div>
         <p>${gr.body}</p>
         ${(gr.insights && gr.insights.length) ? `
-          <div class="cs-insights-label">What I found</div>
+          <div class="eyebrow cs-insights-label">What I found</div>
           <div class="cs-insights">${gr.insights.map(ins => `
             <div class="cs-insight">
               <span class="cs-insight-num" aria-hidden="true">✦</span>
@@ -1219,7 +1219,7 @@ function openCase(i, push = true) {
       giSec.id = 'cs-glasses-ideation';
       giSec.className = 'cs-section cs-dynamic-section';
       giSec.innerHTML = `
-        <h3>Ideation</h3>
+        <h3 class="eyebrow">Ideation</h3>
         <div class="cs-section-sub">${gi.subhead || ''}</div>
         <p>${gi.body || ''}</p>
         <div class="cs-idea-list">${giSteps.map((s, idx) => {
@@ -1240,7 +1240,7 @@ function openCase(i, push = true) {
             <div class="cs-idea-detail">
               ${s.body ? `<p class="cs-idea-text">${s.body}</p>` : ''}
               ${tradeoffs.length ? `<div class="cs-idea-tradeoffs">
-                <span class="cs-idea-tradeoffs-label">Trade-offs</span>
+                <span class="eyebrow cs-idea-tradeoffs-label">Trade-offs</span>
                 <ul>${tradeoffs.map(t => `<li class="${t.type === 'pro' ? 'cs-to-pro' : t.type === 'con' ? 'cs-to-con' : ''}">${t.text}</li>`).join('')}</ul>
               </div>` : ''}
             </div>
@@ -1272,7 +1272,7 @@ function openCase(i, push = true) {
       gfSec.id = 'cs-glasses-final';
       gfSec.className = 'cs-section cs-dynamic-section';
       gfSec.innerHTML = `
-        <h3>Final Designs</h3>
+        <h3 class="eyebrow">Final Designs</h3>
         <div class="cs-section-sub">${gf.subhead}</div>
         <p>${gf.body}</p>
         ${gfImgs.length ? `<div class="cs-idea-imgs">${gfImgs.map(im => `
@@ -1305,7 +1305,7 @@ function openCase(i, push = true) {
       goSec.id = 'cs-glasses-outcomes';
       goSec.className = 'cs-section cs-dynamic-section';
       goSec.innerHTML = `
-        <h3>Outcomes</h3>
+        <h3 class="eyebrow">Outcomes</h3>
         <div class="cs-section-sub">${go.subhead}</div>
         <p>${go.body}</p>
         ${goTakeaways.length ? `<div class="cs-takeaways">${goTakeaways.map(t => `
