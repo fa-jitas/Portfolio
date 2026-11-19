@@ -95,6 +95,7 @@ function openPreview(i) {
   previewIndex = i;
   previewPage = 0;
   renderPreview();
+  modal.hidden = false;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   modal.querySelector('.cs-pv-more').focus();
@@ -103,6 +104,7 @@ function closePreview() {
   const modal = document.getElementById('cs-preview-modal');
   if (!modal || !modal.classList.contains('open')) return;
   modal.classList.remove('open');
+  modal.hidden = true;
   document.body.style.overflow = '';
 }
 function openCaseFromPreview() {
@@ -152,12 +154,13 @@ function openRules(i) {
   rulesPages = p.rules;
   rulesPage = 0;
   renderRulesPage();
+  modal.hidden = false;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeRules() {
   const modal = document.getElementById('cs-rules-modal');
-  if (modal) modal.classList.remove('open');
+  if (modal) { modal.classList.remove('open'); modal.hidden = true; }
   const cs = document.getElementById('case-study');
   document.body.style.overflow = (cs && cs.classList.contains('open')) ? 'hidden' : '';
 }
@@ -1361,6 +1364,9 @@ function openCase(i, push = true) {
   }
 
   cs.querySelectorAll('.cs-section').forEach(s => s.classList.remove('cs-visible'));
+  clearTimeout(cs._hideTimer);
+  cs.hidden = false;
+  void cs.offsetWidth; // flush so the slide-in transition still runs after un-hiding
   cs.classList.add('open');
   requestAnimationFrame(() => { cs.scrollTop = 0; });
   document.body.style.overflow = 'hidden';
@@ -1506,11 +1512,14 @@ function closeCase(push = true) {
   const cs = document.getElementById('case-study');
   if (!cs) return;
   cs.classList.remove('open');
+  // hide once the slide-out finishes (matches the .45s transform transition)
+  clearTimeout(cs._hideTimer);
+  cs._hideTimer = setTimeout(() => { if (!cs.classList.contains('open')) cs.hidden = true; }, 500);
   cs.scrollTop = 0;
   document.body.style.overflow = '';
   const btn = document.getElementById('back-to-top');
   if (btn) btn.classList.remove('visible');
-  document.title = 'Nicole Fajardo';
+  document.title = 'Nicole Fajardo · Product Designer';
   if (push) {
     if (history.state && history.state.caseIndex != null) history.back();
     else if (location.pathname !== '/') history.pushState({}, '', '/');
@@ -1531,7 +1540,7 @@ function syncRoute() {
   } else if (cs && cs.classList.contains('open')) {
     closeCase(false);
   } else {
-    document.title = 'Nicole Fajardo';
+    document.title = 'Nicole Fajardo · Product Designer';
   }
 }
 window.addEventListener('popstate', syncRoute);

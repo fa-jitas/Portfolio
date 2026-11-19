@@ -2799,3 +2799,6 @@ footer {
 /* taller image box so tall phone screens (FoodLens Phone) scale up */
 .cs-pv-img img { height: 570px; }
 @media (max-width: 700px) { .cs-pv-img img { height: 340px; } }
+
+/* closed overlays are taken out of the page (and the accessibility tree) with the hidden attribute */
+[hidden] { display: none !important; }
