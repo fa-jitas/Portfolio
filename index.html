@@ -7,7 +7,7 @@
 <title>Nicole Fajardo</title>
 <meta name="color-scheme" content="light">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261028-5">
+<link rel="stylesheet" href="styles.css?v=20261030-22">
 </head>
 <body>
 <div class="cs-lightbox" id="cs-lightbox" onclick="closeLightbox()">
@@ -20,6 +20,12 @@
     <button class="cs-rules-close" onclick="closeRules()" aria-label="Close">×</button>
     <h3 class="cs-rules-title">How to Play</h3>
     <div class="cs-rules-body" id="cs-rules-body"></div>
+  </div>
+</div>
+<div class="cs-preview-modal" id="cs-preview-modal" onclick="closePreview()">
+  <div class="cs-preview-panel" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+    <button class="cs-rules-close" onclick="closePreview()" aria-label="Close">×</button>
+    <div class="cs-preview-body" id="cs-preview-body"></div>
   </div>
 </div>
 <div class="wrap">
@@ -63,7 +69,7 @@
     <p class="sec-label">Work</p>
     <div class="work-list">
 
-      <div class="work-item" onclick="openCase(0)">
+      <div class="work-item" onclick="openPreview(0)">
         <div class="wi-left">
           <span class="wi-name">FoodLens</span>
           <span class="wi-meta">iOS 🔗 Smart Glasses</span>
@@ -79,20 +85,23 @@
         </div>
       </div>
 
-      <div class="work-item" onclick="openCase(1)">
+      <div class="work-item" onclick="openPreview(1)">
         <div class="wi-left">
           <span class="wi-name">Co-op Watch</span>
           <span class="wi-meta">Interactive Tabletop Display</span>
         </div>
         <span class="wi-right">2026 – Present</span>
         <div class="wi-tldr">
-          <div class="wi-tldr-img"><img src="images_cw/imgprototype.png" alt="Co-op Watch prototype"></div>
-          <div class="wi-tldr-label">TL;DR</div>
+          <div class="wi-tldr-img"><img src="images_cw/mockup.jpg" alt="Co-op Watch prototype"></div>
+          <div class="wi-tldr-top">
+            <div class="wi-tldr-label">TL;DR</div>
+            <span class="wi-tldr-tag">Research</span>
+          </div>
           <div class="wi-tldr-text">A co-op surveillance tabletop game designed to spark discussion between players rather than one-way instructions.</div>
         </div>
       </div>
 
-      <div class="work-item" onclick="openCase(2)">
+      <div class="work-item" onclick="openPreview(2)">
         <div class="wi-left">
           <span class="wi-name">UCSC MS HCI Mentorship Platform</span>
           <span class="wi-meta">Web App</span>
@@ -229,6 +238,6 @@
   </div><!-- /cs-wrap -->
 </div><!-- /case-study -->
 <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
-<script src="main.js?v=20261028-5"></script>
+<script src="main.js?v=20261030-22"></script>
 </body>
 </html>

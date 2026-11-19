@@ -56,8 +56,60 @@ document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
   const rules = document.getElementById('cs-rules-modal');
   if (rules && rules.classList.contains('open')) { closeRules(); return; }
+  const pv = document.getElementById('cs-preview-modal');
+  if (pv && pv.classList.contains('open')) { closePreview(); return; }
   closeLightbox(); closeCase();
 });
+
+/* ══ CASE PREVIEW MODAL ══ */
+let previewIndex = -1, previewPage = 0;
+function renderPreview() {
+  const p = cases[previewIndex];
+  const body = document.getElementById('cs-preview-body');
+  const v = p.preview;
+  const pages = v.pages || [v];
+  const pg = pages[previewPage];
+  body.innerHTML = `
+    <div class="cs-pv-text">
+      <h3 class="cs-pv-title">${p.title}</h3>
+      <p class="cs-pv-sub">${v.role} · ${(String(v.date).match(/\b20\d{2}\b/) || [v.date])[0]}</p>
+      <p class="cs-pv-did">${pg.did}</p>
+      <h4 class="cs-pv-label">Impact</h4>
+      <p class="cs-pv-impact">${pg.impact}</p>
+      <h4 class="cs-pv-label">Keywords</h4>
+      <p class="cs-pv-impact">${pg.keywords.join(' · ')}</p>
+      <button type="button" class="cs-pv-more" onclick="openCaseFromPreview()">See more →</button>
+    </div>
+    <div class="cs-pv-img${pages.length > 1 ? '' : ' no-tabs'}"><img src="${pg.img}" alt="${p.title} ${pg.tab || ''} prototype">
+      ${pages.length > 1 ? `<div class="cs-pv-tabs" role="tablist">${pages.map((x, n) => `<button type="button" role="tab" aria-selected="${n === previewPage}" class="cs-pv-tab${n === previewPage ? ' active' : ''}" onclick="gotoPreviewPage(${n})">${x.tab}</button>`).join('')}</div>` : ''}
+    </div>`;
+}
+function gotoPreviewPage(n) {
+  previewPage = n;
+  renderPreview();
+}
+function openPreview(i) {
+  const p = cases[i];
+  const modal = document.getElementById('cs-preview-modal');
+  if (!p || !p.preview || !modal) { openCase(i); return; }
+  previewIndex = i;
+  previewPage = 0;
+  renderPreview();
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modal.querySelector('.cs-pv-more').focus();
+}
+function closePreview() {
+  const modal = document.getElementById('cs-preview-modal');
+  if (!modal || !modal.classList.contains('open')) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openCaseFromPreview() {
+  const i = previewIndex;
+  closePreview();
+  openCase(i);
+}
 
 /* ══ RULES MODAL ══ */
 let rulesPages = [], rulesPage = 0;
@@ -293,6 +345,27 @@ const cases = [
     role: ['Founder', 'UX / Product Designer', 'Agentic Front-End Developer'],
     team: ['1 Developer'],
     timeline: 'June 2026 – ongoing',
+    preview: {
+      company: 'FoodLens (founder-led)',
+      role: 'Founder · UX / Product Designer',
+      date: 'June 2026 – Present',
+      pages: [
+        {
+          tab: 'Phone',
+          did: 'Led the end-to-end design of FoodLens, a hands-free allergen scanner for Meta smart glasses that flags ingredients the user avoids, even for products missing from barcode databases.',
+          impact: 'Replaced up to a minute of failed auto-scans with a single capture, by pairing a phone shutter with AI product identification, so shoppers get an answer in the aisle instead of waiting days.',
+          keywords: ['Cross-device UX (glasses ↔ phone)', 'Hardware & SDK constraints', 'AI-assisted identification', 'Fallback & error recovery', 'Competitive usability testing', 'Design–dev collaboration'],
+          img: 'images_fl/finalsolution1.gif',
+        },
+        {
+          tab: 'Ray-Ban Meta',
+          did: 'Led the end-to-end design of FoodLens, a hands-free allergen scanner for Meta smart glasses that flags ingredients the user avoids, even for products missing from barcode databases.',
+          impact: 'Replaced up to a minute of failed auto-scans with a single capture, by pairing a phone shutter with AI product identification, so shoppers get an answer in the aisle instead of waiting days.',
+          keywords: ['Cross-device UX (glasses ↔ phone)', 'Hardware & SDK constraints', 'AI-assisted identification', 'Fallback & error recovery', 'Competitive usability testing', 'Design–dev collaboration'],
+          img: 'images_fl/hero.png',
+        },
+      ],
+    },
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'Claude Design', 'GitHub', 'VS Code', 'TestFlight'],
     overview: 'FoodLens is a hands-free food scanner for smart glasses, built for people who check ingredients while shopping before they buy it. When the smart glasses are not connected, the feature falls back to the phone. This case study covers the phone experience, and the moment scanners fail most often, which is when a product isn\'t in the database.',
     experiences: {
@@ -417,6 +490,15 @@ const cases = [
     role: ['Interaction Designer', 'UX Researcher', 'Product Management', 'Agentic Front-End Developer'],
     team: ['UI Developer', 'UI Designer', 'UX Research', 'Principal Investigator'],
     timeline: 'March 2026 – ongoing',
+    preview: {
+      company: 'Research lab project',
+      role: 'Product Designer · UX Researcher',
+      date: 'March 2026 – Present',
+      did: 'Designed the interaction model for Co-op Watch, a cooperative surveillance game on a shared tabletop display, built as a research tool to study how groups discuss surveillance.',
+      impact: 'Accepted as a poster at SIGGRAPH Asia 2026, with an IRB-approved study underway to test whether narrative events turn one-player instruction into group discussion.',
+      keywords: ['Interaction design', 'Shared tabletop displays', 'Narrative & game design', 'Paper prototyping', 'Playtesting & observation', 'Research'],
+      img: 'images_cw/mockup.jpg',
+    },
     tools: ['Figma', 'Claude Code', 'GitHub'],
     subheads: {
       intro: 'A surveillance game played on an interactive tabletop display.',
@@ -501,6 +583,15 @@ const cases = [
     role: ['UX Designer', 'UX Researcher', 'Product Manager', 'Agentic Front-End Developer'],
     team: ['2 Design Teams', '2 Developers', '1 UX Research', 'Chair of the MS HCI Department'],
     timeline: 'July 2026 – ongoing',
+    preview: {
+      company: 'UCSC MS HCI Department',
+      role: 'UX Designer · Product Manager',
+      date: 'July 2026 – Present',
+      did: 'Led design of the admin experience for UCSC’s MS HCI mentorship platform, partnering with a second design team on the design system and onboarding while owning feature prioritization and the PRD.',
+      impact: 'Cut manual matching by 25% by working with engineers to shape onboarding around the data the matching algorithm needed.',
+      keywords: ['Admin dashboard design', 'Design systems', 'Designing for algorithms', 'PRD & feature prioritization', 'Cross-team collaboration', 'B2B / EdTech'],
+      img: 'images_mp/hero.png',
+    },
     tools: ['Figma', 'Figma MCP', 'Claude Code', 'VS Code', 'GitHub'],
     subheads: {
       intro: 'An onboarding flow for a HCI master\'s mentorship program that currently matches by hand.',

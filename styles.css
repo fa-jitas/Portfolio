@@ -66,7 +66,7 @@ header {
 
 
 .header-role {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   font-weight: 400;
   margin-top: 10px;
@@ -86,7 +86,7 @@ header {
   align-items: center;
   gap: 7px;
   font-family: 'Lato', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #1a9e5c;
   background: #E6F9F0;
@@ -131,7 +131,7 @@ section { margin-bottom: 72px; }
 .sec-label {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -169,7 +169,7 @@ section { margin-bottom: 72px; }
 }
 .tool {
   font-family: 'Nunito', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--accent);
   border: 2px solid var(--rule);
@@ -254,15 +254,15 @@ section { margin-bottom: 72px; }
   margin-bottom: 5px;
 }
 .wi-tldr-label {
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--accent2);
 }
 .wi-tldr-tag {
   font-family: 'Lato', sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -307,13 +307,13 @@ section { margin-bottom: 72px; }
 }
 .work-item:hover::before { transform: translateY(-50%) scaleY(1); }
 .wi-meta {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
   margin-top: 3px;
   display: block;
 }
 .wi-right {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
   white-space: nowrap;
   flex-shrink: 0;
@@ -322,7 +322,7 @@ section { margin-bottom: 72px; }
 .wip-badge {
   display: inline-block;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--accent2);
   background: #FFF0F5;
@@ -366,7 +366,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
 }
 
@@ -404,14 +404,14 @@ footer {
   flex-shrink: 0;
 }
 .chat-contact {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: #000;
   font-family: -apple-system, 'SF Pro Text', sans-serif;
   text-align: center;
 }
 .chat-contact-sub {
-  font-size: 14px;
+  font-size: 18px;
   color: #6B6B70;
   font-family: -apple-system, 'SF Pro Text', sans-serif;
   text-align: center;
@@ -430,7 +430,7 @@ footer {
   background: var(--bg2);
   color: #000000;
   font-family: -apple-system, 'SF Pro Text', 'Lato', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   padding: 9px 13px;
   border-radius: 18px 18px 18px 4px;
@@ -464,14 +464,14 @@ footer {
   background: #007AFF;
   color: #FFFFFF;
   font-family: -apple-system, 'SF Pro Text', 'Lato', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 400;
   border-radius: 18px 18px 18px 4px;
 }
 /* timestamp above first bubble */
 .chat-timestamp {
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   color: #6B6B70;
   font-family: -apple-system, 'SF Pro Text', sans-serif;
   margin-bottom: 8px;
@@ -541,14 +541,14 @@ footer {
 .gp-title { 
   color: white;
   font-family: 'Nunito', sans-serif; 
-  font-weight: 800; 
+  font-weight: 600; 
   font-size: 16px; 
   line-height: 1.2; 
 }
 .gp-sub { 
   color: rgba(255,255,255,1); 
   font-family: 'Lato', sans-serif; 
-  font-size: 14px; 
+  font-size: 18px; 
   margin-top: 1px; 
 }
 .gp-body { 
@@ -594,7 +594,7 @@ footer {
 .gp-status {
   text-align: center;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--ink3);
   min-height: 20px;
@@ -647,7 +647,7 @@ footer {
   background: #F9EEED;
   color: var(--ink);
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   border: none;
   border-radius: 99px;
@@ -719,7 +719,7 @@ footer {
 .cs-sidenav a {
   display: block;
   font-family: 'Lato', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--muted);
   text-decoration: none;
@@ -750,7 +750,7 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--ink2);
   text-decoration: none;
@@ -790,7 +790,7 @@ footer {
   display: inline-flex;
   align-items: center;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: .02em;
   color: var(--ink);
@@ -942,7 +942,7 @@ footer {
 }
 
 .cs-label {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -954,7 +954,7 @@ footer {
 .cs-title {
   font-family: 'Nunito', sans-serif;
   font-size: clamp(32px, 5vw, 52px);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--ink);
   line-height: 1.05;
   letter-spacing: -1.5px;
@@ -968,7 +968,7 @@ footer {
   margin-bottom: 40px;
 }
 .cs-tags span {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--accent);
   background: var(--bg2);
@@ -997,8 +997,8 @@ footer {
 }
 .cs-fact dt {
   font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1006,7 +1006,7 @@ footer {
 }
 .cs-fact dd {
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--ink);
 }
@@ -1027,7 +1027,7 @@ footer {
   gap: 8px;
 }
 .cs-fact-tools li {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--accent);
   background: var(--bg2);
@@ -1067,8 +1067,8 @@ footer {
 
 .cs-section h3 {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1086,7 +1086,7 @@ footer {
 .cs-section-sub:empty { display: none; }
 
 .cs-section p {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.85;
 }
@@ -1201,8 +1201,8 @@ footer {
 }
 .cs-stat-team-names {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1212,7 +1212,7 @@ footer {
 }
 .cs-stat-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1223,8 +1223,8 @@ footer {
 }
 .cs-stat-lbl {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1343,7 +1343,7 @@ footer {
   display: inline-flex;
   align-items: center;
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -1364,7 +1364,7 @@ footer {
   justify-content: center;
   gap: 8px;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--accent);
   background: var(--bg2);
@@ -1426,15 +1426,15 @@ footer {
 .cs-rules-sec:last-child { margin-bottom: 0; }
 .cs-rules-sec h4 {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 10px;
 }
 .cs-rules-sec p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink2);
   margin: 0;
@@ -1452,7 +1452,7 @@ footer {
   counter-increment: rstep;
   position: relative;
   padding-left: 34px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--ink2);
 }
@@ -1470,7 +1470,7 @@ footer {
   color: #fff;
   border-radius: 50%;
   font-family: 'Nunito', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
 }
 .cs-rules-plain {
@@ -1484,7 +1484,7 @@ footer {
 .cs-rules-plain li {
   position: relative;
   padding-left: 20px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--ink2);
 }
@@ -1503,7 +1503,7 @@ footer {
 }
 .cs-rules-lose-line {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink2);
 }
@@ -1513,7 +1513,7 @@ footer {
   gap: 16px;
   margin: 28px 0;
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1535,7 +1535,7 @@ footer {
 }
 .cs-rules-pgbtn {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -1550,7 +1550,7 @@ footer {
 .cs-rules-pgbtn:disabled { color: var(--rule); cursor: default; }
 .cs-rules-pgcount {
   font-family: 'Nunito', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: .08em;
   color: var(--muted);
@@ -1571,7 +1571,7 @@ footer {
   justify-content: center;
   gap: 10px;
   color: var(--ink3);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -1590,14 +1590,14 @@ footer {
   opacity: .5;
 }
 .cs-img-placeholder .ph-label {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--muted);
   font-weight: 600;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
 .cs-img-placeholder .ph-sub {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink3);
   font-weight: 400;
   text-transform: none;
@@ -1622,7 +1622,7 @@ footer {
 }
 .cs-callout-problem {
   font-family: 'Nunito', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--ink2);
   line-height: 1.6;
@@ -1633,8 +1633,8 @@ footer {
 .cs-insights-label {
   margin-top: 24px;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1658,22 +1658,22 @@ footer {
   flex-shrink: 0;
   min-width: 20px;
   padding-top: 1px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--accent);
 }
 .cs-insight-body { flex: 1; min-width: 0; }
 .cs-insight-q {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
   color: var(--ink);
   line-height: 1.5;
 }
 .cs-insight-a {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.6;
   margin-top: 4px;
@@ -1697,7 +1697,7 @@ footer {
   background: rgba(26, 15, 16, .72);
   backdrop-filter: blur(2px);
   color: #fff;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.3;
   width: fit-content;
   max-width: calc(100% - 20px);
@@ -1743,7 +1743,7 @@ footer {
   border-radius: 8px;
   background: rgba(26, 15, 16, .6);
   color: #fff;
-  font-size: 15px;
+  font-size: 18px;
   opacity: 0;
   transition: opacity .15s ease;
 }
@@ -1801,10 +1801,10 @@ footer {
 }
 .cs-idea-fig-caption {
   margin: 8px 0 0;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.65;
   color: var(--muted);
-  font-weight: 700;
+  font-weight: 400;
   text-align: center;
   letter-spacing: .02em;
 }
@@ -1837,7 +1837,7 @@ footer {
 }
 .cs-idea-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--accent);
   letter-spacing: .08em;
@@ -1847,8 +1847,8 @@ footer {
   flex: 1;
   min-width: 0;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
@@ -1861,12 +1861,12 @@ footer {
   gap: 14px;
 }
 .cs-idea-text {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.65;
 }
 .cs-idea-progress {
-  font-size: 14px;
+  font-size: 18px;
   font-style: italic;
   color: var(--muted);
 }
@@ -1883,8 +1883,8 @@ footer {
 .cs-idea-tradeoffs-label {
   display: block;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
@@ -1901,7 +1901,7 @@ footer {
 .cs-idea-tradeoffs li {
   position: relative;
   padding-left: 28px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
   color: var(--ink2);
 }
@@ -1927,7 +1927,7 @@ footer {
   border-radius: 0;
 }
 .cs-hmw-label {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1937,7 +1937,7 @@ footer {
 .cs-hmw p {
   display: inline;
   margin: 0;
-  font-size: 14px !important;
+  font-size: 18px !important;
   font-weight: 700 !important;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1993,7 +1993,7 @@ footer {
   border-radius: 50%;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink);
   transition: background .15s, box-shadow .15s;
   z-index: 2;
@@ -2011,8 +2011,8 @@ footer {
 }
 .cs-carousel-caption {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
   color: #1A0F10;
   letter-spacing: .02em;
 }
@@ -2033,7 +2033,7 @@ footer {
 }
 
 .cs-carousel-desc {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--ink2);
   margin-top: 3px;
   font-style: italic;
@@ -2146,8 +2146,8 @@ footer {
 }
 .cs-flow-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
@@ -2187,7 +2187,7 @@ footer {
   font-size: 30px;
 }
 .cs-flow-body {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.65;
 }
@@ -2216,8 +2216,8 @@ footer {
   opacity: .5; 
 }
 .cs-flow-img .ph-label {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2244,7 +2244,7 @@ footer {
 
 .cs-takeaway-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: .1em;
   color: var(--accent2);
@@ -2253,8 +2253,8 @@ footer {
 }
 .cs-takeaway-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
@@ -2267,7 +2267,7 @@ footer {
   letter-spacing: 0;
 }
 .cs-takeaway-body {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.6;
   font-weight: 400;
@@ -2292,7 +2292,7 @@ footer {
 .cs-recognition-note {
   flex: 1 1 320px;
   margin: 0 !important;
-  font-size: 15px !important;
+  font-size: 18px !important;
   color: var(--ink) !important;
   line-height: 1.6 !important;
 }
@@ -2306,7 +2306,7 @@ footer {
 .cs-recognition-link {
   flex: 0 0 auto;
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -2338,14 +2338,14 @@ footer {
 .cs-reflection-card p {
   position: relative;
   z-index: 1;
-  font-size: 15px !important;
+  font-size: 18px !important;
   color: var(--ink) !important;
   font-style: italic;
   line-height: 1.8 !important;
 }
 .cs-reflection-label {
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent2);
@@ -2381,12 +2381,12 @@ footer {
 .cs-research-stat:nth-child(2) .cs-research-stat-num { color: #3B5FC0; }
 .cs-research-stat:nth-child(3) .cs-research-stat-num { color: #2A7A50; }
 .cs-research-stat-label {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.45;
 }
 .cs-research-source {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--muted);
   margin-top: 8px;
   font-style: italic;
@@ -2432,15 +2432,15 @@ footer {
 }
 .cs-finding-num {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--muted);
   letter-spacing: .1em;
 }
 .cs-finding-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--ink);
 }
 .cs-finding-body {
@@ -2457,8 +2457,8 @@ footer {
 .cs-finding-fixed { align-items: center; }
 .cs-finding-badge {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: .07em;
   text-transform: uppercase;
   border-radius: 99px;
@@ -2475,7 +2475,7 @@ footer {
   color: #064E3B;
 }
 .cs-finding-row p {
-  font-size: 14px !important;
+  font-size: 18px !important;
   color: var(--ink2) !important;
   line-height: 1.6 !important;
   margin: 0 !important;
@@ -2505,7 +2505,7 @@ footer {
   border-radius: 22px;
 }
 .cs-refinement-gif-caption {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--muted);
   font-style: italic;
   text-align: center;
@@ -2540,13 +2540,13 @@ footer {
 }
 .cs-changelog-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--ink);
   line-height: 1.3;
 }
 .cs-changelog-body {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.55;
 }
@@ -2559,7 +2559,7 @@ footer {
 #cs-contribution { display: none !important; }
 .cs-sidenav a[data-target="cs-contribution"] { display: none; }
 .cs-contribution-summary {
-  font-size: 15px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.8;
   margin-bottom: 24px;
@@ -2606,14 +2606,14 @@ footer {
 
 .cs-contrib-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--ink);
   margin-bottom: 5px;
 }
 
 .cs-contrib-text {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--ink2);
   line-height: 1.65;
 }
@@ -2636,3 +2636,152 @@ footer {
   z-index: 999;
 }
 #back-to-top.visible { opacity: 1; }
+/* ══ CASE PREVIEW MODAL ══ */
+.cs-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(26, 15, 16, .55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.cs-preview-modal.open { display: flex; }
+.cs-preview-panel {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .3);
+}
+.cs-preview-body { display: grid; grid-template-columns: 1.15fr 1fr; }
+.cs-pv-text { padding: 36px 32px 32px; }
+.cs-pv-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 18px;
+  padding-right: 32px;
+}
+.cs-pv-facts { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.cs-pv-facts dt {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+.cs-pv-facts dd { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink2); }
+.cs-pv-keywords { display: flex; flex-wrap: wrap; gap: 6px; }
+.cs-pv-keywords span {
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--bg2);
+  color: var(--ink3);
+}
+.cs-pv-more {
+  margin-top: 24px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s;
+}
+.cs-pv-more:hover { background: var(--accent2); }
+.cs-pv-img { display: flex; align-items: center; justify-content: center; padding: 24px; }
+.cs-pv-img img { max-width: 100%; max-height: 420px; object-fit: contain; }
+@media (max-width: 700px) {
+  .cs-preview-modal { padding: 12px; }
+  .cs-preview-body { grid-template-columns: 1fr; }
+  .cs-pv-img { order: -1; padding: 40px 24px 16px; }
+  .cs-pv-img img { max-height: 220px; }
+  .cs-pv-text { padding: 20px 22px 26px; }
+}
+
+.cs-pv-tabs { display: inline-flex; gap: 4px; padding: 3px; margin: -6px 0 18px; border-radius: 999px; background: var(--bg2); }
+.cs-pv-tab {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink3);
+  cursor: pointer;
+}
+.cs-pv-tab.active { background: #fff; color: var(--accent); box-shadow: 0 1px 4px rgba(0, 0, 0, .12); }
+
+.cs-pv-title { margin-bottom: 4px; }
+.cs-pv-sub { margin: 0 0 18px; font-size: 14px; color: var(--ink3); }
+.cs-pv-did, .cs-pv-impact { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink2); }
+.cs-pv-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 18px 0 4px;
+}
+.cs-pv-text > .cs-pv-keywords { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+
+.cs-pv-img { flex-direction: column; gap: 16px; }
+.cs-pv-img .cs-pv-tabs { margin: 0; }
+
+/* preview modal: larger type for readability */
+.cs-pv-title { font-size: 30px; line-height: 1.2; }
+.cs-pv-sub { font-size: 17px; }
+.cs-pv-did, .cs-pv-impact { font-size: 18px; line-height: 1.65; }
+.cs-pv-label { font-size: 14px; margin-top: 22px; }
+.cs-pv-tab { font-size: 15px; padding: 8px 16px; }
+.cs-pv-more { font-size: 17px; padding: 13px 24px; }
+.cs-preview-panel .cs-rules-close { width: 40px; height: 40px; font-size: 24px; }
+@media (max-width: 700px) {
+  .cs-pv-title { font-size: 26px; }
+  .cs-pv-did, .cs-pv-impact { font-size: 17px; }
+}
+
+/* work hover cards: identical size regardless of copy length */
+.wi-tldr-top { min-height: 28px; }
+.wi-tldr-text { min-height: calc(1.6em * 4); }
+
+/* preview modal: same size on every page (e.g. FoodLens Phone / Ray-Ban Meta) */
+.cs-pv-text { min-height: 520px; }
+.cs-pv-img img { width: 100%; height: 380px; max-height: none; object-fit: contain; }
+@media (max-width: 700px) {
+  .cs-pv-text { min-height: 440px; }
+  .cs-pv-img img { height: 220px; }
+}
+.cs-pv-img { justify-content: center; }
+@media (max-width: 700px) {
+  .cs-pv-text { min-height: 480px; }
+  .cs-pv-img { min-height: 340px; }
+}
+
+/* every preview matches the Ray-Ban Meta one: same height, image in the same spot */
+.cs-pv-text { min-height: 580px; }
+.cs-pv-img.no-tabs::after { content: ''; display: block; height: 40px; flex-shrink: 0; }
+@media (max-width: 700px) {
+  .cs-pv-img.no-tabs::after { height: 40px; }
+}
+
+/* preview modal: center the text block vertically */
+.cs-pv-text { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.cs-pv-text { min-height: 700px; }
+@media (max-width: 700px) { .cs-pv-text { min-height: 640px; } }
