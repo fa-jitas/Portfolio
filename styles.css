@@ -2785,3 +2785,17 @@ footer {
 .cs-pv-text { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
 .cs-pv-text { min-height: 700px; }
 @media (max-width: 700px) { .cs-pv-text { min-height: 640px; } }
+
+/* preview popup: larger image column */
+.cs-preview-panel { max-width: 1000px; }
+.cs-preview-body { grid-template-columns: 1fr 1.15fr; }
+.cs-pv-img { padding: 16px; }
+.cs-pv-img img { height: 440px; }
+@media (max-width: 700px) {
+  .cs-pv-img { padding: 40px 16px 16px; }
+  .cs-pv-img img { height: 260px; }
+}
+
+/* taller image box so tall phone screens (FoodLens Phone) scale up */
+.cs-pv-img img { height: 570px; }
+@media (max-width: 700px) { .cs-pv-img img { height: 340px; } }
